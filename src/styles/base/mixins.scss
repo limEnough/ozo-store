@@ -1,0 +1,280 @@
+// #region Sass Rem
+@import 'sass-rem';
+$rem-baseline: 10px;
+// #endregion
+
+// #region 이미지 Resizing
+@mixin imageResize($type: 'width') {
+  position: relative;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+
+    @if ($type == 'width') {
+      width: 100%;
+      height: auto;
+    } @else if ($type == 'height') {
+      width: auto;
+      height: 100%;
+    } @else if ($type == 'auto') {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
+  }
+}
+// #endregion
+
+// #region 말줄임 후략
+@mixin line($lineCount: 1) {
+  /* 사용법 : @include line(라인수) */
+  @if ($lineCount == 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else if($lineCount == 'auto') {
+    display: block;
+    overflow: visible;
+  } @else {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lineCount;
+  }
+}
+// #endregion
+
+// #region 폰트
+@mixin fontCss($name, $device) {
+  font-family: $noto;
+
+  @if($device == 'desktop') {
+   
+  }
+  @else if($device == 'mobile') {
+    /**
+    * menu
+    */
+    @if ($name == 'menu') {
+      font-weight: 600;
+      font-size: rem(22px);
+      line-height: rem(26px);
+    }
+
+    /**
+    * title
+    */
+    @else if ($name == 'title') {
+      font-weight: 800;
+      font-size: rem(18px);
+      line-height: rem(22px);
+    } 
+
+    /**
+    * description
+    */
+    @else if ($name == 'desc') {
+      font-weight: 400;
+      font-size: rem(14px);
+      line-height: rem(20px);
+    } 
+
+    /**
+    * contents-title
+    */
+    @else if ($name == 'dt') {
+      font-weight: 600;
+      font-size: rem(16px);
+      line-height: rem(24px);
+    } 
+
+    /**
+    * contents-description
+    */
+    @else if ($name == 'dd') {
+      font-weight: 400;
+      font-size: rem(12px);
+      line-height: rem(16px);
+    }
+  }
+}
+
+@mixin makefontCss($color: $black, $size: 12px, $weight: 400, $line: 12px, $family: $noto) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line;
+  font-family: $family;
+}
+// #endregion
+
+// #region Dim #fff 기준
+@function dim($opacity: 0.6) {
+  @return rgba(0, 0, 0, $opacity);
+}
+// #endregion
+
+// #region Division
+@mixin mobileDivision($direction: 'bottom', $weight: rem(10px), $bg: $grey50) {
+  border-#{$direction}: $weight solid $bg;
+}
+
+@mixin desktopDivision($direction: 'bottom', $weight: rem(10px), $bg: $grey50) {
+  border-#{$direction}: $weight solid $bg;
+}
+// #endregion
+
+// #region Image url
+@function src($deviceType: 'desktop', $folder: 'sample', $filename: '') {
+  @return '/src/assets/images/#{$deviceType}/#{$folder}/#{$filename}';
+}
+// #endregion
+
+// #region Image
+@mixin mobileImage(
+  $width: rem(12px),
+  $height: rem(12px),
+  $group: 'sample',
+  $file: '',
+  $repeat: no-repeat,
+  $position: center center,
+  $size: 100% auto
+) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  background-image: url(src('mobile', $group, $file));
+  background-repeat: $repeat;
+  background-position: $position;
+  background-size: $size;
+}
+
+@mixin desktopImage(
+  $width: rem(12px),
+  $height: rem(12px),
+  $group: 'sample',
+  $file: '',
+  $repeat: no-repeat,
+  $position: center center,
+  $size: 100% auto
+) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  background-image: url(src('desktop', $group, $file));
+  background-repeat: $repeat;
+  background-position: $position;
+  background-size: $size;
+}
+// #endregion
+
+// #region TODO: 비율 유지하는 이미지
+@mixin atioImg($width: 1, $height: 1) {
+  position: relative;
+  width: 100%;
+  padding-top: calc(100% * #{$height} / #{$width});
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+// #endregion
+
+// #region 커스텀 스크롤 바
+// width는 좌우 여백과 막대 width를 합한 값입니다.
+@mixin desktopCustomScrollbar($width: 16px, $background: $white, $direction: 'vertical') {
+  @if ($direction == 'vertical') {
+    padding: 4px 0;
+
+    &::-webkit-scrollbar {
+      width: $width;
+
+      &-thumb {
+        width: 4px;
+        border: calc(($width - 4px) / 2) solid $background; //6px
+        border-radius: 999px;
+        background: $grey200;
+      }
+    }
+  }
+}
+
+// width는 좌우 여백과 막대 width를 합한 값입니다.
+@mixin mobileCustomScrollbar($width: rem(20px), $background: $white, $direction: 'vertical') {
+  @if ($direction == 'vertical') {
+    padding: rem(4px 0);
+
+    &::-webkit-scrollbar {
+      width: $width;
+
+      &-thumb {
+        width: rem(4px);
+        border: calc(($width - rem(4px)) / 2) solid $background; //6px
+        border-radius: rem(999px);
+        background: $grey400;
+      }
+    }
+  }
+}
+// #endregion
+
+// #region 줄바꿈 처리
+@mixin lineWrap() {
+  white-space: pre-line;
+  word-break: break-all;
+}
+// #endregion
+
+// #region TODO: 리스트 불릿
+@mixin listMargin($px: '40px') {
+  //...
+}
+// #endregion
+
+// #region TODO: 문자 Replace
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+// #endregion
+
+// #region TODO: Empty 아이콘
+@mixin desktopEmptyIcon($type: 'page') {
+  @if ($type == 'page') {
+    width: 60px;
+    height: 60px;
+    background: no-repeat center center;
+    background-size: 60px auto;
+    background-image: url('../images/icon/empty.png');
+  }
+  @else if ($type == 'popup') {
+    width: 30px;
+    height: 30px;
+    background: no-repeat center center;
+    background-size: 60px auto;
+    background-image: url('../images/icon/empty.png');
+  }
+}
+// #endregion
