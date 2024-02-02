@@ -2,9 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    // 'vue/setup-compiler-macros': true
   },
-
   extends: [
     'eslint:recommended',
     '@vue/typescript/recommended',
@@ -31,7 +29,6 @@ module.exports = {
         vueIndentScriptAndStyle: true,
         endOfLine: 'auto',
         singleAttributePerLine: true,
-        // eslintIntegration: true,
         bracketSpacing: true,
         importOrder: [
           '^vue(.*)$',
@@ -57,36 +54,10 @@ module.exports = {
         usePrettierrc: false,
       },
     ],
-    // 'prettier/prettier': 'error',
-    // semi: [2, "always"],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    // quotes: ["error", "single"],
     '@typescript-eslint/no-var-requires': 'off',
     'object-shorthand': ['error', 'always'],
-    // "brace-style": ["error", "stroustrup"],
-    // "keyword-spacing": [
-    //   "error",
-    //   {
-    //     before: true,
-    //     after: true,
-    //   },
-    // ],
-    // "space-before-function-paren": [
-    //   "error",
-    //   {
-    //     anonymous: "never",
-    //     named: "never",
-    //     asyncArrow: "always",
-    //   },
-    // ],
-    // indent: [
-    //   "error",
-    //   2,
-    //   {
-    //     SwitchCase: 1,
-    //   },
-    // ],
 
     // #region vue
     'vue/script-indent': [
@@ -108,7 +79,7 @@ module.exports = {
     'vue/no-reserved-props': [
       'error',
       {
-        vueVersion: 3, // or 2
+        vueVersion: 3,
       },
     ],
 
