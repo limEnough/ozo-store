@@ -1,0 +1,10 @@
+.single-layout {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  &__inner {
+    width: 100%;
+    margin-top: rem(-30px);
+  }
+}
