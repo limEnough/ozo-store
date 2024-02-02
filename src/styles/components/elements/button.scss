@@ -1,0 +1,67 @@
+.button-component {
+  // #region case
+  &.case {
+    &--normal {
+      background: $pcolor;
+    }
+
+    &--process {
+      
+    }
+  }
+  // #endregion
+
+  // #region icon
+  &.icon-only {
+    background-color: initial;
+    font-size: 0;
+
+    &.show {
+      .icon--visible {
+        background-image: url(src('member', 'icon-password--on.svg'));
+      }
+    }
+  }
+
+  .icon {
+    &--visible {
+      @include imageCss(rem(12px), rem(12px), 'member', 'icon-password--off.svg');
+    }
+
+    &--clear {
+
+    }
+  }
+  // #endregion
+
+  // #region size
+  &.size {
+    &--s {
+
+    }
+
+    &--m {
+
+    }
+
+    &--l {
+      padding: rem(8px 0);
+      border-radius: rem(3px);
+      
+      @include fontCss($white, rem(7px), 400, rem(7px));
+    }
+  }
+  // #endregion
+
+  // #region width
+  &.width {
+    &--full {
+      width: 100%;
+    }
+
+    &--half {
+      width: 50%;
+    }
+  }
+  // #endregion
+}
