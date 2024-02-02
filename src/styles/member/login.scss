@@ -1,0 +1,79 @@
+
+.login {
+  width: 100%;
+  padding: rem(0 20px);
+
+  :deep() {
+    .input-component__bottom__input {
+      color: $pcolor;
+    }
+  }
+
+  // #region 타이틀 영역
+  &__title {
+    text-align: center;
+
+    &::before {
+      content: "";
+      @include ImageCss(rem(50px), rem(50px), 'member', 'image-logo.png');
+    }
+
+    &__main {
+      margin-top: rem(5px);
+      @include fontCss($black, rem(14px), 800, rem(14px));
+    }
+
+    &__sub {
+      @include fontCss($grey, rem(10px), 400, rem(10px));
+    }
+  }
+  // #endregion
+
+  // #region 로그인 폼
+  &__form {
+    margin-top: rem(15px);
+
+    &__button {
+      margin-top: rem(10px);
+    }
+  }
+  // #endregion
+
+  // #region 로그인 옵션
+  &__option {
+    margin-top: rem(20px);
+
+    &__low {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &:not(:first-of-type) {
+        margin-top: rem(4px);
+      }
+    }
+
+    &__title {
+      @include fontCss($black, rem(7px), 400, rem(7px));
+    }
+
+    &__cont {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      :deep() {
+        .link-component__button {
+          &:not(:first-of-type) {
+            margin-left: rem(5px)
+          }
+        }
+      }
+    }
+
+    &__link {
+      @include fontCss($pcolor, rem(7px), 600, rem(7px));
+    }
+  }
+  // #endregion
+}
