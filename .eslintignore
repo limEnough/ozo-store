@@ -1,0 +1,6 @@
+dist
+build
+public
+logs
+node_modules/
+src/assets/libs/
