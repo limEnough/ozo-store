@@ -78,5 +78,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/mobile/member/login.scss';
+  @import '@/styles/member/login.scss';
 </style>

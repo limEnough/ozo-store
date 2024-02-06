@@ -1,75 +1,75 @@
-// .input-component {
-//   padding: rem(5px 8px);
+.input-component {
+  padding: rem(5px 8px);
 
-//   &:not(:first-of-type) {
-//     margin-top: rem(8px);
-//   }
+  &:not(:first-of-type) {
+    margin-top: rem(8px);
+  }
 
-//   &.card-type {
-//     border-radius: rem(3px);
+  &.card-type {
+    border-radius: rem(3px);
 
-//     &.focused {
-//       box-shadow: rem(3px 3px 6px) $shadow;
-//     }
-//   }
+    &.focused {
+      box-shadow: rem(3px 3px 6px) $shadow;
+    }
+  }
   
-//   // #region state
-//   &.success {
-//     .input-component__top__label {
+  // #region state
+  &.success {
+    .input-component__top__label {
 
-//     }
-//   }
+    }
+  }
 
-//   &.fail {
-//     .input-component__top__label {
+  &.fail {
+    .input-component__top__label {
       
-//     }
-//   }
-//   // #endregion
+    }
+  }
+  // #endregion
 
-//   // #region top (라벨 박스)
-//   &__top {
-//     &:empty {
-//       margin: 0;
-//     }
+  // #region top (라벨 박스)
+  &__top {
+    &:empty {
+      margin: 0;
+    }
 
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     margin-bottom: rem(5px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(5px);
 
-//     &__label {
-//       @include fontCss($grey, rem(8px), 400, rem(8px), $noto);
-//     }
+    &__label {
+      @include fontCss($grey, rem(8px), 400, rem(8px), $noto);
+    }
 
-//     &__count {
+    &__count {
 
-//     }
-//   }
-//   // #endregion
+    }
+  }
+  // #endregion
 
-//   // #region bottom (인풋 박스)
-//   &__bottom {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
+  // #region bottom (인풋 박스)
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-//     &__input {
-//       border: none;
-//       outline: none;
-//       flex: rem(120px);
-//       @include fontCss($black, rem(8px), 800, rem(8px), $noto);
+    &__input {
+      border: none;
+      outline: none;
+      flex: rem(120px);
+      @include fontCss($black, rem(8px), 800, rem(8px), $noto);
 
-//       &::placeholder {
-//         @include fontCss($grey, rem(8px), 400, rem(8px), $noto);
-//       }
-//     }
+      &::placeholder {
+        @include fontCss($grey, rem(8px), 400, rem(8px), $noto);
+      }
+    }
 
-//     &__button {
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//     }
-//   }
-//   // #endregion
-// }
+    &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  // #endregion
+}
