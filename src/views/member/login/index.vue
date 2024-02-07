@@ -2,10 +2,7 @@
   <component :is="Single">
     <div class="login">
       <!-- 타이틀 영역 -->
-      <div class="login__title">
-        <h2 class="login__title__main">Welcome Back</h2>
-        <span class="login__title__sub">sign to continue</span>
-      </div>
+      <Title :data="pageTitle"></Title>
 
       <!-- 로그인 폼 -->
       <form class="login__form">
@@ -83,13 +80,14 @@
 
 <script setup lang="ts">
   import loginComposable from '@/composables/views/member/login';
+  import Title from '@/components/elements/title.vue';
   import Button from '@/components/elements/button.vue';
   import Input from '@/components/elements/input.vue';
   import Link from '@/components/elements/link.vue';
   import Single from '@/components/layouts/single.vue';
   import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
-  const { userEmail, userPassword } = loginComposable();
+  const { userEmail, userPassword, pageTitle } = loginComposable();
 </script>
 
 <style lang="scss" scoped>

@@ -1,11 +1,6 @@
 .title-component {
   text-align: center;
-
-  &::before {
-    content: "";
-    @include imageCss(rem(50px), rem(50px), 'member', 'image-logo.png');
-  }
-
+  
   &__main {
     @include fontCss($black, rem(14px), 800, rem(14px));
   }

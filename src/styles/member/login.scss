@@ -2,29 +2,13 @@
   width: 100%;
   padding: rem(0 20px);
 
-  :deep() {
-    .input-component__bottom__input {
-      color: $pcolor;
-    }
-  }
-
   // #region 타이틀 영역
-  &__title {
-    text-align: center;
-
-    &::before {
-      content: "";
-      @include imageCss(rem(50px), rem(50px), 'member', 'image-logo.png');
-    }
-
-    &__main {
-      @include fontCss($black, rem(14px), 800, rem(14px));
-    }
-
-    &__sub {
-      display: block;
-      margin-top: rem(5px);
-      @include fontCss($grey, rem(10px), 400, rem(10px));
+  :deep() {
+    .title-component {
+      &::before {
+        content: "";
+        @include imageCss(rem(50px), rem(50px), 'member', 'image-logo.png');
+      }
     }
   }
   // #endregion

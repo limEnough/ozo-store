@@ -58,7 +58,7 @@
       border: none;
       outline: none;
       flex: rem(120px);
-      @include fontCss($black, rem(8px), 800, rem(8px), $noto);
+      @include fontCss($pcolor, rem(8px), 800, rem(8px), $noto);
 
       &::placeholder {
         @include fontCss($grey, rem(8px), 400, rem(8px), $noto);
