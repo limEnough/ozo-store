@@ -18,11 +18,12 @@
     }
 
     &__main {
-      margin-top: rem(5px);
       @include fontCss($black, rem(14px), 800, rem(14px));
     }
 
     &__sub {
+      display: block;
+      margin-top: rem(5px);
       @include fontCss($grey, rem(10px), 400, rem(10px));
     }
   }
@@ -30,10 +31,10 @@
 
   // #region 로그인 폼
   &__form {
-    margin-top: rem(15px);
+    margin-top: rem(35px);
 
     &__button {
-      margin-top: rem(10px);
+      margin-top: rem(20px);
     }
   }
   // #endregion

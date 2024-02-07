@@ -18,7 +18,11 @@ const PAGE_CODE_DEPTH1 = {
 
 const PAGE_CODE_DEPTH2 = {
   /** 로그인 */
-  LOGIN: 'MENU.MENU_DEPTH_1.LOGIN',
+  LOGIN: 'MENU.MENU_DEPTH_2.LOGIN',
+  /** 계정 생성 */
+  CREATE: 'MENU.MENU_DEPTH_2.CREATE',
+  /** 계정 찾기 */
+  SEARCH: 'MENU.MENU_DEPTH_2.SEARCH',
   /** 마이페이지 메인 */
   MYPAGE_MAIN: 'MENU.MENU_DEPTH_2.MYPAGE_MAIN',
   /** 상품 목록 */

@@ -45,21 +45,35 @@
         <dl class="login__option__low">
           <dt class="login__option__title">Forgot account?</dt>
           <dd class="login__option__cont">
-            <!-- <Link to="/">
+            <Link
+              :to="{
+                name: MEMBER_PAGE_NAMES['member-search'],
+                params: { type: 'email' },
+              }"
+            >
               <span class="login__option__link">Email</span>
-            </Link> -->
-            <!-- <Link to="/">
+            </Link>
+            <Link
+              :to="{
+                name: MEMBER_PAGE_NAMES['member-search'],
+                params: { type: 'password' },
+              }"
+            >
               <span class="login__option__link">Password</span>
-            </Link> -->
+            </Link>
           </dd>
         </dl>
 
         <dl class="login__option__low">
           <dt class="login__option__title">Don't have account?</dt>
           <dd class="login__option__cont">
-            <!-- <Link to="/">
+            <Link
+              :to="{
+                name: MEMBER_PAGE_NAMES['member-create'],
+              }"
+            >
               <span class="login__option__link">Create a new account</span>
-            </Link> -->
+            </Link>
           </dd>
         </dl>
       </div>
@@ -71,8 +85,9 @@
   import loginComposable from '@/composables/views/member/login';
   import Button from '@/components/elements/button.vue';
   import Input from '@/components/elements/input.vue';
-  // import Link from '@/components/elements/link.vue';
+  import Link from '@/components/elements/link.vue';
   import Single from '@/components/layouts/single.vue';
+  import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
   const { userEmail, userPassword } = loginComposable();
 </script>

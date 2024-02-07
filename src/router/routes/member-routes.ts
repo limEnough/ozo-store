@@ -2,6 +2,7 @@ import { type RouteRecordRaw } from 'vue-router';
 import { PAGE_CODE_DEPTH1, PAGE_CODE_DEPTH2 } from '@/constants/page-code-constants';
 import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 import Login from '@/views/member/login/index.vue';
+import Search from '@/views/member/search/index.vue';
 
 const getMainRoutes = (): RouteRecordRaw[] => {
   return [
@@ -21,6 +22,24 @@ const getMainRoutes = (): RouteRecordRaw[] => {
           meta: {
             pageTitle: '로그인',
             pageCode: PAGE_CODE_DEPTH2['LOGIN'],
+          },
+        },
+        {
+          path: '/member/create',
+          name: MEMBER_PAGE_NAMES['member-create'],
+          component: Search,
+          meta: {
+            pageTitle: '계정 생성',
+            pageCode: PAGE_CODE_DEPTH2['CREATE'],
+          },
+        },
+        {
+          path: '/member/search',
+          name: MEMBER_PAGE_NAMES['member-search'],
+          component: Search,
+          meta: {
+            pageTitle: '계정 찾기',
+            pageCode: PAGE_CODE_DEPTH2['SEARCH'],
           },
         },
       ],
