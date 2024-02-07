@@ -10,8 +10,8 @@ export const MAIN_PAGE_NAMES = {
 export const MEMBER_PAGE_NAMES = {
   ['member']: PAGE_CODE_DEPTH1['MEMBER'], // 회원 - 1뎁스
   ['member-login']: PAGE_CODE_DEPTH2['LOGIN'], // 로그인 - 2뎁스
-  ['member-search']: PAGE_CODE_DEPTH2['SEARCH'], // 계정 찾기 - 2뎁스
   ['member-create']: PAGE_CODE_DEPTH2['CREATE'], // 계정 생성 - 2뎁스
+  ['member-search']: PAGE_CODE_DEPTH2['SEARCH'], // 계정 찾기 - 2뎁스
 } as const;
 // #endregion
 

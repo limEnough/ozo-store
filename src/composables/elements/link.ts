@@ -54,6 +54,7 @@ export default function linkComposables(props: Props) {
     }
 
     let resultOnClick;
+
     // click event 이전 처리 여부 확인
     if (beforeClick?.value) {
       resultOnClick = beforeClick.value();

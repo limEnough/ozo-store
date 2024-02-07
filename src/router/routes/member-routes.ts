@@ -3,6 +3,7 @@ import { PAGE_CODE_DEPTH1, PAGE_CODE_DEPTH2 } from '@/constants/page-code-consta
 import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 import Login from '@/views/member/login/index.vue';
 import Search from '@/views/member/search/index.vue';
+import Create from '@/views/member/create/index.vue';
 
 const getMainRoutes = (): RouteRecordRaw[] => {
   return [
@@ -27,14 +28,14 @@ const getMainRoutes = (): RouteRecordRaw[] => {
         {
           path: '/member/create',
           name: MEMBER_PAGE_NAMES['member-create'],
-          component: Search,
+          component: Create,
           meta: {
             pageTitle: '계정 생성',
             pageCode: PAGE_CODE_DEPTH2['CREATE'],
           },
         },
         {
-          path: '/member/search',
+          path: '/member/search/:type',
           name: MEMBER_PAGE_NAMES['member-search'],
           component: Search,
           meta: {
