@@ -1,0 +1,53 @@
+.radio-component {
+  &__input {
+    display: none;
+
+    &:checked {
+      & + .radio-component__icon {
+        background-color: $pcolor;
+      }
+    }
+
+    &:disabled {
+      & + .radio-component__icon:before {
+        background-color: $grey;
+      }
+
+      &:checked {
+        & + .radio-component__icon:before {
+          background-color: $pcolor;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    display: block;
+    position: relative;
+    width: rem(8px);
+    height: rem(8px);
+    margin: rem(3px 0);
+    margin-right: rem(2px);
+    border-radius: 50%;
+    background-color: $grey;
+    font-size: 0;
+    line-height: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: rem(4px);
+      height: rem(4px);
+      margin: rem(-2px 0 0 -2px);
+      border-radius: 50%;
+      background-color: $white;
+    }
+  }
+
+  &__label {
+    padding: rem(7px 0);
+    @include fontCss($black, rem(20px), 400, rem(20px));
+  }
+}
