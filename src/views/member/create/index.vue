@@ -1,5 +1,5 @@
 <template>
-  <component :is="Single">
+  <component :is="SingleLayout">
     <div class="create">
       <!-- 타이틀 영역 -->
       <Title :data="pageTitle"></Title>
@@ -16,7 +16,7 @@
   import createComposable from '@/composables/views/member/create';
   import Title from '@/components/elements/title.vue';
   import Form from '@/components/modules/form.vue';
-  import Single from '@/components/layouts/single.vue';
+  import SingleLayout from '@/components/layouts/single-layout.vue';
 
   const { pageTitle } = createComposable();
 </script>

@@ -7,5 +7,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/styles/components/layouts/desktop.scss';
+  @import '@/styles/components/layouts/desktop-layout.scss';
 </style>

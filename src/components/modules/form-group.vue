@@ -10,7 +10,7 @@
   >
     <!-- 아코디언 사용할 경우 -->
     <template v-if="useAccordion && hasSlotHeader">
-      <fb-accordion
+      <Accordion
         :is-open="isOpen"
         class="form-group-component__accordion"
         @toggle="handleToggle"
@@ -41,7 +41,7 @@
             <slot name="guide"></slot>
           </div>
         </template>
-      </fb-accordion>
+      </Accordion>
     </template>
 
     <!-- 아코디언 사용하지 않을 경우 -->
@@ -73,6 +73,7 @@
 
 <script setup lang="ts">
   import formGroupComposable from '@/composables/modules/form-group';
+  import Accordion from '@/components/elements/accordion.vue';
 
   const { hasSlotHeader, hasSlotGuide, handleToggle } = formGroupComposable();
 </script>

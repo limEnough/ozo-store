@@ -1,13 +1,13 @@
 <template>
-  <Desktop :is="!isMobile">
+  <DesktopLayout :is="!isMobile">
     <RouterView> </RouterView>
-  </Desktop>
+  </DesktopLayout>
 </template>
 
 <script setup lang="ts">
   import { RouterView } from 'vue-router';
   import { isMobile } from '@/stores/common';
-  import Desktop from '@/components/layouts/desktop.vue';
+  import DesktopLayout from '@/components/layouts/desktop-layout.vue';
 </script>
 
 <style lang="scss">

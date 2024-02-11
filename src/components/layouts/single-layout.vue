@@ -7,5 +7,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/styles/components/layouts/single.scss';
+  @import '@/styles/components/layouts/single-layout.scss';
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <component :is="Single">
+  <component :is="SingleLayout">
     <div class="login">
       <!-- 타이틀 영역 -->
       <Title :data="pageTitle"></Title>
@@ -84,7 +84,7 @@
   import Button from '@/components/elements/button.vue';
   import Input from '@/components/elements/input.vue';
   import Link from '@/components/elements/link.vue';
-  import Single from '@/components/layouts/single.vue';
+  import SingleLayout from '@/components/layouts/single-layout.vue';
   import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
   const { userEmail, userPassword, pageTitle } = loginComposable();
