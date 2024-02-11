@@ -1,0 +1,173 @@
+.form-group-component {
+  // #region 타이틀 영역
+  &__title {
+    display: flex;
+    align-items: center;
+    padding: rem(8px 4px 8px 16px);
+    color: $black;
+    background: $grey;
+  }
+  // #endregion
+
+  // #region 필수 케이스
+  &--required {
+    .form-group-component {
+      &__title {
+        &::after {
+          content: '*';
+          margin-left: rem(3px);
+          color: $red;
+        }
+      }
+    }
+  }
+  // #endregion
+
+  // #region 뎁스 사용
+  &--has-depth {
+    :deep() {
+      .form-group-component {
+        &__contents {
+          > .form-row-component {
+            .form-item-component {
+              &__title {
+                flex-basis: rem(200px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // #endregion
+
+  // #region 이너 폼그룹 사용
+  &--inner-group {
+    &.selected {
+      .form-group-component__accordion {
+        .accordion__header {
+          .form-group-component__title {
+            background: $pcolor;
+          }
+        }
+      }
+    }
+
+    :deep() {
+      .form-group-component__accordion {
+        // 아코디언 오픈시,
+        &.open {
+          .accordion__toggle {
+            &:before {
+              transform: rotate(180deg);
+            }
+          }
+        }
+
+        .accordion__header {
+          .form-group-component__title {
+            border: none;
+            background: $grey;
+          }
+        }
+
+        .accordion__toggle {
+          position: absolute;
+          top: rem(#{calc(50% - 6px)});
+          right: rem(20px);
+          width: rem(16px);
+          height: rem(16px);
+          border: none;
+          background: none;
+          cursor: pointer;
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            // TODO: 이미지
+            background: red;
+            // background: url(src('test', 'common', 'arrow_16px_bottom.svg')) no-repeat center;
+            transform: rotate(0deg);
+          }
+        }
+
+        .radio-component {
+          &__icon {
+            background: #fff;
+          }
+
+          & + .input-component {
+            margin-left: rem(16px);
+          }
+        }
+      }
+    }
+  }
+  // #endregion
+
+  // #region 아코디언 사용
+  &__accordion {
+    :deep() {
+      display: block;
+
+      .accordion {
+        &__header {
+          display: block;
+
+          .form-group-component__title {
+            padding: rem(6px 4px 6px 16px);
+            min-height: rem(32px);
+            color: $black;
+            background: $grey;
+
+            > h3 {
+              color: $black;
+            }
+
+            > button {
+              margin-left: rem(8px);
+              order: 1;
+            }
+          }
+
+          &.hover {
+            .form-group-component__title {
+              background-color: $grey;
+            }
+          }
+        }
+      }
+
+      > *:first-child .form-row-component,
+      .form-row-component {
+        &:first-child {
+          .form-item-component {
+            &__title,
+            &__contents {
+              border-top: none;
+            }
+          }
+        }
+      }
+    }
+
+    &.open {
+      :deep() {
+        .accordion {
+          &__header {
+            &.hover {
+              .form-group-component__title {
+                background-color: $grey;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // #endregion
+}

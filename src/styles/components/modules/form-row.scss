@@ -1,0 +1,26 @@
+.form-row-component {
+  display: flex;
+  align-items: stretch;
+
+  :deep() {
+    .form-item-component {
+      &__title {
+        border-top: 1px solid $grey;
+      }
+      &__contents {
+        border-top: 1px solid $grey;
+      }
+    }
+  }
+
+  &:last-child {
+    :deep() {
+      .form-item-component {
+        &__title,
+        &__contents {
+          border-bottom: 1px solid $grey;
+        }
+      }
+    }
+  }
+}

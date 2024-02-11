@@ -1,0 +1,85 @@
+.form-item-component {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  max-width: 100%;
+  min-height: rem(44px);
+
+  // #region 타이틀 영역
+  &__title {
+    display: flex;
+    flex: rem(0 0 200px);
+    align-items: center;
+    height: 100%;
+    padding: rem(10px);
+    padding: rem(8px 16px);
+    background-color: $grey;
+    cursor: default;
+
+    .title {
+      &__text {
+        display: flex;
+        align-items: center;
+        word-break: break-all;
+        color: $black;
+      }
+    }
+  }
+  // #endregion
+
+  // #region 콘텐츠 영역
+  &__contents {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    max-width: rem(#{calc(100% - 200px)});
+    min-height: 100%;
+    padding: rem(8px 16px);
+
+    .contents {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 100%;
+    }
+  }
+  // #endregion
+
+  // #region 메시지 영역
+  &__messages {
+    // messages 슬롯이 비어있을 경우에 대한 처리
+    &:empty {
+      margin: 0;
+    }
+  }
+  // #endregion
+
+  // #region 필수 케이스
+  &--required {
+    .form-item-component {
+      &__title {
+        &::after {
+          content: '*';
+          margin-left: rem(3px);
+          color: $red;
+        }
+      }
+    }
+  }
+  // #endregion
+
+  // #region 서브 콘텐츠 사용
+  &--sub {
+    .form-item-component__contents {
+      display: flex;
+      align-items: center;
+
+      .contents {
+        width: 50%;
+      }
+    }
+  }
+  // #endregion
+}
