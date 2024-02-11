@@ -1,13 +1,20 @@
 <template>
   <div class="title-component">
     <!-- 메인 타이틀 -->
-    <h2 class="title-component__main">{{ titleInfo.main }}</h2>
+    <h2 class="title-component__main">
+      <slot name="title">
+        {{ titleInfo.main }}
+      </slot>
+    </h2>
     <!-- 서브 타이틀 -->
     <span
       v-if="hasSubTitle"
       class="title-component__sub"
-      >{{ titleInfo.sub }}</span
     >
+      <slot name="sub-title">
+        {{ titleInfo.sub }}
+      </slot>
+    </span>
   </div>
 </template>
 
