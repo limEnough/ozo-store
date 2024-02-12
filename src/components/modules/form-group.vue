@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: 아코디언 컴포넌트@!!!!!!!!!!!!!!!!!!!!!!! -->
   <div
     :class="{
       'form-group-component--required': required,
@@ -72,10 +71,13 @@
 </template>
 
 <script setup lang="ts">
-  import formGroupComposable from '@/composables/modules/form-group';
+  import formGroupComposable, { formGroupEmits, formGroupProps } from '@/composables/modules/form-group';
   import Accordion from '@/components/elements/accordion.vue';
 
-  const { hasSlotHeader, hasSlotGuide, handleToggle } = formGroupComposable();
+  const emits = defineEmits(formGroupEmits);
+  defineProps(formGroupProps);
+
+  const { hasSlotHeader, hasSlotGuide, handleToggle } = formGroupComposable(emits);
 </script>
 
 <style lang="scss" scoped>
