@@ -45,7 +45,7 @@
   &--inner-group {
     &.selected {
       .form-group-component__accordion {
-        .accordion__header {
+        .accordion-component__header {
           .form-group-component__title {
             background: $pcolor;
           }
@@ -57,21 +57,21 @@
       .form-group-component__accordion {
         // 아코디언 오픈시,
         &.open {
-          .accordion__toggle {
+          .accordion-component__toggle {
             &:before {
               transform: rotate(180deg);
             }
           }
         }
 
-        .accordion__header {
+        .accordion-component__header {
           .form-group-component__title {
             border: none;
             background: $grey;
           }
         }
 
-        .accordion__toggle {
+        .accordion-component__toggle {
           position: absolute;
           top: rem(#{calc(50% - 6px)});
           right: rem(20px);
@@ -114,7 +114,7 @@
     :deep() {
       display: block;
 
-      .accordion {
+      .accordion-component {
         &__header {
           display: block;
 
@@ -157,7 +157,7 @@
 
     &.open {
       :deep() {
-        .accordion {
+        .accordion-component {
           &__header {
             &.hover {
               .form-group-component__title {
