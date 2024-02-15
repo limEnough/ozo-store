@@ -1,0 +1,16 @@
+.header-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: rem(15px);
+
+  &__left {
+    display: flex;
+    align-items: center;
+    font-size: 0;
+  }
+
+  &__title {
+    @include fontCss($deep, rem(12px), 800, rem(12px));
+  }
+}
