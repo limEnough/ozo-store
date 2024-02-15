@@ -1,28 +1,19 @@
 .form-item-component {
   position: relative;
   display: flex;
-  flex: 1;
   align-items: center;
-  max-width: 100%;
-  min-height: rem(44px);
 
   // #region 타이틀 영역
   &__title {
     display: flex;
-    flex: rem(0 0 200px);
+    flex: rem(0 0 50px);
     align-items: center;
-    height: 100%;
-    padding: rem(10px);
-    padding: rem(8px 16px);
-    background-color: $grey;
     cursor: default;
 
     .title {
       &__text {
-        display: flex;
-        align-items: center;
         word-break: break-all;
-        color: $black;
+        @include fontCss($grey, rem(10px), 600, rem(10px));
       }
     }
   }
@@ -33,17 +24,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    justify-content: center;
-    max-width: rem(#{calc(100% - 200px)});
-    min-height: 100%;
-    padding: rem(8px 16px);
-
-    .contents {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      min-height: 100%;
-    }
+    max-width: rem(#{calc(100% - 50px)});
   }
   // #endregion
 
@@ -62,22 +43,10 @@
       &__title {
         &::after {
           content: '*';
+          display: inline-block;
           margin-left: rem(3px);
-          color: $basic;
+          @include fontCss($point, rem(10px), 800, rem(10px));
         }
-      }
-    }
-  }
-  // #endregion
-
-  // #region 서브 콘텐츠 사용
-  &--sub {
-    .form-item-component__contents {
-      display: flex;
-      align-items: center;
-
-      .contents {
-        width: 50%;
       }
     }
   }

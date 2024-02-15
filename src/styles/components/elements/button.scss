@@ -47,8 +47,8 @@
     }
 
     &--back {
-      @include imageCss(rem(30px), rem(40px), 'common', 'icon-arrow--right.png', no-repeat, rem(5px) center, rem(9px));
-      transform: rotate(180deg);
+      @include imageCss(rem(35px), rem(35px), 'common', 'icon-arrow-down--deep.svg', no-repeat, center, rem(10px) auto);
+      transform: rotate(90deg);
     }
 
     &--add {

@@ -6,7 +6,7 @@ export default function loginComposable() {
 
   const pageTitle = reactive({
     main: 'Welcome back!',
-    sub: 'sign to continue',
+    sub: 'Sign to continue',
   });
 
   return {
