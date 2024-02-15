@@ -1,11 +1,23 @@
 .form-group-component {
   // #region 타이틀 영역
   &__title {
-    display: flex;
-    align-items: center;
-    padding: rem(8px 4px 8px 16px);
-    color: $black;
-    background: $grey;
+    display: block;
+    padding: rem(8px 0);
+    font-size: 0;
+    border-radius: rem(3px);
+
+    :deep() {
+      > h3 {
+        display: inline-block;
+        @include fontCss($deep, rem(10px), 800, rem(10px));
+      } 
+    }
+  }
+  // #endregion
+
+  // #region 콘텐츠 영역
+  &__contents {
+    padding-top: rem(10px);
   }
   // #endregion
 
@@ -15,15 +27,16 @@
       &__title {
         &::after {
           content: '*';
+          display: inline-block;
           margin-left: rem(3px);
-          color: $basic;
+          @include fontCss($point, rem(10px), 800, rem(10px));
         }
       }
     }
   }
   // #endregion
 
-  // #region 뎁스 사용
+  // #region TODO: 뎁스 사용
   &--has-depth {
     :deep() {
       .form-group-component {
@@ -41,7 +54,7 @@
   }
   // #endregion
 
-  // #region 이너 폼그룹 사용
+  // #region TODO: 이너 폼그룹 사용
   &--inner-group {
     &.selected {
       .form-group-component__accordion {
@@ -55,46 +68,6 @@
 
     :deep() {
       .form-group-component__accordion {
-        // 아코디언 오픈시,
-        &.open {
-          .accordion-component__toggle {
-            &:before {
-              transform: rotate(180deg);
-            }
-          }
-        }
-
-        .accordion-component__header {
-          .form-group-component__title {
-            border: none;
-            background: $grey;
-          }
-        }
-
-        .accordion-component__toggle {
-          position: absolute;
-          top: rem(#{calc(50% - 6px)});
-          right: rem(20px);
-          width: rem(16px);
-          height: rem(16px);
-          border: none;
-          background: none;
-          cursor: pointer;
-
-          &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            // TODO: 이미지
-            background: red;
-            // background: url(src('test', 'common', 'arrow_16px_bottom.svg')) no-repeat center;
-            transform: rotate(0deg);
-          }
-        }
-
         .radio-component {
           &__icon {
             background: #fff;
@@ -102,55 +75,6 @@
 
           & + .input-component {
             margin-left: rem(16px);
-          }
-        }
-      }
-    }
-  }
-  // #endregion
-
-  // #region 아코디언 사용
-  &__accordion {
-    &.open {
-      .accordion-component__header {
-        .form-group-component__title {
-          background: $basic;
-
-          > h3 {
-            color: $white;
-          }
-        }
-      }
-    }
-
-    :deep() {
-      display: block;
-
-      .accordion-component__header {
-        display: block;
-
-        .form-group-component__title {
-          display: block;
-          padding: rem(8px);
-          background: $white;
-          border: rem(2px) solid $basic;
-          font-size: 0;
-          border-radius: rem(3px);
-
-          > h3 {
-            @include fontCss($black, rem(10px), 400, rem(10px));
-          }
-        }
-      }
-
-      > *:first-child .form-row-component,
-      .form-row-component {
-        &:first-child {
-          .form-item-component {
-            &__title,
-            &__contents {
-              border-top: none;
-            }
           }
         }
       }

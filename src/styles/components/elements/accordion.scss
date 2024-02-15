@@ -1,13 +1,40 @@
 .accordion-component {
+  &.open {
+    .accordion-component {
+      &__toggle {
+        background-color: $deep;
+
+        &:before {
+          background-image: url(src('test', 'common', 'icon-arrow-down--white.svg'));
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  &__header {
+    position: relative;
+
+    // TODO: 헤더 토글 케이스
+    &.useHeaderToggle {
+      cursor: pointer;
+
+      .accordion-component__toggle {
+        border: none;
+        background-color: unset;
+        @include imageCss(100%, 100%, 'common', 'icon-arrow-down--deep.svg', no-repeat, center, rem(10px));
+      }
+    }
+  }
+
   &__toggle {
     position: absolute;
-    top: rem(#{calc(50% - 12px)});
-    right: rem(4px);
-    width: rem(26px);
-    height: rem(24px);
-    border: 1px solid $black;
-    background-color: $black;
-    border-radius: rem(2px);
+    top: 50%;
+    right: rem(8px);
+    width: rem(18px);
+    height: rem(18px);
+    border-radius: rem(3px);
+    transform: translate(0, -50%);
     cursor: pointer;
 
     &:before {
@@ -15,57 +42,18 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      // TODO: 이미지
-      background: red;
-      // background: url(src('desktop', 'common', 'arrow_12px_white.svg')) no-repeat center;
-      transform: rotate(180deg);
+      @include imageCss(100%, 100%, 'common', 'icon-arrow-down--deep.svg', no-repeat, center, rem(10px));
+      transform: rotate(0);
     }
 
     span {
       display: none;
     }
   }
-
-  &__header {
-    position: relative;
-
-    &.useHeaderToggle {
-      cursor: pointer;
-
-      .accordion-component__toggle {
-        border: none;
-        background-color: unset;
-        // TODO: 이미지
-        background: blue;
-        // &::before {
-        //   background-image: url(src('desktop', 'common', 'arrow_12px_dark.svg'));
-        // }
-      }
-    }
-  }
   
   &__body {
     &.overflow {
       overflow: hidden;
-    }
-  }
-
-  &.open {
-    .accordion-component {
-      &__toggle {
-        border-radius: rem(2px);
-        border: 1px solid $grey;
-        background-color: $grey;
-
-        &:before {
-          // TODO: 이미지
-          background: green;
-          // background-image: url(src('desktop', 'common', 'arrow_12px_dark.svg'));
-          transform: rotate(0deg);
-        }
-      }
     }
   }
 }
