@@ -5,7 +5,7 @@
   --white: #fff;
 
   // Primary
-  --point: #01B187;
+  --point: #00A87F;
 
   // Border / Background
   --border: #c6c9cf;
@@ -17,8 +17,7 @@
   --state-fail: var(--point);
 
   // Fonts
-  --noto: 'Notosans', sans-serif; //국문
-  --font_e: 'Roboto', var(--noto); //영문
+  --dm: 'DMSans', sans-serif;
 
   // Box-shadow
   --shadow-0: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
@@ -55,8 +54,7 @@ $colors: (
 // #endregion
 
 // #region Fonts
-$noto: var(--noto);
-$font_e: var(--font_e);
+$dm: var(--dm);
 // #endregion
 
 // #region Box-shadows

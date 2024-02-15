@@ -28,7 +28,7 @@
 // #endregion
 
 // #region 폰트
-@mixin fontCss($color: $black, $size: 12px, $weight: 400, $line: 12px, $family: $noto) {
+@mixin fontCss($color: $black, $size: rem(12px), $weight: 400, $line: rem(12px), $family: $dm) {
   color: $color;
   font-size: $size;
   font-weight: $weight;
