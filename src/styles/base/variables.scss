@@ -5,13 +5,14 @@
   --white: #fff;
 
   // Primary
-  --point: #00A87F;
+  --basic: #567DF4;
+  --deep: #22215B;
+  --point: #FE0034;
 
   // Border / Background
   --border: #c6c9cf;
-  --dimblack: #000;
-  --bg-grey: #ebebeb;
-  --bg-shadow: #D1D4D7;
+  --dim: #37366C;
+  --bg: #F7F8FE;
 
   // State
   --state-fail: var(--point);
@@ -27,7 +28,7 @@
 
 // #region Colors 
 // primary
-$pcolor: var(--point);
+$basic: var(--basic);
 
 // font
 $black: var(--black);
@@ -35,9 +36,8 @@ $grey: var(--grey);
 $white: var(--white);
 
 // background
-$dimblack: var(--dimblack);
-$bg: var(--bg-grey);
-$shadow: var(--bg-shadow);
+$dim: var(--dim);
+$bg: var(--bg);
 $border: var(--border);
 
 // state
@@ -49,7 +49,8 @@ $colors: (
   black: var(--basic),
   white: var(--white),
   grey: var(--grey),
-  green: var(--point),
+  blue: var(--basic),
+  red: var(--point),
 );
 // #endregion
 
