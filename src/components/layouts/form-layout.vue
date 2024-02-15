@@ -4,9 +4,7 @@
     v-bind="$attrs"
   >
     <!-- 타이틀 영역 -->
-    <slot name="title">
-      <Title :data="pageTitle"></Title>
-    </slot>
+    <Title></Title>
 
     <!-- 아코디언 토글 영역 -->
     <div class="form-layout__toggle">
@@ -18,7 +16,7 @@
     <!-- 콘텐츠 영역 -->
     <section class="form-layout__contents">
       <div class="contents">
-        <slot name="contents"></slot>
+        <slot></slot>
       </div>
     </section>
 
@@ -37,7 +35,7 @@
             case="normal"
             @click="emits('cancel')"
           >
-            {{ cancelOption.title }}
+            <span>{{ cancelOption.title }}</span>
           </Button>
 
           <Button
@@ -48,7 +46,7 @@
             case="success"
             @click="emits('submit')"
           >
-            {{ submitOption.title }}
+            <span>{{ submitOption.title }}</span>
           </Button>
         </slot>
       </nav>

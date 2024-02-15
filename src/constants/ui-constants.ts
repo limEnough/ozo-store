@@ -2,10 +2,9 @@
 const COLORS = {
   BLACK: 'black',
   WHITE: 'white',
-  POINT: 'point',
+  GREY: 'grey',
   BLUE: 'blue',
   RED: 'red',
-  GREEN: 'green',
 };
 
 type Colors = (typeof COLORS)[keyof typeof COLORS];
@@ -24,7 +23,7 @@ type Sizes = (typeof SIZES)[keyof typeof SIZES];
 // #endregion
 
 // #region fonts
-type FontWeights = '200' | '400' | '600' | '800' | 'bold';
+type FontWeights = '200' | '400' | '600' | '800' | '900';
 // #endregion
 
 // #region input states

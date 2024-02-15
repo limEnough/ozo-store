@@ -5,7 +5,7 @@ export default function loginComposable() {
   const userPassword = ref('');
 
   const pageTitle = reactive({
-    main: 'Welcome Back',
+    main: 'Welcome back!',
     sub: 'sign to continue',
   });
 

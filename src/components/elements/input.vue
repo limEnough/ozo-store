@@ -17,7 +17,7 @@
     <div class="input-component__top">
       <!-- 1. 라벨 -->
       <label
-        v-if="!noLabel && (isFocus || (inputValue?.toString() as string).length)"
+        v-if="!noLabel && isFocus"
         :for="`input-${name}`"
         class="input-component__top__label"
       >
@@ -49,13 +49,7 @@
         @blur="handleBlur()"
       />
 
-      <!-- 2. overlay (timer) -->
-      <slot
-        name="overlay"
-        class="input-component__bottom__overlay"
-      ></slot>
-
-      <!-- 3. 우측 버튼 영역 -->
+      <!-- 2. 우측 버튼 영역 -->
       <slot name="button">
         <div class="input-component__bottom__button">
           <!-- clear 버튼 -->
@@ -65,9 +59,7 @@
             icon-only
             @click.stop="handleInputClear()"
           >
-            <template #text>
-              <span class="blind">clear</span>
-            </template>
+            <span class="blind">삭제</span>
           </Button>
 
           <!-- 비밀번호 보기 버튼 -->
@@ -79,9 +71,11 @@
             icon="visible"
             icon-only
             @click.stop="handleInputVisible()"
-          ></Button>
+          >
+            <span class="blind">비밀번호 보기</span>
+          </Button>
 
-          <!-- 4. 검색 버튼 -->
+          <!-- 검색 버튼 -->
           <Button
             v-if="isSearch"
             type="button"
@@ -90,7 +84,7 @@
             icon-only
             @click.stop="handleSearch(($event.target as HTMLInputElement).value)"
           >
-            <span class="blind">search</span>
+            <span class="blind">검색</span>
           </Button>
         </div>
       </slot>

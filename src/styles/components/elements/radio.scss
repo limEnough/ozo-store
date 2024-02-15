@@ -4,7 +4,7 @@
 
     &:checked {
       & + .radio-component__icon {
-        background-color: $pcolor;
+        background-color: $basic;
       }
     }
 
@@ -15,7 +15,7 @@
 
       &:checked {
         & + .radio-component__icon:before {
-          background-color: $pcolor;
+          background-color: $basic;
         }
       }
     }

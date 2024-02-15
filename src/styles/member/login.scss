@@ -1,21 +1,7 @@
 .login {
-  width: 100%;
-  padding: rem(0 20px);
-
-  // #region 타이틀 영역
-  :deep() {
-    .title-component {
-      &::before {
-        content: "";
-        @include imageCss(rem(50px), rem(50px), 'member', 'image-logo.png');
-      }
-    }
-  }
-  // #endregion
-
   // #region 로그인 폼
   &__form {
-    margin-top: rem(35px);
+    margin-top: rem(40px);
 
     &__button {
       margin-top: rem(20px);
@@ -25,7 +11,7 @@
 
   // #region 로그인 옵션
   &__option {
-    margin-top: rem(20px);
+    margin-top: rem(10px);
 
     &__low {
       display: flex;
@@ -38,7 +24,7 @@
     }
 
     &__title {
-      @include fontCss($black, rem(7px), 400, rem(7px));
+      @include fontCss($deep, rem(8px), 400, rem(8px));
     }
 
     &__cont {
@@ -53,10 +39,6 @@
           }
         }
       }
-    }
-
-    &__link {
-      @include fontCss($pcolor, rem(7px), 600, rem(7px));
     }
   }
   // #endregion

@@ -1,5 +1,5 @@
 <template>
-  <component :is="SingleLayout">
+  <component :is="DefaultLayout">
     <div class="login">
       <!-- 타이틀 영역 -->
       <Title :data="pageTitle"></Title>
@@ -32,9 +32,11 @@
         <Button
           width="full"
           size="l"
+          case="success"
           class="login__form__button"
-          >LOGIN</Button
         >
+          <span>LOGIN</span>
+        </Button>
       </form>
 
       <!-- 로그인 옵션 -->
@@ -48,7 +50,7 @@
                 params: { type: 'email' },
               }"
             >
-              <span class="login__option__link">Email</span>
+              <span>Email</span>
             </Link>
             <Link
               :to="{
@@ -56,20 +58,7 @@
                 params: { type: 'password' },
               }"
             >
-              <span class="login__option__link">Password</span>
-            </Link>
-          </dd>
-        </dl>
-
-        <dl class="login__option__low">
-          <dt class="login__option__title">Don't have account?</dt>
-          <dd class="login__option__cont">
-            <Link
-              :to="{
-                name: MEMBER_PAGE_NAMES['member-create'],
-              }"
-            >
-              <span class="login__option__link">Create a new account</span>
+              <span>Password</span>
             </Link>
           </dd>
         </dl>
@@ -84,7 +73,7 @@
   import Button from '@/components/elements/button.vue';
   import Input from '@/components/elements/input.vue';
   import Link from '@/components/elements/link.vue';
-  import SingleLayout from '@/components/layouts/single-layout.vue';
+  import DefaultLayout from '@/components/layouts/default-layout.vue';
   import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
   const { userEmail, userPassword, pageTitle } = loginComposable();

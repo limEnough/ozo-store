@@ -1,5 +1,4 @@
 // NOTI: component default set
-
 import { type PropType } from 'vue';
 
 type Emits = '';

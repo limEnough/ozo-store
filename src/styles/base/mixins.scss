@@ -28,12 +28,13 @@
 // #endregion
 
 // #region 폰트
-@mixin fontCss($color: $black, $size: rem(12px), $weight: 400, $line: rem(12px), $family: $dm) {
+@mixin fontCss($color: $black, $size: rem(12px), $weight: 400, $line: rem(12px), $family: $dm, $spacing: rem(-0.2px)) {
   color: $color;
   font-size: $size;
   font-weight: $weight;
   line-height: $line;
   font-family: $family;
+  letter-spacing: $spacing;
 }
 // #endregion
 
@@ -134,7 +135,7 @@
 
       &-thumb {
         width: rem(4px);
-        border: calc(($width - rem(4px)) / 2) solid $background; //6px
+        border: rem(#{calc(($width - rem(4px)) / 2)}) solid $background; //6px
         border-radius: rem(999px);
         background: $grey400;
       }

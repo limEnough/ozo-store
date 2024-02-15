@@ -16,7 +16,7 @@
         &::after {
           content: '*';
           margin-left: rem(3px);
-          color: $red;
+          color: $basic;
         }
       }
     }
@@ -47,7 +47,7 @@
       .form-group-component__accordion {
         .accordion-component__header {
           .form-group-component__title {
-            background: $pcolor;
+            background: $basic;
           }
         }
       }
@@ -111,33 +111,34 @@
 
   // #region 아코디언 사용
   &__accordion {
+    &.open {
+      .accordion-component__header {
+        .form-group-component__title {
+          background: $basic;
+
+          > h3 {
+            color: $white;
+          }
+        }
+      }
+    }
+
     :deep() {
       display: block;
 
-      .accordion-component {
-        &__header {
+      .accordion-component__header {
+        display: block;
+
+        .form-group-component__title {
           display: block;
+          padding: rem(8px);
+          background: $white;
+          border: rem(2px) solid $basic;
+          font-size: 0;
+          border-radius: rem(3px);
 
-          .form-group-component__title {
-            padding: rem(6px 4px 6px 16px);
-            min-height: rem(32px);
-            color: $black;
-            background: $grey;
-
-            > h3 {
-              color: $black;
-            }
-
-            > button {
-              margin-left: rem(8px);
-              order: 1;
-            }
-          }
-
-          &.hover {
-            .form-group-component__title {
-              background-color: $grey;
-            }
+          > h3 {
+            @include fontCss($black, rem(10px), 400, rem(10px));
           }
         }
       }
@@ -149,20 +150,6 @@
             &__title,
             &__contents {
               border-top: none;
-            }
-          }
-        }
-      }
-    }
-
-    &.open {
-      :deep() {
-        .accordion-component {
-          &__header {
-            &.hover {
-              .form-group-component__title {
-                background-color: $grey;
-              }
             }
           }
         }

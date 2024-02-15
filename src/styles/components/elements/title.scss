@@ -1,13 +1,11 @@
 .title-component {
-  text-align: center;
-  
   &__main {
-    @include fontCss($black, rem(14px), 800, rem(14px));
+    @include fontCss($basic, rem(16px), 900, rem(16px));
   }
 
   &__sub {
     display: block;
     margin-top: rem(5px);
-    @include fontCss($grey, rem(10px), 400, rem(10px));
+    @include fontCss($grey, rem(10px), 600, rem(10px));
   }
 }

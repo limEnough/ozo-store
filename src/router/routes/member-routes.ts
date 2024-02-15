@@ -21,7 +21,7 @@ const getMainRoutes = (): RouteRecordRaw[] => {
           name: MEMBER_PAGE_NAMES['member-login'],
           component: Login,
           meta: {
-            pageTitle: '로그인',
+            pageTitle: 'Login',
             pageCode: PAGE_CODE_DEPTH2['LOGIN'],
           },
         },
@@ -30,7 +30,7 @@ const getMainRoutes = (): RouteRecordRaw[] => {
           name: MEMBER_PAGE_NAMES['member-create'],
           component: Create,
           meta: {
-            pageTitle: '계정 생성',
+            pageTitle: 'Join',
             pageCode: PAGE_CODE_DEPTH2['CREATE'],
           },
         },

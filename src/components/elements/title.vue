@@ -6,6 +6,7 @@
         {{ titleInfo.main }}
       </slot>
     </h2>
+
     <!-- 서브 타이틀 -->
     <span
       v-if="hasSubTitle"

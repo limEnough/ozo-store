@@ -1,16 +1,15 @@
 .input-component {
-  padding: rem(5px 8px);
+  // TODO: input default type
+  // border: 1px solid red;
 
   &:not(:first-of-type) {
-    margin-top: rem(15px);
+    margin-top: rem(5px);
   }
 
   &.card-type {
-    border-radius: rem(3px);
-
-    &.focused {
-      box-shadow: rem(3px 3px 6px) $shadow;
-    }
+    padding: rem(8px 8px);
+    border-radius: rem(4px);
+    background: $bg;
   }
   
   // #region state
@@ -39,7 +38,7 @@
     margin-bottom: rem(5px);
 
     &__label {
-      @include fontCss($grey, rem(8px), 400, rem(8px), $noto);
+      @include fontCss($grey, rem(9px), 400, rem(9px));
     }
 
     &__count {
@@ -58,10 +57,11 @@
       border: none;
       outline: none;
       flex: rem(120px);
-      @include fontCss($pcolor, rem(8px), 800, rem(8px), $noto);
+      background-color: transparent;
+      @include fontCss($deep, rem(10px), 600, rem(10px));
 
       &::placeholder {
-        @include fontCss($grey, rem(8px), 400, rem(8px), $noto);
+        @include fontCss($grey, rem(9px), 400, rem(9px));
       }
     }
 
