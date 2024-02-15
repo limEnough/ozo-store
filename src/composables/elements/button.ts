@@ -1,19 +1,25 @@
 import { type PropType, computed, toRefs } from 'vue';
 
-type Icons = 'visible' | 'clear' | 'search';
+type Icon = 'visible' | 'back' | 'clear' | 'search' | 'add';
+type Case = 'normal' | 'process' | 'success' | 'delete' | 'text';
 
 interface Props {
+  tag: 'button' | 'a' | 'router-link';
   type: 'button' | 'submit';
-  case: 'normal' | 'process' | 'success' | 'delete' | 'edit';
+  case: Case;
   size: '' | 's' | 'm' | 'l';
   width?: '' | 'full' | 'half';
-  icon?: Icons;
+  icon?: Icon;
   iconOnly: boolean;
   disabled?: boolean;
   loading: boolean;
 }
 
 const props = {
+  tag: {
+    type: String as PropType<Props['tag']>,
+    default: 'button',
+  },
   type: {
     type: String as PropType<Props['type']>,
     default: 'button',
@@ -65,6 +71,9 @@ export default function buttonComposables(props: Props) {
       {
         normal: 'case--normal',
         process: 'case--process',
+        success: 'case--success',
+        delete: 'case--delete',
+        text: 'case--text',
       },
       caseProp.value,
     );
@@ -95,4 +104,4 @@ export default function buttonComposables(props: Props) {
   return { buttonClasses };
 }
 
-export { props as buttonProps };
+export { props as buttonProps, type Icon as ButtonIcon, type Case as ButtonCase };

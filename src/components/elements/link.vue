@@ -1,14 +1,16 @@
 <template class="link-component">
   <!-- 외부 링크일 경우 -->
   <template v-if="isExternal">
-    <a
-      :href="propsTo as string"
-      target="_blank"
+    <Button
       v-bind="$attrs"
-      class="link-component__button"
+      :href="propsTo as string"
+      :case="case"
+      :icon="icon"
+      tag="a"
+      target="_blank"
     >
-      <slot></slot>
-    </a>
+      <slot> </slot>
+    </Button>
   </template>
 
   <!-- 내부 링크일 경우 -->
@@ -18,24 +20,31 @@
       :to="targetRoute"
       custom
     >
-      <button
-        type="button"
+      <Button
         v-bind="$attrs"
-        class="link-component__button"
+        :case="case"
+        :icon="icon"
         @click="handleClick($event, href, navigate, route)"
       >
         <slot></slot>
-      </button>
+      </Button>
     </router-link>
   </template>
 </template>
 
 <script setup lang="ts">
   import linkComposables, { linkProps } from '@/composables/elements/link';
+  import Button from '@/components/elements/button.vue';
 
   const props = defineProps(linkProps);
 
   const { propsTo, targetRoute, handleClick } = linkComposables(props);
+</script>
+
+<script lang="ts">
+  export default {
+    inheritAttrs: false,
+  };
 </script>
 
 <style lang="scss" scoped>

@@ -6,8 +6,12 @@ import {
   useRouter,
 } from 'vue-router';
 
+import type { ButtonCase, ButtonIcon } from '@/composables/elements/button';
+
 interface Props {
   to: RouteLocationRaw;
+  icon: ButtonIcon;
+  case: ButtonCase;
   isExternal: boolean;
   beforeClick?: () => boolean | Promise<boolean>;
 }
@@ -24,6 +28,14 @@ const props = {
   to: {
     type: [String, Object] as PropType<Props['to']>,
     required: true as const,
+  },
+  icon: {
+    type: String as PropType<Props['icon']>,
+    default: 'text',
+  },
+  case: {
+    type: String as PropType<Props['case']>,
+    default: 'text',
   },
   isExternal: {
     type: Boolean as PropType<Props['isExternal']>,

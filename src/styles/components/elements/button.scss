@@ -1,35 +1,62 @@
 .button-component {
+  border-radius: rem(4px);
+
   // #region case
   &.case {
     &--normal {
-      background: $pcolor;
+      background: $bg;
+      color: $deep !important;
     }
 
     &--process {
       
+    }
+
+    &--success {
+      background: $basic;
+    }
+
+    &--delete {
+      
+    }
+
+    &--text {
+      padding: rem(3px) !important;
+      color: $deep !important;
+      text-decoration: underline !important;
     }
   }
   // #endregion
 
   // #region icon
   &.icon-only {
+    padding: 0 !important;
     background-color: initial;
-    font-size: 0;
+    font-size: 0 !important;
 
     &.show {
       .icon--visible {
-        background-image: url(src('member', 'icon-password--on.svg'));
+        background-image: url(src('test', 'member', 'icon-password--on.svg'));
       }
     }
   }
 
   .icon {
     &--visible {
-      @include imageCss(rem(12px), rem(12px), 'member', 'icon-password--off.svg');
+      @include imageCss(rem(13px), rem(13px), 'member', 'icon-password--off.svg', no-repeat, center, rem(11px));
     }
 
-    &--clear {
+    &--back {
+      @include imageCss(rem(30px), rem(40px), 'common', 'icon-arrow--right.png', no-repeat, rem(5px) center, rem(9px));
+      transform: rotate(180deg);
+    }
 
+    &--add {
+      &:before {
+        content: '';
+        margin-right: rem(3px);
+        @include imageCss(rem(5px), rem(5px), 'common', 'icon-plus.png');
+      }
     }
   }
   // #endregion
@@ -37,18 +64,18 @@
   // #region size
   &.size {
     &--s {
-
+      padding: rem(4px);
+      @include fontCss($white, rem(7px), 400, rem(7px));
     }
 
     &--m {
-
+      padding: rem(7px);
+      @include fontCss($white, rem(8px), 600, rem(8px));
     }
 
     &--l {
-      padding: rem(8px 0);
-      border-radius: rem(3px);
-      
-      @include fontCss($white, rem(7px), 400, rem(7px));
+      padding: rem(10px);
+      @include fontCss($white, rem(9px), 600, rem(9px));
     }
   }
   // #endregion

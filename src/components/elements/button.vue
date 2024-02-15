@@ -1,7 +1,8 @@
 <template>
-  <button
+  <component
+    :is="tag"
     :type="type"
-    :disabled="disabled"
+    :disabled="tag === 'button' && disabled"
     :class="buttonClasses"
     class="button-component"
   >
@@ -16,7 +17,7 @@
     >
       <slot></slot>
     </span>
-  </button>
+  </component>
 </template>
 
 <script setup lang="ts">
