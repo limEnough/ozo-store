@@ -24,7 +24,7 @@
     }
 
     &__title {
-      @include fontCss($deep, rem(8px), 400, rem(8px));
+      @include fontCss($grey, rem(8px), 400, rem(8px));
     }
 
     &__cont {

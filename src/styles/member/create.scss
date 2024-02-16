@@ -1,0 +1,24 @@
+.create {
+  &__userInfo {
+    &__profile {
+      :deep() {
+        .contents {
+          text-align: center;
+        }
+      }
+
+      .profile {
+        overflow: hidden;
+        display: inline-block;
+        width: rem(60px);
+        height: rem(60px);
+        background-color: $bg;
+        border-radius: 50%;
+
+        &__image {
+          display: block;
+        }
+      }
+    }
+  }
+}
