@@ -1,6 +1,6 @@
 <template>
   <component :is="DefaultLayout">
-    <div class="create">
+    <div class="join">
       <FormLayout
         @cancel="handleClickCancel"
         @submit="submitForm"
@@ -77,7 +77,7 @@
 
             <!-- 개인정보 입력 -->
             <FormGroup
-              class="create__userInfo"
+              class="join__userInfo"
               use-title
               required
             >
@@ -89,7 +89,7 @@
                 <!-- 프로필 -->
                 <FormItem
                   :no-title="true"
-                  class="create__userInfo__profile"
+                  class="join__userInfo__profile"
                 >
                   <template #contents>
                     <!-- TODO: 파일 업로드 컴포넌트 -->
@@ -172,7 +172,7 @@
   </component>
 </template>
 <script setup lang="ts">
-  import createComposable from '@/composables/views/member/create';
+  import joinComposable from '@/composables/views/member/join';
   import Form from '@/components/modules/form.vue';
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import FormLayout from '@/components/layouts/form-layout.vue';
@@ -181,9 +181,9 @@
   import Input from '@/components/elements/input.vue';
   import Button from '@/components/elements/button.vue';
 
-  const { handleClickCancel, submitForm, email, password, confirmPassword } = createComposable();
+  const { handleClickCancel, submitForm, email, password, confirmPassword } = joinComposable();
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/member/create.scss';
+  @import '@/styles/member/join.scss';
 </style>

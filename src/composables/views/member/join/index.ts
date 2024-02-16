@@ -1,6 +1,12 @@
 import { ref } from 'vue';
+import { useForm } from 'vee-validate';
 
-export default function createComposable() {
+interface JoinForm {
+  id: string;
+  password: string;
+}
+
+export default function joinComposable() {
   const email = ref('');
   const password = ref('');
   const confirmPassword = ref('');
