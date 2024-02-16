@@ -1,6 +1,5 @@
 import { type PropType, computed, useSlots } from 'vue';
 import { type CustomEmit } from '@/types/common.types';
-import usePageTitle from '@/composables/use/use-page-title';
 
 type Emits = 'cancel' | 'submit';
 
@@ -50,7 +49,6 @@ const props = {
 
 export default function formLayoutComposable(emit: CustomEmit<Emits>, props: Props) {
   const slots = useSlots();
-  const { pageTitle } = usePageTitle();
 
   const cancelOption = computed(() => Object.assign({}, cancelDefault, props.cancel));
   const submitOption = computed(() => Object.assign({}, submitDefault, props.submit));
@@ -66,7 +64,6 @@ export default function formLayoutComposable(emit: CustomEmit<Emits>, props: Pro
   });
 
   return {
-    pageTitle,
     slots,
     cancelOption,
     submitOption,

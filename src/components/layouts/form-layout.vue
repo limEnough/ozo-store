@@ -33,6 +33,7 @@
             type="button"
             size="l"
             case="normal"
+            width="half"
             @click="emits('cancel')"
           >
             <span>{{ cancelOption.title }}</span>
@@ -43,6 +44,7 @@
             :disabled="submitOption.disabled"
             type="button"
             size="l"
+            width="half"
             case="success"
             @click="emits('submit')"
           >
@@ -62,7 +64,7 @@
   const emits = defineEmits(formLayoutEmits);
   const props = defineProps(formLayoutProps);
 
-  const { pageTitle, cancelOption, submitOption, isVisibleFooter } = formLayoutComposable(emits, props);
+  const { cancelOption, submitOption, isVisibleFooter } = formLayoutComposable(emits, props);
 </script>
 
 <script lang="ts">

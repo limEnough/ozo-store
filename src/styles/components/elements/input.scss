@@ -1,6 +1,6 @@
 .input-component {
-  // TODO: input default type
-  // border: 1px solid red;
+  border-bottom: 1px solid $grey;
+  padding-bottom: rem(4px);
 
   &:not(:first-of-type) {
     margin-top: rem(5px);
@@ -10,6 +10,7 @@
     padding: rem(8px 8px);
     border-radius: rem(4px);
     background: $bg;
+    border: none;
   }
   
   // #region state
@@ -69,6 +70,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding-left: rem(4px);
     }
   }
   // #endregion

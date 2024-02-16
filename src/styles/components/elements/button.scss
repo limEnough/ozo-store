@@ -23,7 +23,6 @@
     &--text {
       padding: rem(3px) !important;
       color: $deep !important;
-      text-decoration: underline !important;
     }
   }
   // #endregion
@@ -33,6 +32,7 @@
     padding: 0 !important;
     background-color: initial;
     font-size: 0 !important;
+    line-height: 0 !important;
 
     &.show {
       .icon--visible {
@@ -65,7 +65,8 @@
   &.size {
     &--s {
       padding: rem(4px);
-      @include fontCss($white, rem(7px), 400, rem(7px));
+      border-radius: rem(3px);
+      @include fontCss($white, rem(7px), 600, rem(7px));
     }
 
     &--m {
@@ -87,7 +88,7 @@
     }
 
     &--half {
-      width: 50%;
+      width: calc(50% - #{rem(2px)})
     }
   }
   // #endregion

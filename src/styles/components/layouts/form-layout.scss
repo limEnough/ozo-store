@@ -17,17 +17,12 @@
 
   // #region 하단 영역
   &__footer {
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
-    width: 100%;
-    height: rem(56px);
-    background-color: $white;
-    box-shadow: rem(0 -8px 16px 0) rgba(0, 0, 0, 0.05);
+    margin-top: rem(50px);
   }
 
   &__actions {
     display: flex;
+    justify-content: space-between;
   }
   // #endregion
 }

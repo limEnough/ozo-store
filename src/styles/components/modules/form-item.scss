@@ -3,6 +3,10 @@
   display: flex;
   align-items: center;
 
+  & + .form-item-component {
+    margin-top: rem(5px);
+  }
+
   // #region 타이틀 영역
   &__title {
     display: flex;
@@ -13,7 +17,7 @@
     .title {
       &__text {
         word-break: break-all;
-        @include fontCss($grey, rem(10px), 600, rem(10px));
+        @include fontCss($grey, rem(9px), 600, rem(9px));
       }
     }
   }
@@ -24,7 +28,10 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    max-width: rem(#{calc(100% - 50px)});
+
+    .contents + .contents {
+      margin-top: rem(5px);
+    }
   }
   // #endregion
 

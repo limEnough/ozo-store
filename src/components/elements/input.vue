@@ -17,7 +17,7 @@
     <div class="input-component__top">
       <!-- 1. 라벨 -->
       <label
-        v-if="!noLabel && isFocus"
+        v-if="!noLabel && isCardType && isFocus"
         :for="`input-${name}`"
         class="input-component__top__label"
       >
@@ -50,8 +50,8 @@
       />
 
       <!-- 2. 우측 버튼 영역 -->
-      <slot name="button">
-        <div class="input-component__bottom__button">
+      <div class="input-component__bottom__button">
+        <slot name="button">
           <!-- clear 버튼 -->
           <Button
             v-show="clearable && 0 < modelValueTextLength"
@@ -86,8 +86,8 @@
           >
             <span class="blind">검색</span>
           </Button>
-        </div>
-      </slot>
+        </slot>
+      </div>
     </div>
   </div>
 </template>

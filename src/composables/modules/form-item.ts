@@ -6,6 +6,7 @@ interface Props {
   title: string;
   required: boolean;
   useSubContents: boolean;
+  noTitle: boolean;
 }
 
 const emits: Emits[] = [''];
@@ -24,6 +25,11 @@ const props = {
   /** 서브 콘텐츠 사용여부 */
   useSubContents: {
     type: Boolean as PropType<Props['required']>,
+    default: false,
+  },
+  /** 타이틀 생략 여부 */
+  noTitle: {
+    type: Boolean as PropType<Props['noTitle']>,
     default: false,
   },
 };
