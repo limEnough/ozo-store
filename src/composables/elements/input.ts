@@ -1,7 +1,6 @@
 import { computed, ref, toRefs, useAttrs } from 'vue';
 import type { PropType } from 'vue';
 import type { CountType } from '@/utils/string';
-import type { InputStates } from '@/constants/ui-constants';
 import type { CustomEmit, InputModel } from '@/types/common.types';
 
 type Emits = 'update:modelValue' | 'search';
@@ -9,22 +8,23 @@ type Charset = 'utf-8' | 'euc-kr' | string;
 
 interface Props {
   modelValue: InputModel | null;
+  hasLabel: boolean;
   disabled: boolean;
   required: boolean;
   minlength: number | string;
   maxlength: number | string;
   clearable: boolean;
   isSearch: boolean;
-  name: string;
-  state: InputStates;
   useLengthCount: boolean;
   countType: CountType;
   charset?: Charset;
   allowedRegex: RegExp | null;
   visible: boolean;
-  label: string;
   isCardType: boolean;
   noLabel: boolean;
+  name: string;
+  isError: boolean;
+  errorMessage: string;
 }
 
 const emits: Emits[] = ['update:modelValue', 'search'];
@@ -38,11 +38,10 @@ const props = {
     default: defaultValue,
     required: true as const,
   },
-  /** 입력값 */
-  label: {
-    type: String as PropType<Props['label']>,
-    default: defaultValue,
-    required: true as const,
+  /** 라벨(타이틀) 사용 여부 */
+  hasLabel: {
+    type: Boolean as PropType<Props['hasLabel']>,
+    default: false,
   },
   /** 비활성화 여부 */
   disabled: {
@@ -89,16 +88,6 @@ const props = {
     type: Boolean as PropType<Props['useLengthCount']>,
     default: true,
   },
-  /** name (vee-validate에서 반드시 필요한 속성) */
-  name: {
-    type: String as PropType<Props['name']>,
-    default: '',
-  },
-  /** input 상태 */
-  state: {
-    type: String as PropType<Props['state']>,
-    default: '',
-  },
   /** 입력 허용 문자 정규식 */
   allowedRegex: {
     type: [RegExp, null] as PropType<Props['allowedRegex']>,
@@ -119,10 +108,27 @@ const props = {
     type: Boolean as PropType<Props['noLabel']>,
     default: false,
   },
+  // #region vee-validate
+  /** name (vee-validate에서 반드시 필요한 속성) */
+  name: {
+    type: String as PropType<Props['name']>,
+    default: '',
+  },
+  /** 검증 에러 여부 */
+  isError: {
+    type: Boolean as PropType<Props['isError']>,
+    default: false,
+  },
+  /** 에러 메시지 */
+  errorMessage: {
+    type: String as PropType<Props['errorMessage']>,
+    default: '',
+  },
+  // #endregion
 };
 
 export default function inputComposables(emit: CustomEmit<Emits>, props: Props) {
-  const { countType, maxlength, state } = toRefs(props);
+  const { countType, maxlength } = toRefs(props);
 
   const attrs = useAttrs();
 
@@ -134,8 +140,6 @@ export default function inputComposables(emit: CustomEmit<Emits>, props: Props) 
 
   const modelValueTextLength = computed(() => (props.modelValue ? props.modelValue.toString().length : 0));
 
-  const isFail = computed(() => 'fail' === state.value);
-  const isSuccess = computed(() => 'success' === state.value);
   const isFocus = ref(false);
 
   // #region attrs
@@ -258,8 +262,6 @@ export default function inputComposables(emit: CustomEmit<Emits>, props: Props) 
   return {
     styleAttrs,
     inputBindings,
-    isFail,
-    isSuccess,
     isFocus,
 
     inputElement,

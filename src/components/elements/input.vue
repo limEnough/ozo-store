@@ -1,8 +1,7 @@
 <template>
   <div
     :class="{
-      fail: isFail,
-      success: isSuccess,
+      error: isError,
       'search-mode': isSearch,
       required: required,
       clearable: clearable,
@@ -17,11 +16,11 @@
     <div class="input-component__top">
       <!-- 1. 라벨 -->
       <label
-        v-if="!noLabel && isCardType && isFocus"
+        v-if="hasLabel"
         :for="`input-${name}`"
         class="input-component__top__label"
       >
-        <slot name="title">{{ label }}</slot>
+        <slot name="title"></slot>
       </label>
 
       <!-- 2. 글자수 카운터 -->
@@ -38,8 +37,7 @@
         v-bind="inputBindings"
         :value="inputValue"
         :disabled="disabled"
-        :aria-label="label?.toString()"
-        :placeholder="isFocus ? '' : label"
+        :aria-label="$attrs.placeholder?.toString()"
         :type="controlType"
         ref="inputElement"
         :id="`input-${name}`"
@@ -89,6 +87,16 @@
         </slot>
       </div>
     </div>
+
+    <!-- 에러 메시지 -->
+    <div
+      v-if="errorMessage.length"
+      class="input-component__message"
+    >
+      <p class="message__text">
+        {{ errorMessage }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -102,8 +110,6 @@
   const {
     styleAttrs,
     inputBindings,
-    isFail,
-    isSuccess,
     isFocus,
 
     inputElement,

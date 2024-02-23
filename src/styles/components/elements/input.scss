@@ -1,28 +1,23 @@
 .input-component {
-  border-bottom: 1px solid $grey;
-  padding-bottom: rem(4px);
-
   &:not(:first-of-type) {
     margin-top: rem(5px);
   }
 
   &.card-type {
-    padding: rem(8px 8px);
-    border-radius: rem(4px);
-    background: $bg;
-    border: none;
-  }
-  
-  // #region state
-  &.success {
-    .input-component__top__label {
-
+    .input-component__bottom {
+      padding: rem(8px 8px);
+      border-radius: rem(4px);
+      background: $bg;
+      border: none;
     }
   }
 
-  &.fail {
-    .input-component__top__label {
-      
+  // #region state
+  &.error {
+    &:not(card-type) {
+      .input-component__bottom {
+        border-color: $point;
+      }
     }
   }
   // #endregion
@@ -53,6 +48,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: rem(3px);
+    border-bottom: 1px solid $grey;
 
     &__input {
       border: none;
@@ -71,6 +68,17 @@
       justify-content: center;
       align-items: center;
       padding-left: rem(4px);
+    }
+  }
+  // #endregion
+
+  // #region message (에러 메시지)
+  &__message {
+    margin-top: rem(5px);
+    .message {
+      &__text {
+        @include fontCss($point, rem(8px), 400, rem(10px));
+      }
     }
   }
   // #endregion
