@@ -3,7 +3,7 @@
     <div class="create">
       <FormLayout
         @cancel="handleClickCancel"
-        @submit="submitForm"
+        @submit="handleSubmit"
       >
         <form @submit.prevent>
           <Form>
@@ -16,28 +16,7 @@
                 <h3>Agree to Terms</h3>
               </template>
 
-              <template #contents>
-                <FormItem :no-title="true">
-                  <template #contents>
-                    <Input
-                      v-model="email"
-                      :use-length-count="false"
-                      label="이메일을 입력해주세요."
-                      name="email"
-                      maxlength="30"
-                    >
-                      <template #button>
-                        <Button
-                          size="s"
-                          case="success"
-                        >
-                          <span>Check</span>
-                        </Button>
-                      </template>
-                    </Input>
-                  </template>
-                </FormItem>
-              </template>
+              <template #contents> 약관 아코디언 넣어놓기 </template>
             </FormGroup>
 
             <!-- TODO: 본인 인증 -->
@@ -53,24 +32,7 @@
                 <FormItem>
                   <template #title> Phone </template>
 
-                  <template #contents>
-                    <Input
-                      v-model="email"
-                      :use-length-count="false"
-                      label="이메일을 입력해주세요."
-                      name="email"
-                      maxlength="30"
-                    >
-                      <template #button>
-                        <Button
-                          size="s"
-                          case="success"
-                        >
-                          <span>Check</span>
-                        </Button>
-                      </template>
-                    </Input>
-                  </template>
+                  <template #contents> 휴대폰 인증 필요 </template>
                 </FormItem>
               </template>
             </FormGroup>
@@ -99,7 +61,6 @@
                         alt="프로필 이미지"
                         class="profile__image"
                       />
-                      <input type="file" />수정하기
                     </figure>
                   </template>
                 </FormItem>
@@ -110,11 +71,14 @@
 
                   <template #contents>
                     <Input
-                      v-model="email"
+                      v-model="email.value"
+                      :name="email.name"
                       :use-length-count="false"
-                      label="이메일을 입력해주세요."
-                      name="email"
-                      maxlength="30"
+                      :is-error="email.isError"
+                      :error-message="email.errorMessage"
+                      :maxlength="email.max"
+                      :allowed-regex="email.regex"
+                      placeholder="이메일을 입력해주세요."
                     >
                       <template #button>
                         <Button
@@ -134,11 +98,15 @@
 
                   <template #contents>
                     <Input
-                      v-model="password"
+                      v-model="password.value"
+                      :name="password.name"
                       :use-length-count="false"
+                      :is-error="password.isError"
+                      :error-message="password.errorMessage"
+                      :maxlength="password.max"
+                      :allowed-regex="password.regex"
                       type="password"
-                      label="비밀번호를 입력해주세요."
-                      name="password"
+                      placeholder="비밀번호를 입력해주세요."
                       visible
                     >
                     </Input>
@@ -146,11 +114,15 @@
 
                   <template #contents-sub>
                     <Input
-                      v-model="confirmPassword"
+                      v-model="passwordConfirm.value"
+                      :name="passwordConfirm.name"
                       :use-length-count="false"
+                      :is-error="passwordConfirm.isError"
+                      :error-message="passwordConfirm.errorMessage"
+                      :maxlength="passwordConfirm.max"
+                      :allowed-regex="passwordConfirm.regex"
                       type="password"
-                      label="비밀번호를 한번 더 입력해주세요."
-                      name="password"
+                      placeholder="비밀번호를 한번 더 입력해주세요."
                       visible
                     >
                     </Input>
@@ -181,7 +153,7 @@
   import Input from '@/components/elements/input.vue';
   import Button from '@/components/elements/button.vue';
 
-  const { handleClickCancel, submitForm, email, password, confirmPassword } = createComposable();
+  const { handleClickCancel, handleSubmit, email, password, name, passwordConfirm } = createComposable();
 </script>
 
 <style lang="scss" scoped>

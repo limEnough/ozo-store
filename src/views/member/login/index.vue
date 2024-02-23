@@ -9,7 +9,7 @@
         <Input
           v-model="userEmail"
           :use-length-count="false"
-          label="Email"
+          placeholder="Email"
           name="email"
           maxlength="30"
           is-card-type
@@ -19,8 +19,7 @@
         <Input
           v-model="userPassword"
           :use-length-count="false"
-          label="Password"
-          type="password"
+          placeholder="password"
           name="password"
           visible
           is-card-type
