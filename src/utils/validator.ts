@@ -1,3 +1,5 @@
+import formConfig from '@/configs/form.config';
+
 /**
  * undefined, null, 빈 문자열 여부
  *
