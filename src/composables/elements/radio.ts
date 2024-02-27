@@ -1,17 +1,30 @@
-import { type PropType, computed, ref, toRefs, useAttrs, watch } from 'vue';
+import { type PropType, computed, ref, toRefs, useAttrs } from 'vue';
 import { isEqual } from 'lodash-es';
-import type { Colors } from '@/constants/ui-constants';
 import type { CustomEmit, RadioModel } from '@/types/common.types';
+import { v4 as uuidV4 } from 'uuid';
+import { isObject } from '@/utils/object';
 
 type Emits = 'update:modelValue';
 
+type Option =
+  | boolean
+  | string
+  | number
+  | {
+      [key: string]: any;
+    };
+
+type RadioType = 'basic' | 'card' | 'text';
+
 interface Props {
   modelValue: RadioModel<any>;
-  value: RadioModel<any>;
   name: string;
-  color: Colors;
-  bgColor: Colors;
-  textOnly: boolean;
+  type: RadioType;
+  options: Option[];
+  isDisabled: boolean;
+  disableOptions: Option[];
+  labelKey: string;
+  valueKey: string;
   beforeUpdate?: (value?: RadioModel<any>) => boolean | Promise<boolean>;
 }
 
@@ -23,31 +36,40 @@ const props = {
     type: [Boolean, String, Number, Object, null] as PropType<Props['modelValue']>,
     required: true as const,
   },
-  /** 이전 값 */
-  value: {
-    type: [Boolean, String, Number, Object, null] as PropType<Props['value']>,
+  /** 타입 */
+  type: {
+    type: String as PropType<Props['type']>,
+    default: 'basic',
+  },
+  /** 옵션 */
+  options: {
+    type: Array as PropType<Props['options']>,
     required: true as const,
+  },
+  /** 비활성화 여부 (disabled attribute와 분리하기 위해서 따로 설정) */
+  isDisabled: {
+    type: Boolean as PropType<Props['isDisabled']>,
+    default: false,
+  },
+  /** 비활성화 옵션 */
+  disableOptions: {
+    type: Array as PropType<Props['disableOptions']>,
+    default: () => [],
+  },
+  /** label로 노출할 key 값 */
+  labelKey: {
+    type: String as PropType<Props['labelKey']>,
+    default: 'codeName',
+  },
+  /** value로 사용할 key 값 */
+  valueKey: {
+    type: String as PropType<Props['valueKey']>,
+    default: 'code',
   },
   /** name (vee-validate에서 반드시 필요한 속성) */
   name: {
     type: String as PropType<Props['name']>,
     required: true as const,
-  },
-  /** 텍스트 컬러 */
-  color: {
-    type: String as PropType<Props['color']>,
-    default: 'black' as Colors,
-  },
-  /** 배경 컬러 */
-  bgColor: {
-    type: String as PropType<Props['bgColor']>,
-    default: '' as Colors,
-  },
-  /** 텍스트만 노출하는지 여부 */
-  textOnly: {
-    type: Boolean as PropType<Props['textOnly']>,
-    default: false,
-    required: false,
   },
   /** 값이 업데이트 되기 전에 실행할 함수 */
   beforeUpdate: {
@@ -57,14 +79,20 @@ const props = {
 };
 
 export default function radioComposable(emits: CustomEmit<Emits>, props: Props) {
-  const { value, modelValue } = toRefs(props);
+  const { modelValue, disableOptions, labelKey, valueKey, options } = toRefs(props);
 
+  // 각 옵션마다 고유한 name 을 부여하기 위해 사용
+  const uuid = uuidV4();
+
+  // 라디오 Html element
   const refRadio = ref<HTMLInputElement>();
-  const attrs = useAttrs();
 
-  const isChecked = computed(() => isEqual(value.value, modelValue.value));
+  // 값 변경 전 저장소
+  const restrictedValue = ref(modelValue.value);
 
   // #region attrs
+  const attrs = useAttrs();
+
   const styleAttrs = computed(() => {
     if (attrs.class) return { class: attrs.class };
     else return {};
@@ -76,8 +104,34 @@ export default function radioComposable(emits: CustomEmit<Emits>, props: Props) 
   });
   // #endregion
 
+  // radio 텍스트에 매핑할 값 반환
+  const getLabel = (option: Option) => {
+    if (isObject(option)) {
+      return option[labelKey.value] ?? option;
+    }
+
+    return option;
+  };
+
+  // radio value에 매핑할 값 반환
+  const getValue = (option: Option) => {
+    if (isObject(option)) return option[valueKey.value];
+    else return option;
+  };
+
+  // 해당 옵션 checked 여부 반환
+  const getChecked = (option: Option) => {
+    return isEqual(restrictedValue.value, option);
+  };
+
+  // 비활성화 할 옵션인지 확인
+  const isDisabledOption = (option: Option) => {
+    return disableOptions.value.includes(getValue(option));
+  };
+
   // 값 변경(클릭) 이벤트
   const handleClick = async (event: Event) => {
+    const target = event.target as HTMLInputElement;
     let isPass = true;
 
     if (typeof props.beforeUpdate === 'function') {
@@ -85,34 +139,31 @@ export default function radioComposable(emits: CustomEmit<Emits>, props: Props) 
       event.preventDefault();
 
       // 함수 실행 후 boolean return 받음
-      isPass = await props.beforeUpdate(value.value);
+      isPass = await props.beforeUpdate(restrictedValue.value);
     }
 
     if (isPass === true) {
-      emits('update:modelValue', value.value);
+      // value 업데이트
+      restrictedValue.value = options.value.find((option) => {
+        if (isObject(option)) return option.code === target.value;
+        else return option === target.value;
+      });
+
+      emits('update:modelValue', restrictedValue.value);
     }
   };
 
-  /**
-   * TODO: 탭 컴포넌트 변경시 tick이 바뀌지 않으면 감지 못하는 이슈로 인해 setTimeout 걸어놓음
-   */
-  watch(
-    () => modelValue.value,
-    () => {
-      setTimeout(() => {
-        if (refRadio.value) {
-          refRadio.value.checked = isChecked.value;
-        }
-      }, 0);
-    },
-  );
-
   return {
     refRadio,
-
-    isChecked,
     styleAttrs,
     inputAttrs,
+
+    uuid,
+
+    getValue,
+    getLabel,
+    getChecked,
+    isDisabledOption,
 
     handleClick,
   };

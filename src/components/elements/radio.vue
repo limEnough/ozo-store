@@ -1,37 +1,45 @@
-<template>
-  <label
-    :class="`background--${bgColor}`"
-    class="radio-component"
-    v-bind="styleAttrs"
+<template v-if="options.length">
+  <template
+    v-for="(option, index) in options"
+    :key="`radio-${name}-${index}`"
   >
-    <input
-      :checked="isChecked"
-      :value="value"
-      :name="name"
-      ref="refRadio"
-      type="radio"
-      class="radio-component__input"
-      v-bind="inputAttrs"
-      @click="handleClick($event)"
-    />
-    <span
-      v-if="!textOnly"
-      class="radio-component__icon"
+    <label
+      :class="{ [`type-${type}`]: type }"
+      class="radio-component"
+      v-bind="styleAttrs"
     >
-      <span class="blind">
-        {{ value }}
-      </span>
-    </span>
+      <!-- Input -->
+      <input
+        :checked="getChecked(option)"
+        :value="getValue(option)"
+        :name="`${name}-${uuid}`"
+        :disabled="isDisabled || isDisabledOption(option)"
+        ref="refRadio"
+        type="radio"
+        class="radio-component__input"
+        v-bind="inputAttrs"
+        @click="handleClick($event)"
+      />
 
-    <slot name="label">
+      <!-- Icon (basic type에만 노출)  -->
       <span
-        :class="`text--${color}`"
-        class="radio-component__label"
+        v-if="type === 'basic'"
+        class="radio-component__icon"
       >
-        <slot></slot>
       </span>
-    </slot>
-  </label>
+
+      <!-- Label -->
+      <slot
+        :label="getLabel(option)"
+        :option="option"
+        name="label"
+      >
+        <span class="radio-component__label">
+          {{ getLabel(option) }}
+        </span>
+      </slot>
+    </label>
+  </template>
 </template>
 
 <script setup lang="ts">
@@ -42,10 +50,15 @@
 
   const {
     refRadio,
-
-    isChecked,
     styleAttrs,
     inputAttrs,
+
+    uuid,
+
+    getValue,
+    getLabel,
+    getChecked,
+    isDisabledOption,
 
     handleClick,
   } = radioComposable(emits, props);

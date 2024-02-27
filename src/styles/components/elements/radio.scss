@@ -1,4 +1,46 @@
-.radio-component {
+.radio-component {  
+  display: inline-block;
+  font-size: 0;
+  vertical-align: middle;
+
+  & + .radio-component {
+    margin-left: rem(4px);
+  }
+
+  // #region 텍스트 타입 TODO: 쓰는 케이스 있을 때 디자인 입히기
+  &.type-text {
+    .radio-component__input {
+      & + .radio-component__label {
+        color: $grey;
+
+      }
+
+      &:checked + .radio-component__label {
+        color: $basic;
+      } 
+    }
+  }
+  // #endregion
+
+  // #region 카드 타입
+  &.type-card {
+    .radio-component__input {
+      & + .radio-component__label {
+        padding: rem(6px 12px);
+        background: $bg;
+        border-radius: rem(4px);
+        font-weight: 400;
+      }
+
+      &:checked + .radio-component__label {
+        background: $basic;
+        color: $white;
+        font-weight: 400;
+      } 
+    }
+  }
+  // #endregion
+
   &__input {
     display: none;
 
@@ -22,12 +64,10 @@
   }
 
   &__icon {
-    display: block;
+    display: inline-block;
     position: relative;
     width: rem(8px);
     height: rem(8px);
-    margin: rem(3px 0);
-    margin-right: rem(2px);
     border-radius: 50%;
     background-color: $grey;
     font-size: 0;
@@ -40,14 +80,15 @@
       left: 50%;
       width: rem(4px);
       height: rem(4px);
-      margin: rem(-2px 0 0 -2px);
       border-radius: 50%;
       background-color: $white;
+      transform: translate(-50%, -50%,);
     }
   }
 
   &__label {
-    padding: rem(7px 0);
-    @include fontCss($black, rem(20px), 400, rem(20px));
+    display: inline-block;
+    padding: rem(0 4px);
+    @include fontCss($deep, rem(9px), 400, rem(9px));
   }
 }
