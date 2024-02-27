@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts">
+  // declare additional options
   export default {
     inheritAttrs: false,
   };

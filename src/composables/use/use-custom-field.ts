@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 import { type FieldOptions, type RuleExpression, useField } from 'vee-validate';
-import { ValidationSchema, VeeHandleSubmit, VeeHandleSubmitResult } from '@/types/common.types';
+import type { ValidationSchema } from '@/types/common.types';
 
 // form input 필드에 추가적으로 바인딩할 데이터
 interface AdditionalOptions {

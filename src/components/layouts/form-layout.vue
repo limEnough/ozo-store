@@ -3,8 +3,7 @@
     class="form-layout"
     v-bind="$attrs"
   >
-    <!-- 타이틀 영역 -->
-    <Title></Title>
+    <!-- TODO: 타이틀 영역 -->
 
     <!-- 아코디언 토글 영역 -->
     <div class="form-layout__toggle">
@@ -68,6 +67,7 @@
 </script>
 
 <script lang="ts">
+  // declare additional options
   export default {
     inheritAttrs: false,
   };
