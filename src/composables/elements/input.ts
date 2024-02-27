@@ -130,19 +130,9 @@ const props = {
 export default function inputComposables(emit: CustomEmit<Emits>, props: Props) {
   const { countType, maxlength } = toRefs(props);
 
+  // #region attrs
   const attrs = useAttrs();
 
-  const inputType = computed(() => (attrs.type as string) ?? 'text');
-
-  const controlType = ref(inputType.value);
-
-  const inputElement = ref<HTMLInputElement>();
-
-  const modelValueTextLength = computed(() => (props.modelValue ? props.modelValue.toString().length : 0));
-
-  const isFocus = ref(false);
-
-  // #region attrs
   const styleAttrs = computed(() => {
     if (attrs.class) return { class: attrs.class };
     else return {};
@@ -153,6 +143,16 @@ export default function inputComposables(emit: CustomEmit<Emits>, props: Props) 
     else return attrs;
   });
   // #endregion
+
+  const inputType = computed(() => (attrs.type as string) ?? 'text');
+
+  const controlType = ref(inputType.value);
+
+  const inputElement = ref<HTMLInputElement>();
+
+  const modelValueTextLength = computed(() => (props.modelValue ? props.modelValue.toString().length : 0));
+
+  const isFocus = ref(false);
 
   const inputBindings = computed(() => {
     return {
