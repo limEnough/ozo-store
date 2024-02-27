@@ -1,0 +1,16 @@
+.input-phone-component {
+  display: flex;
+  align-items: center;
+  
+  &__input {
+    :deep() {
+      .input-component {
+        width: rem(40px);
+      }
+    }
+  }
+
+  &__split {
+    padding: rem(0 3px);
+  }
+}
