@@ -1,0 +1,51 @@
+.select-component {
+  width: 100%;
+  padding: rem(6px 15px 6px 0);
+  background: url(src('test', 'common', 'icon-arrow-down--deep.svg')) right center/rem(6px auto) no-repeat;
+  border-bottom: 1px solid $grey;
+  @include fontCss($deep, rem(9px), 400,  rem(9px));
+
+  &:focus {
+    background-image: url(src('test', 'common', 'icon-arrow-down--basic.svg'));
+    border-color: $basic;
+    color: $basic;
+  }
+
+  &:disabled {
+    background-image: url(src('test', 'common', 'icon-arrow-down--grey.svg'));
+    border-color: $grey;
+    color: $grey;
+  }
+
+  & + .select-component {
+    margin-left: rem(8px);
+
+  }
+  option {
+    &:disabled {
+      color: $grey;
+    }
+
+    // placeholder 역할의 옵션은 비노출
+    &.placeholder {
+      display: none;
+    }
+    
+    color: $deep;
+  }
+
+  // TODO: 사이즈
+  $selectSize: (
+    's': rem(45px),
+    'm': rem(60px),
+    'l': 100%,
+  );
+
+  &.size {
+    @each $name, $size in $selectSize {
+      &--#{$name} {
+        width: $size;
+      }
+    }
+  }
+}
