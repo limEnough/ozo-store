@@ -14,6 +14,7 @@ type Emits = 'update:modelValue' | 'selected';
 
 interface Props {
   modelValue: Row | null;
+  name: string;
   rows?: Rows;
   size?: 's' | 'm' | 'l';
   readonly?: boolean;
@@ -27,6 +28,10 @@ const props = {
   modelValue: {
     type: [Object, null] as PropType<Props['modelValue']>,
     required: true,
+  },
+  name: {
+    type: String as PropType<Props['name']>,
+    required: false,
   },
   rows: {
     type: Array as PropType<Props['rows']>,

@@ -42,8 +42,6 @@
   // #endregion
 
   &__input {
-    display: none;
-
     &:checked {
       & + .radio-component__icon {
         background-color: $basic;

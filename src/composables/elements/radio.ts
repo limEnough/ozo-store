@@ -3,29 +3,22 @@ import { isEqual } from 'lodash-es';
 import type { CustomEmit, RadioModel } from '@/types/common.types';
 import { v4 as uuidV4 } from 'uuid';
 import { isObject } from '@/utils/object';
+import type { Option } from '@/types/common.types';
 
 type Emits = 'update:modelValue';
-
-type Option =
-  | boolean
-  | string
-  | number
-  | {
-      [key: string]: any;
-    };
 
 type RadioType = 'basic' | 'card' | 'text';
 
 interface Props {
-  modelValue: RadioModel<any>;
+  modelValue: RadioModel<Option>;
   name: string;
   type: RadioType;
-  options: Option[];
+  options: RadioModel<Option>[];
   isDisabled: boolean;
-  disableOptions: Option[];
+  disableOptions: RadioModel<Option>[];
   labelKey: string;
   valueKey: string;
-  beforeUpdate?: (value?: RadioModel<any>) => boolean | Promise<boolean>;
+  beforeUpdate?: (value?: RadioModel<Option>) => boolean | Promise<boolean>;
 }
 
 const emits: Emits[] = ['update:modelValue'];
@@ -98,14 +91,14 @@ export default function radioComposable(emits: CustomEmit<Emits>, props: Props) 
     else return {};
   });
 
-  const inputAttrs = computed(() => {
+  const functionalAttrs = computed(() => {
     if (attrs.class) return { ...attrs, class: '' };
     else return attrs;
   });
   // #endregion
 
   // radio 텍스트에 매핑할 값 반환
-  const getLabel = (option: Option) => {
+  const getLabel = (option: RadioModel<Option>) => {
     if (isObject(option)) {
       return option[labelKey.value] ?? option;
     }
@@ -114,18 +107,18 @@ export default function radioComposable(emits: CustomEmit<Emits>, props: Props) 
   };
 
   // radio value에 매핑할 값 반환
-  const getValue = (option: Option) => {
+  const getValue = (option: RadioModel<Option>) => {
     if (isObject(option)) return option[valueKey.value];
     else return option;
   };
 
   // 해당 옵션 checked 여부 반환
-  const getChecked = (option: Option) => {
+  const getChecked = (option: RadioModel<Option>) => {
     return isEqual(restrictedValue.value, option);
   };
 
   // 비활성화 할 옵션인지 확인
-  const isDisabledOption = (option: Option) => {
+  const isDisabledOption = (option: RadioModel<Option>) => {
     return disableOptions.value.includes(getValue(option));
   };
 
@@ -156,7 +149,7 @@ export default function radioComposable(emits: CustomEmit<Emits>, props: Props) 
   return {
     refRadio,
     styleAttrs,
-    inputAttrs,
+    functionalAttrs,
 
     uuid,
 

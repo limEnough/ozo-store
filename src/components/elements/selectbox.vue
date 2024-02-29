@@ -23,7 +23,7 @@
           >
             <slot
               :row="item"
-              name="option-name"
+              name="option-text"
             >
               <!-- disabled 앞에 붙는 텍스트 -->
               <template v-if="!hideDisabledText && item?.disabled && item?.code">

@@ -25,7 +25,6 @@ const props = {
   size: {
     type: String as PropType<Props['size']>,
     default: 'm',
-    required: false,
   },
   useTransition: {
     type: Boolean as PropType<Props['useTransition']>,

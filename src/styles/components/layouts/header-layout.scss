@@ -11,6 +11,6 @@
   }
 
   &__title {
-    @include fontCss($deep, rem(12px), 800, rem(12px));
+    @include fontCss($deep, rem(10px), 800, rem(10px));
   }
 }

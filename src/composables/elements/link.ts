@@ -35,7 +35,7 @@ const props = {
   },
   case: {
     type: String as PropType<Props['case']>,
-    default: 'text',
+    default: 'normal',
   },
   isExternal: {
     type: Boolean as PropType<Props['isExternal']>,

@@ -1,4 +1,4 @@
-<template v-if="options.length">
+<template v-if="options?.length">
   <template
     v-for="(option, index) in options"
     :key="`radio-${name}-${index}`"
@@ -12,12 +12,12 @@
       <input
         :checked="getChecked(option)"
         :value="getValue(option)"
-        :name="`${name}-${uuid}`"
+        :name="`radio-${name}-${uuid}`"
         :disabled="isDisabled || isDisabledOption(option)"
         ref="refRadio"
         type="radio"
-        class="radio-component__input"
-        v-bind="inputAttrs"
+        class="radio-component__input blind"
+        v-bind="functionalAttrs"
         @click="handleClick($event)"
       />
 
@@ -51,7 +51,7 @@
   const {
     refRadio,
     styleAttrs,
-    inputAttrs,
+    functionalAttrs,
 
     uuid,
 

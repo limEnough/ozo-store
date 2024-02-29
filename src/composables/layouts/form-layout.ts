@@ -64,7 +64,6 @@ export default function formLayoutComposable(emit: CustomEmit<Emits>, props: Pro
   });
 
   return {
-    slots,
     cancelOption,
     submitOption,
     isVisibleFooter,

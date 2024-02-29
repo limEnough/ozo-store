@@ -138,7 +138,7 @@ export default function inputComposables(emit: CustomEmit<Emits>, props: Props) 
     else return {};
   });
 
-  const inputAttrs = computed(() => {
+  const functionalAttrs = computed(() => {
     if (attrs.class) return { ...attrs, class: '' };
     else return attrs;
   });
@@ -156,7 +156,7 @@ export default function inputComposables(emit: CustomEmit<Emits>, props: Props) 
 
   const inputBindings = computed(() => {
     return {
-      ...inputAttrs.value,
+      ...functionalAttrs.value,
       ...(countType.value === 'count' && { maxlength: maxlength.value }),
     };
   });
