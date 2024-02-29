@@ -1,0 +1,99 @@
+.checkbox-component {
+  position: relative;
+
+  // #region 체크박스 하나
+  &__item {
+    display: block;
+
+    &:not(:last-child) {
+      margin-top: rem(5px);
+    }
+    
+    // Box-type (전체선택과 동일)
+    &.box-type {
+      .checkbox-component__input {
+        // Default 케이스
+        & + .checkbox-component__label:before {
+          left: 0;
+          width: rem(16px);
+          height: rem(16px);
+          border-radius: rem(2px);
+          background: $bg url(src('test', 'common', 'icon-arrow-down--white.svg')) center/ rem(8px auto) no-repeat;
+        }
+
+        // Checked
+        &:checked + .checkbox-component__label:before {
+          background: $basic url(src('test', 'common', 'icon-arrow-down--white.svg')) center/ rem(8px auto) no-repeat;
+        } 
+
+        // Disabled 케이스
+        &:disabled {
+          // default
+          & + .checkbox-component__label:before {
+            background: $greySoft url(src('test', 'common', 'icon-arrow-down--white.svg')) center/ rem(8px auto) no-repeat;
+          }
+
+          // checked
+          &:checked + .checkbox-component__label:before {
+            background: $greySoft url(src('test', 'common', 'icon-arrow-down--grey.svg')) center/ rem(8px auto) no-repeat;
+          }
+        }
+      }
+    }
+
+    // 전체선택
+    &--all {
+      .checkbox-component__label {
+        font-weight: 600;
+      }
+    }
+  }
+  // #endregion
+
+  // #region Input
+  &__input {
+    // Checked 케이스
+    &:checked + .checkbox-component__label:before {
+      background: url(src('test', 'common', 'icon-arrow-down--basic.svg')) center/ rem(8px auto) no-repeat;
+    }
+
+    // Disabled 케이스
+    &:disabled {
+      // default
+      & + .checkbox-component__label:before {
+        background: $greySoft url(src('test', 'common', 'icon-arrow-down--white.svg')) center/ rem(5px auto) no-repeat;
+      }
+
+      // checked
+      &:checked + .checkbox-component__label:before {
+        background: $greySoft url(src('test', 'common', 'icon-arrow-down--grey.svg')) center/ rem(5px auto) no-repeat;
+      }
+    }
+  }
+  // #endregion
+
+  // #region Label
+  &__label {
+    position: relative;
+    display: block;
+    min-height: rem(20px);
+    padding: rem(4px 0 4px 20px);
+    cursor: pointer;
+    @include fontCss($deep, rem(9px), 400, rem(12px));
+
+    // Default 케이스
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: rem(2px);
+      width: rem(12px);
+      height: rem(12px);
+      background: url(src('test', 'common', 'icon-arrow-down--bg.svg')) center/ rem(8px auto) no-repeat;
+      border-radius: 50%;
+      box-sizing: border-box;
+      transform: translate(0, -50%);
+    }
+  }
+  // #endregion
+}
