@@ -47,7 +47,7 @@ const props = {
   },
 };
 
-export default function linkComposables(props: Props) {
+export default function linkComposable(props: Props) {
   const router = useRouter();
   const { to: propsTo, isExternal, beforeClick } = toRefs(props);
 

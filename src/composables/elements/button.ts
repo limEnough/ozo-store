@@ -58,7 +58,7 @@ interface ClassMapping {
   [key: string]: string;
 }
 
-export default function buttonComposables(props: Props) {
+export default function buttonComposable(props: Props) {
   const { case: caseProp, size, width, iconOnly } = toRefs(props);
 
   const mapClasses = (mapping: ClassMapping, propValue: string) => {

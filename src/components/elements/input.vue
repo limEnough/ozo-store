@@ -101,7 +101,7 @@
 </template>
 
 <script setup lang="ts">
-  import inputComposables, { inputEmits, inputProps } from '@/composables/elements/input';
+  import inputComposable, { inputEmits, inputProps } from '@/composables/elements/input';
   import Button from '@/components/elements/button.vue';
 
   const emit = defineEmits(inputEmits);
@@ -127,7 +127,7 @@
     handleInput,
     inputType,
     controlType,
-  } = inputComposables(emit, props);
+  } = inputComposable(emit, props);
 </script>
 
 <style lang="scss" scoped>

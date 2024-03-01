@@ -21,7 +21,7 @@ const props = {
   },
 };
 
-export default function titleComposables(props: Props) {
+export default function titleComposable(props: Props) {
   const titleInfo = computed(() => props.data);
   const hasSubTitle = computed(() => props.data.sub.length);
 

@@ -21,11 +21,11 @@
 </template>
 
 <script setup lang="ts">
-  import buttonComposables, { buttonProps } from '@/composables/elements/button';
+  import buttonComposable, { buttonProps } from '@/composables/elements/button';
 
   const props = defineProps(buttonProps);
 
-  const { buttonClasses } = buttonComposables(props);
+  const { buttonClasses } = buttonComposable(props);
 </script>
 
 <style lang="scss" scoped>

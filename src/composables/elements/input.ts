@@ -127,7 +127,7 @@ const props = {
   // #endregion
 };
 
-export default function inputComposables(emit: CustomEmit<Emits>, props: Props) {
+export default function inputComposable(emit: CustomEmit<Emits>, props: Props) {
   const { countType, maxlength } = toRefs(props);
 
   // #region attrs

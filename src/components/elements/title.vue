@@ -20,11 +20,11 @@
 </template>
 
 <script setup lang="ts">
-  import titleComposables, { titleProps } from '@/composables/elements/title';
+  import titleComposable, { titleProps } from '@/composables/elements/title';
 
   const props = defineProps(titleProps);
 
-  const { titleInfo, hasSubTitle } = titleComposables(props);
+  const { titleInfo, hasSubTitle } = titleComposable(props);
 </script>
 
 <style lang="scss" scoped>

@@ -33,12 +33,12 @@
 </template>
 
 <script setup lang="ts">
-  import linkComposables, { linkProps } from '@/composables/elements/link';
+  import linkComposable, { linkProps } from '@/composables/elements/link';
   import Button from '@/components/elements/button.vue';
 
   const props = defineProps(linkProps);
 
-  const { propsTo, targetRoute, handleClick } = linkComposables(props);
+  const { propsTo, targetRoute, handleClick } = linkComposable(props);
 </script>
 
 <script lang="ts">
