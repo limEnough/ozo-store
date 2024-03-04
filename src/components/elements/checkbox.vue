@@ -53,14 +53,19 @@
               <template v-if="isRequiredOption(option)">
                 <slot name="option-front-text"> [필수] </slot>
               </template>
+
               <template v-else>
                 <slot name="option-front-text"> [선택] </slot>
               </template>
 
               {{ getLabel(option) }}
 
-              <template v-if="option?.link">
-                <slot name="option-back-text"></slot>
+              <!-- 라벨 뒤에 붙는 텍스트 -->
+              <template v-if="slots['option-back-text']">
+                <slot
+                  :option="option"
+                  name="option-back-text"
+                ></slot>
               </template>
             </slot>
           </span>
@@ -77,6 +82,7 @@
   const props = defineProps(checkboxProps);
 
   const {
+    slots,
     uuid,
     model,
     isAllChecked,

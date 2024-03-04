@@ -1,4 +1,4 @@
-import { type PropType, toRefs, computed, useAttrs } from 'vue';
+import { type PropType, toRefs, computed, useAttrs, useSlots } from 'vue';
 import { type CheckboxModel, type CustomEmit } from '@/types/common.types';
 import { v4 as uuidV4 } from 'uuid';
 import { isObject } from 'lodash-es';
@@ -73,6 +73,7 @@ const props = {
 
 export default function checkboxComposable(emit: CustomEmit<Emits>, props: Props) {
   const { labelKey, valueKey, options } = toRefs(props);
+  const slots = useSlots();
 
   // 각 옵션마다 고유한 name 을 부여하기 위해 사용
   const uuid = uuidV4();
@@ -111,8 +112,7 @@ export default function checkboxComposable(emit: CustomEmit<Emits>, props: Props
 
   // radio value에 매핑할 값 반환
   const getValue = (option: CheckboxOption) => {
-    if (isObject(option)) return option[valueKey.value];
-    else return option;
+    return option;
   };
 
   // 비활성화 할 옵션인지 체크
@@ -159,6 +159,7 @@ export default function checkboxComposable(emit: CustomEmit<Emits>, props: Props
 
   return {
     uuid,
+    slots,
     model,
     isAllChecked,
     isDisabledOption,
