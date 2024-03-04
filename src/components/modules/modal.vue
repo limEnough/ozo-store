@@ -8,6 +8,7 @@
         'size--s': size === 's',
         'size--m': size === 'm',
         'size--l': size === 'l',
+        'desktop-modal': !isMobile(),
       }"
       class="modal-component"
       role="dialog"
@@ -25,15 +26,6 @@
                 {{ title }}
               </slot>
             </h3>
-
-            <Button
-              class="modal-component__close"
-              size="s"
-              icon-only
-              @click="emits('close')"
-            >
-              <span class="blind">Close modal</span>
-            </Button>
           </div>
         </template>
 
@@ -54,6 +46,7 @@
                 v-if="props.onClose && cancelOption.visible"
                 :disabled="cancelOption.disabled"
                 case="normal"
+                width="half"
                 @click="emits('close')"
               >
                 {{ cancelOption.title }}
@@ -64,6 +57,7 @@
                 v-if="props.onSubmit && submitOption.visible"
                 :disabled="submitOption.disabled"
                 case="success"
+                width="half"
                 @click="emits('submit')"
               >
                 {{ submitOption.title }}
@@ -79,6 +73,7 @@
 <script setup lang="ts">
   import modalComposable, { modalEmits, modalProps } from '@/composables/modules/modal';
   import Button from '@/components/elements/button.vue';
+  import { isMobile } from '@/stores/common';
 
   const emits = defineEmits(modalEmits);
   const props = defineProps(modalProps);

@@ -1,4 +1,4 @@
-import { type PropType, computed, getCurrentInstance, onMounted, reactive, ref, toRefs, useAttrs, watch } from 'vue';
+import { type PropType, computed, getCurrentInstance, onMounted, reactive, ref, toRefs, useAttrs } from 'vue';
 import { type CustomEmit } from '@/types/common.types';
 import { TELEPORT_TARGET } from '@/configs/app.config';
 import { onClickOutside } from '@vueuse/core';
@@ -95,7 +95,7 @@ export default function modalComposable(emit: CustomEmit<Emits>, props: Props) {
 
   onMounted(() => {
     if (closeOnClickOutside.value) {
-      // TODO: 모달 바깥 영역 클릭 시 close 이벤트 emit
+      // 모달 바깥 영역 클릭 시 close 이벤트 emit
       onClickOutside(modalContentRef, () => {
         emit('close');
       });

@@ -1,31 +1,83 @@
 .modal-component {
-  &__contents {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: dim();
 
+  // #region TODO: Props-Size
+  &.size {
+    &--s {
+      .modal-component__contents {
+        width: rem(100px);
+      }
+    }
+
+    &--m {
+      .modal-component__contents {
+        width: rem(180px);
+      }
+    }
+
+    &--l {
+      .modal-component__contents {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
+  // #endregion
 
-  // #region Header
+  // #region desktop Case
+  &.desktop-modal {
+    .modal-component__body {
+      @include DesktopCustomScrollbar();
+    }
+  }
+  // #endregion
+
+  // #region 콘텐츠
+  &__contents {
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-height: 100%;
+    border-radius: rem(4px);
+    background-color: $white;
+    box-shadow: rem(0 4px 16px 0) rgba(0, 0, 0, 0.12);
+    transform: translate(-50%, -50%);
+  }
+  // #endregion
+
+  // #region 헤더
   &__header {
-
+    position: relative;
+    padding: rem(15px 10px);
   }
 
   &__title {
-
-  }
-
-  &__close {
-
+    @include fontCss($basic, rem(9px), 600, rem(14px));
+    text-align: center;
+    word-break: break-all;
   }
   // #endregion
 
   // #region Body
   &__body {
-
+    overflow-y: auto;
+    max-height: rem(180px);
+    padding: rem(0 10px);
   }
   // #endregion
 
   // #region Footer
   &__footer {
-
+    padding: rem(10px);
+    text-align: right;
   }
   // #endregion
 }
