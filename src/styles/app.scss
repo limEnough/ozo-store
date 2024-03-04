@@ -5,3 +5,11 @@
 
 //plugins
 @import "/node_modules/swiper/swiper.min.css";
+
+body {
+  // #region scroll lock
+  &.scroll--lock {
+    overflow: hidden;
+  }
+  // #endregion
+}
