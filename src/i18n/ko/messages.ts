@@ -1,5 +1,9 @@
 export default () => {
   const messages = {
+    //#region 페이지 관련
+    NotInitialized: '페이지가 초기화 돠지 않았습니다.',
+    //#endregion
+
     // #region 유효성 검사
     validation: {
       required: '필수 항목입니다.',
@@ -9,6 +13,7 @@ export default () => {
       passwordConfirm: '입력한 비밀번호가 일치하지 않습니다.',
       emailForm: '올바른 이메일 형식이 아닙니다.',
       totalPhoneForm: '올바른 전화번호 형식이 아닙니다.',
+      termsAgreement: '필수 약관에 동의해주세요.',
     },
     // #endregion
 
