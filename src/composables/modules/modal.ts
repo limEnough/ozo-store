@@ -107,7 +107,7 @@ export default function modalComposable(emit: CustomEmit<Emits>, props: Props) {
 
     attrs: reactive({
       ...attrs,
-      // TODO: teleport 했을 때 scoped css 적용안되는 이슈 확인
+      // TODO: [확인] teleport 했을 때 scoped css 적용안되는 이슈 확인
       ...(scopeId.length && { [scopeId]: true }),
     }),
 

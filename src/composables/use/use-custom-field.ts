@@ -57,7 +57,7 @@ export default function createCustomField<TValue = unknown>(
   });
 
   // vee-validate 필드 검증 실패 시 에러메시지 반환
-  // TODO: 배열로 받아야 할지 고민 필요
+  // TODO: [고민] string[]으로 받아야 할지 고민 필요
   const errorMessage = computed(() => field.errorMessage.value ?? '');
 
   return {

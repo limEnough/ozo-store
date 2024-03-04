@@ -28,7 +28,7 @@
 // #endregion
 
 // #region 폰트
-@mixin fontCss($color: $black, $size: rem(12px), $weight: 400, $line: rem(12px), $family: $dm, $spacing: rem(-0.2px)) {
+@mixin fontCss($color: $deep, $size: rem(12px), $weight: 400, $line: rem(12px), $family: $dm, $spacing: rem(-0.2px)) {
   color: $color;
   font-size: $size;
   font-weight: $weight;
@@ -51,7 +51,7 @@
 // #endregion
 
 // #region Image url
-@function src($folder: 'sample', $filename: '') {
+@function src($test, $folder: 'sample', $filename: '') {
   @return '/src/assets/images/#{$folder}/#{$filename}';
 }
 // #endregion
@@ -60,7 +60,7 @@
 @mixin imageCss(
   $width: rem(12px),
   $height: rem(12px),
-  $group: 'sample',
+  $folder: 'sample',
   $file: '',
   $repeat: no-repeat,
   $position: center center,
@@ -69,8 +69,8 @@
   display: inline-block;
   width: $width;
   height: $height;
-  // TODO: !!!!!!!!!!!!!!!!!
-  // background-image: url(src($folder, $file));
+  // TODO: [스킬] 첫 인자로 무조건 string 넘겨야만 정상 작동 이유 찾아보기
+  background-image: url(src('test', $folder, $file));
   background-repeat: $repeat;
   background-position: $position;
   background-size: $size;
@@ -125,26 +125,24 @@
 // #endregion
 
 // #region 커스텀 스크롤 바
-// width는 좌우 여백과 막대 width를 합한 값입니다.
-@mixin customScrollbar($width: rem(20px), $background: $white, $direction: 'vertical') {
+@mixin DesktopCustomScrollbar($width: rem(8px), $background: $white, $direction: 'vertical') {
   @if ($direction == 'vertical') {
-    padding: rem(4px 0);
 
     &::-webkit-scrollbar {
       width: $width;
 
       &-thumb {
-        width: rem(4px);
-        border: rem(#{calc(($width - rem(4px)) / 2)}) solid $background; //6px
-        border-radius: rem(999px);
-        background: $grey400;
+        background: $grey;
+        border: rem(2px) solid $white;
+        border-radius: 999px;
       }
     }
   }
 }
+
 // #endregion
 
-// #region TODO: 문자 Replace
+// #region TODO: [스킬] replace
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
 

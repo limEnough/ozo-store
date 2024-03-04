@@ -39,7 +39,7 @@
   }
   // #endregion
 
-  // #region TODO: 뎁스 사용
+  // #region TODO: [디자인] 뎁스 사용
   &--has-depth {
     :deep() {
       .form-group-component {
@@ -57,7 +57,7 @@
   }
   // #endregion
 
-  // #region TODO: 이너 폼그룹 사용
+  // #region TODO: [디자인] 이너 폼그룹 사용
   &--inner-group {
     &.selected {
       .form-group-component__accordion {

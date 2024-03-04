@@ -25,7 +25,6 @@ const props = {
   },
 };
 
-// TODO: 추후 데이터로 받아오는 로직 만들기
 export const termsData = ref<TermsData[]>([
   {
     code: 'TERMS.AGREE.OVER14',

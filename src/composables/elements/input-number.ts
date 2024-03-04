@@ -173,7 +173,7 @@ export default function inputNumberComposable(emit: CustomEmit<Emits>, props: Pr
   watch(
     () => props.modelValue,
     (newVal) => {
-      // TODO: 데이터 업데이트 감시 필요 여부 확인
+      // TODO: [확인] 데이터 업데이트 감시 필요 여부 확인
       // if (newVal !== displayNumber.value) {
       //   handleBlur();
       // }

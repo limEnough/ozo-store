@@ -14,7 +14,7 @@ export interface CustomEmit<T> {
 
 export type InputModel<T = string> = T;
 export type Option<T = string> = boolean | string | number | APICode<T>;
-// TODO: Option 고정으로 받아줄건지 고민 필요, 관련 타입에러 모두 FIX
+// TODO: [고민] Option 고정으로 받아줄건지 고민 필요, 관련 타입에러 모두 FIX
 export type CheckboxModel<T = boolean> = T extends boolean ? boolean : T[];
 export type RadioModel<T = boolean> = T extends boolean ? boolean | null : T | null;
 
