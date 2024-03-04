@@ -32,11 +32,26 @@
         font-weight: 400;
       }
 
-      &:checked + .radio-component__label {
-        background: $basic;
-        color: $white;
-        font-weight: 400;
-      } 
+      &:checked {
+        & + .radio-component__label {
+          background: $basic;
+          color: $white;
+          font-weight: 400;
+        } 
+      }
+
+      &:disabled {
+        & + .radio-component__label {
+          background: $greySoft;
+          color: $white;
+        } 
+
+        &:checked {
+          & + .radio-component__label {
+            background: $grey;
+          }
+        }
+      }
     }
   }
   // #endregion
