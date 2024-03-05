@@ -32,11 +32,11 @@ const props = {
   },
   minLength: {
     type: [Number, String] as PropType<Props['minLength']>,
-    required: false,
+    default: 0,
   },
   maxLength: {
     type: [Number, String] as PropType<Props['maxLength']>,
-    required: false,
+    default: 20,
   },
   /** 콤마(,) 사용 여부 */
   useComma: {
@@ -90,7 +90,7 @@ export default function inputNumberComposable(emit: CustomEmit<Emits>, props: Pr
     else return {};
   });
 
-  const inputNumberAttrs = computed(() => {
+  const functionalAttrs = computed(() => {
     if (attrs.class) return { ...attrs, class: '' };
     else return attrs;
   });
@@ -182,7 +182,7 @@ export default function inputNumberComposable(emit: CustomEmit<Emits>, props: Pr
 
   return {
     styleAttrs,
-    inputNumberAttrs,
+    functionalAttrs,
 
     displayNumber,
 
