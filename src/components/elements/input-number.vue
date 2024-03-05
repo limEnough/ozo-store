@@ -4,7 +4,7 @@
     v-bind="styleAttrs"
   >
     <Input
-      v-bind="inputNumberAttrs"
+      v-bind="functionalAttrs"
       :model-value="displayNumber"
       :use-length-count="useLengthCount"
       :minlength="minLength"
@@ -35,7 +35,7 @@
   const emits = defineEmits(InputNumberEmits);
   const props = defineProps(InputNumberProps);
 
-  const { displayNumber, styleAttrs, inputNumberAttrs, handleInput, handleFocus, handleBlur } = inputNumberComposable(
+  const { displayNumber, styleAttrs, functionalAttrs, handleInput, handleFocus, handleBlur } = inputNumberComposable(
     emits,
     props,
   );

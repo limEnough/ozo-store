@@ -42,6 +42,13 @@
   </template>
 </template>
 
+<script lang="ts">
+  // declare additional options
+  export default {
+    inheritAttrs: false,
+  };
+</script>
+
 <script setup lang="ts">
   import radioComposable, { radioEmits, radioProps } from '@/composables/elements/radio';
 

@@ -100,6 +100,13 @@
   </div>
 </template>
 
+<script lang="ts">
+  // declare additional options
+  export default {
+    inheritAttrs: false,
+  };
+</script>
+
 <script setup lang="ts">
   import inputComposable, { inputEmits, inputProps } from '@/composables/elements/input';
   import Button from '@/components/elements/button.vue';
