@@ -22,6 +22,8 @@ interface Props {
   valueKey: string;
   useAllOption: boolean;
   type: 'basic' | 'box';
+  isError: boolean;
+  errorMessage: string;
 }
 
 const emits: Emits[] = ['update:modelValue'];
@@ -69,10 +71,22 @@ const props = {
     type: String as PropType<Props['type']>,
     default: 'basic',
   },
+  // #region vee-validate
+  /** 검증 에러 여부 */
+  isError: {
+    type: Boolean as PropType<Props['isError']>,
+    default: false,
+  },
+  /** 에러 메시지 */
+  errorMessage: {
+    type: String as PropType<Props['errorMessage']>,
+    default: '',
+  },
+  // #endregion
 };
 
 export default function checkboxComposable(emit: CustomEmit<Emits>, props: Props) {
-  const { labelKey, valueKey, options } = toRefs(props);
+  const { labelKey, options } = toRefs(props);
   const slots = useSlots();
 
   // 각 옵션마다 고유한 name 을 부여하기 위해 사용

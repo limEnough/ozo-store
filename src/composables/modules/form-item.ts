@@ -6,7 +6,7 @@ interface Props {
   title: string;
   required: boolean;
   useSubContents: boolean;
-  noTitle: boolean;
+  hideTitle: boolean;
 }
 
 const emits: Emits[] = [''];
@@ -28,8 +28,8 @@ const props = {
     default: false,
   },
   /** 타이틀 생략 여부 */
-  noTitle: {
-    type: Boolean as PropType<Props['noTitle']>,
+  hideTitle: {
+    type: Boolean as PropType<Props['hideTitle']>,
     default: false,
   },
 };

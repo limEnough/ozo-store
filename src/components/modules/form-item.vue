@@ -8,7 +8,7 @@
   >
     <!-- 타이틀 영역 -->
     <label
-      v-if="!noTitle"
+      v-if="!hideTitle"
       class="form-item-component__title"
     >
       <span class="title__text">
@@ -33,7 +33,7 @@
         <slot name="contents-sub"></slot>
       </div>
 
-      <!-- 메시지 영역 -->
+      <!-- 에러 메시지 영역 -->
       <div
         v-if="slots.messages"
         class="form-item-component__messages"

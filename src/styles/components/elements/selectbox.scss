@@ -5,35 +5,30 @@
   border-bottom: 1px solid $grey;
   @include fontCss($deep, rem(9px), 400,  rem(9px));
 
+  // #region Focus 케이스
   &:focus {
     background-image: url(src('test', 'common', 'icon-arrow-down--basic.svg'));
-    border-color: $basic;
+    // MEMO: error 케이스를 이기기위해 importatn 부여
+    border-color: $basic !important;
     color: $basic;
   }
+  // #endregion
 
+  // #region Disabled 케이스
   &:disabled {
     background-image: url(src('test', 'common', 'icon-arrow-down--grey.svg'));
     border-color: $grey;
     color: $grey;
   }
+  // #endregion
 
+  // #region Selectbox 여러개 케이스
   & + .select-component {
     margin-left: rem(8px);
-
   }
-  option {
-    &:disabled {
-      color: $grey;
-    }
+  // #endregion
 
-    // placeholder 역할의 옵션은 비노출
-    &.placeholder {
-      display: none;
-    }
-    
-    color: $deep;
-  }
-
+  // #region Props
   // TODO: [디자인]
   $selectSize: (
     's': rem(45px),
@@ -48,4 +43,24 @@
       }
     }
   }
+
+  &.error {
+    border-color: $point;
+  }
+  // #endregion
+
+  // #region Option
+  option {
+    &:disabled {
+      color: $grey;
+    }
+
+    // placeholder 역할의 옵션은 비노출
+    &.placeholder {
+      display: none;
+    }
+    
+    color: $deep;
+  }
+  // #endregion
 }

@@ -1,9 +1,11 @@
 <template v-if="rows?.length">
   <select
     v-model="model"
+    v-bind="attrs"
     :disabled="readonly"
     :class="{
       [`size--${size}`]: !!size,
+      error: isError,
     }"
     class="select-component"
   >
@@ -17,6 +19,7 @@
           name="option"
         >
           <option
+            v-bind="attrs"
             :value="item"
             :disabled="item?.disabled ?? false"
             :class="{ placeholder: item?.isPlaceholder ?? false }"
@@ -37,7 +40,24 @@
       </template>
     </slot>
   </select>
+
+  <!-- 에러 메시지 -->
+  <div
+    v-if="errorMessage.length"
+    class="input-component__message"
+  >
+    <p class="message__text">
+      {{ errorMessage }}
+    </p>
+  </div>
 </template>
+
+<script lang="ts">
+  // declare additional options
+  export default {
+    inheritAttrs: false,
+  };
+</script>
 
 <script setup lang="ts">
   import selectboxComposable, { selectboxEmits, selectboxProps } from '@/composables/elements/selectbox';
@@ -45,7 +65,7 @@
   const emits = defineEmits(selectboxEmits);
   const props = defineProps(selectboxProps);
 
-  const { model } = selectboxComposable(emits, props);
+  const { model, attrs } = selectboxComposable(emits, props);
 </script>
 
 <style lang="scss" scoped>

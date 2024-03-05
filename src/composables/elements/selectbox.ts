@@ -1,4 +1,4 @@
-import { type PropType, computed } from 'vue';
+import { type PropType, computed, useAttrs } from 'vue';
 import { type CustomEmit } from '@/types/common.types';
 import { type APICode } from '@/types/api.types';
 
@@ -14,12 +14,13 @@ type Emits = 'update:modelValue' | 'selected';
 
 interface Props {
   modelValue: Row | null;
-  name: string;
   rows?: Rows;
   size?: 's' | 'm' | 'l';
   readonly?: boolean;
   hideDisabledText?: boolean;
-  defaultOptionText: string;
+  name: string;
+  isError: boolean;
+  errorMessage: string;
 }
 
 const emits: Emits[] = ['update:modelValue', 'selected'];
@@ -28,10 +29,6 @@ const props = {
   modelValue: {
     type: [Object, null] as PropType<Props['modelValue']>,
     required: true,
-  },
-  name: {
-    type: String as PropType<Props['name']>,
-    required: false,
   },
   rows: {
     type: Array as PropType<Props['rows']>,
@@ -50,9 +47,30 @@ const props = {
     type: Boolean as PropType<Props['hideDisabledText']>,
     default: false,
   },
+  // #region vee-validate
+  /** name (vee-validate에서 반드시 필요한 속성) */
+  name: {
+    type: String as PropType<Props['name']>,
+    default: '',
+  },
+  /** 검증 에러 여부 */
+  isError: {
+    type: Boolean as PropType<Props['isError']>,
+    default: false,
+  },
+  /** 에러 메시지 */
+  errorMessage: {
+    type: String as PropType<Props['errorMessage']>,
+    default: '',
+  },
+  // #endregion
 };
 
 export default function selectboxComposable(emit: CustomEmit<Emits>, props: Props) {
+  // #region attrs
+  const attrs = useAttrs();
+  // #endregion
+
   const model = computed({
     get: () => props.modelValue,
     set: (value) => {
@@ -61,7 +79,7 @@ export default function selectboxComposable(emit: CustomEmit<Emits>, props: Prop
     },
   });
 
-  return { model };
+  return { model, attrs };
 }
 
 export const makePlaceholder = (defaultOptionText: string): Row => {

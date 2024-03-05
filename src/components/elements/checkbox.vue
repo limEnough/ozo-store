@@ -71,9 +71,26 @@
           </span>
         </label>
       </template>
+
+      <!-- 에러 메시지 -->
+      <div
+        v-if="errorMessage.length"
+        class="checkbox-component__message"
+      >
+        <p class="message__text">
+          {{ errorMessage }}
+        </p>
+      </div>
     </div>
   </template>
 </template>
+
+<script lang="ts">
+  // declare additional options
+  export default {
+    inheritAttrs: false,
+  };
+</script>
 
 <script setup lang="ts">
   import checkboxComposable, { checkboxEmits, checkboxProps } from '@/composables/elements/checkbox';
@@ -94,13 +111,6 @@
     styleAttrs,
     functionalAttrs,
   } = checkboxComposable(emits, props);
-</script>
-
-<script lang="ts">
-  // declare additional options
-  export default {
-    inheritAttrs: false,
-  };
 </script>
 
 <style lang="scss" scoped>
