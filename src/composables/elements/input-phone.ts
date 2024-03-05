@@ -7,6 +7,7 @@ const emits: Emits[] = ['update:phoneNumber'];
 interface Props {
   phoneNumber: string;
   disabled: boolean;
+  errorMessage: string;
 }
 
 const props = {
@@ -17,6 +18,10 @@ const props = {
   disabled: {
     type: Boolean as PropType<Props['disabled']>,
     default: false,
+  },
+  errorMessage: {
+    type: String as PropType<Props['errorMessage']>,
+    default: '',
   },
 };
 
