@@ -1,5 +1,6 @@
 <template>
   <component :is="DefaultLayout">
+    <!-- 회원가입 페이지 -->
     <div class="create">
       <FormLayout
         @cancel="handleClickCancel"
@@ -7,7 +8,7 @@
       >
         <form @submit.prevent>
           <Form>
-            <!-- TODO: 약관 동의 -->
+            <!-- 약관 동의 -->
             <FormGroup
               use-title
               required
@@ -16,24 +17,30 @@
                 <h3>Agree to Terms</h3>
               </template>
 
-              <template #contents> 약관 아코디언 넣어놓기 </template>
-            </FormGroup>
-
-            <!-- TODO: 본인 인증 -->
-            <FormGroup
-              use-title
-              required
-            >
-              <template #title>
-                <h3>Certification</h3>
-              </template>
-
               <template #contents>
-                <FormItem>
-                  <template #title> Phone </template>
+                <Checkbox
+                  v-model="termsAgreement.value"
+                  :is-error="termsAgreement.isError"
+                  :error-message="termsAgreement.errorMessage"
+                  :use-all-option="true"
+                  :name="termsAgreement.name"
+                  :options="termsAgreementOptions"
+                  label-key="codeName"
+                >
+                  <template #all-label>약관 전체 동의하기</template>
 
-                  <template #contents> 휴대폰 인증 필요 </template>
-                </FormItem>
+                  <template #option-back-text="{ option }">
+                    <template v-if="option.contentHtml">
+                      <Button
+                        size="s"
+                        case="text"
+                        @click="handleOpenTermsModal(option.code)"
+                      >
+                        <span>자세히</span>
+                      </Button>
+                    </template>
+                  </template>
+                </Checkbox>
               </template>
             </FormGroup>
 
@@ -50,7 +57,7 @@
               <template #contents>
                 <!-- 프로필 -->
                 <FormItem
-                  :no-title="true"
+                  :hide-title="true"
                   class="create__userInfo__profile"
                 >
                   <template #contents>
@@ -79,6 +86,7 @@
                       :maxlength="email.max"
                       :allowed-regex="email.regex"
                       placeholder="이메일을 입력해주세요."
+                      @blur="email.validate"
                     >
                       <template #button>
                         <Button
@@ -108,6 +116,7 @@
                       type="password"
                       placeholder="비밀번호를 입력해주세요."
                       visible
+                      @blur="password.validate"
                     >
                     </Input>
                   </template>
@@ -124,25 +133,125 @@
                       type="password"
                       placeholder="비밀번호를 한번 더 입력해주세요."
                       visible
+                      @blur="passwordConfirm.validate"
                     >
                     </Input>
                   </template>
                 </FormItem>
 
-                <!-- 이름 (수정불가) -->
-                <!-- 생년월일 (수정불가) -->
-                <!-- 휴대폰번호 (수정불가) -->
-                <!-- 성별 (수정불가) -->
+                <!-- 이름 -->
+                <FormItem>
+                  <template #title> Name </template>
+
+                  <template #contents>
+                    <Input
+                      v-model="name.value"
+                      :name="name.name"
+                      :use-length-count="false"
+                      :is-error="name.isError"
+                      :error-message="name.errorMessage"
+                      :maxlength="name.max"
+                      :allowed-regex="name.regex"
+                      placeholder="이름을 입력해주세요."
+                      @blur="name.validate"
+                    >
+                    </Input>
+                  </template>
+                </FormItem>
+
+                <!-- 휴대폰번호 -->
+                <FormItem>
+                  <template #title> Phone </template>
+
+                  <template #contents>
+                    <InputPhone
+                      v-model:phone-number="phoneNumber.value"
+                      :is-error="phoneNumber.isError"
+                      :error-message="phoneNumber.errorMessage"
+                      @blur="phoneNumber.validate"
+                    ></InputPhone>
+                  </template>
+                </FormItem>
+
+                <!-- 성별 -->
+                <FormItem>
+                  <template #title> Gender </template>
+
+                  <template #contents>
+                    <Radio
+                      v-model="gender.value"
+                      :options="genderOptions"
+                      :name="gender.name"
+                      error-message=""
+                      type="card"
+                    ></Radio>
+                  </template>
+                </FormItem>
+
+                <!-- 생년월일 -->
+                <FormItem>
+                  <template #title> Birth </template>
+
+                  <template #contents>
+                    <Selectbox
+                      v-model="birthYear.value"
+                      :rows="birthOptions.year"
+                      :name="birthYear.name"
+                      :is-error="birthYear.isError"
+                      size="s"
+                    >
+                      {{ birthYear.value.codeName }}
+                    </Selectbox>
+
+                    <Selectbox
+                      v-model="birthMonth.value"
+                      :readonly="!birthYear.value.code"
+                      :rows="birthOptions.month"
+                      :name="birthMonth.name"
+                      :is-error="birthMonth.isError"
+                      size="s"
+                      @selected="changedBirthMonth($event)"
+                    >
+                      {{ birthMonth.value.codeName }}
+                    </Selectbox>
+
+                    <Selectbox
+                      v-model="birthDate.value"
+                      :readonly="!birthYear.value.code || !birthMonth.value.code"
+                      :rows="birthOptions.date"
+                      :name="birthDate.name"
+                      :is-error="birthDate.isError"
+                      size="s"
+                    >
+                      {{ birthDate.value.codeName }}
+                    </Selectbox>
+                  </template>
+
+                  <!-- MEMO: 셀렉트박스가 그룹으로 묶여있기에 상위에서 에러 메시지 노출 -->
+                  <template #messages>
+                    {{ birthErrorMessage }}
+                  </template>
+                </FormItem>
               </template>
             </FormGroup>
 
-            <!-- TODO: 주소지 입력 -->
+            <!-- TODO: 주소지 입력 컴포넌트 -->
           </Form>
         </form>
       </FormLayout>
     </div>
+
+    <!-- 약관 모달 -->
+    <template v-if="isOpenTermsModal">
+      <TermsModal
+        :terms-code="selectedTermsCode as MemberTermsCode"
+        @close="closeTermsModal"
+      >
+      </TermsModal>
+    </template>
   </component>
 </template>
+
 <script setup lang="ts">
   import createComposable from '@/composables/views/member/create';
   import Form from '@/components/modules/form.vue';
@@ -152,8 +261,39 @@
   import FormItem from '@/components/modules/form-item.vue';
   import Input from '@/components/elements/input.vue';
   import Button from '@/components/elements/button.vue';
+  import InputPhone from '@/components/elements/input-phone.vue';
+  import Radio from '@/components/elements/radio.vue';
+  import Selectbox from '@/components/elements/selectbox.vue';
+  import Checkbox from '@/components/elements/checkbox.vue';
+  import TermsModal from '@/components/modules/modals/terms-modal.vue';
+  import type { MemberTermsCode } from '@/constants/member-constants';
 
-  const { handleClickCancel, handleSubmit, email, password, name, passwordConfirm } = createComposable();
+  const {
+    termsAgreementOptions,
+    genderOptions,
+    birthOptions,
+
+    termsAgreement,
+    email,
+    password,
+    name,
+    passwordConfirm,
+    phoneNumber,
+    gender,
+    birthYear,
+    birthMonth,
+    birthDate,
+    birthErrorMessage,
+
+    changedBirthMonth,
+    handleClickCancel,
+    handleSubmit,
+    handleOpenTermsModal,
+
+    selectedTermsCode,
+    isOpenTermsModal,
+    closeTermsModal,
+  } = createComposable();
 </script>
 
 <style lang="scss" scoped>
