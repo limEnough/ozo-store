@@ -1,11 +1,19 @@
 .button-component {
   border-radius: rem(4px);
+  font-weight: 600;
 
-  // #region case
+  // #region Disabled
+  &:disabled {
+    background: $grey !important;
+    color: $white !important;
+  }
+  // #endregion
+
+  // #region Type
   &.case {
     &--normal {
       background: $bg;
-      color: $deep !important;
+      color: $deep;
     }
 
     &--process {
@@ -14,6 +22,7 @@
 
     &--success {
       background: $basic;
+      color: $white;
     }
 
     &--delete {
@@ -22,12 +31,12 @@
 
     &--text {
       padding: rem(3px) !important;
-      color: $deep !important;
+      color: $deep;
     }
   }
   // #endregion
 
-  // #region icon
+  // #region Icon
   &.icon-only {
     padding: 0 !important;
     background-color: initial;
@@ -61,27 +70,30 @@
   }
   // #endregion
 
-  // #region size
+  // #region Size
   &.size {
     &--s {
       padding: rem(4px);
       border-radius: rem(3px);
-      @include fontCss($white, rem(7px), 600, rem(7px));
+      font-size: rem(7px);
+      line-height: rem(7px);
     }
 
     &--m {
       padding: rem(7px);
-      @include fontCss($white, rem(8px), 600, rem(8px));
+      font-size: rem(8px);
+      line-height: rem(8px);
     }
 
     &--l {
       padding: rem(10px);
-      @include fontCss($white, rem(9px), 600, rem(9px));
+      font-size: rem(9px);
+      line-height: rem(9px);
     }
   }
   // #endregion
 
-  // #region width
+  // #region Width
   &.width {
     &--full {
       width: 100%;

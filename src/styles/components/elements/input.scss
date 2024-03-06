@@ -63,6 +63,10 @@
       &::placeholder {
         @include fontCss($grey, rem(9px), 400, rem(9px));
       }
+
+      &:disabled {
+        color: $grey !important;
+      }
     }
 
     &__button {

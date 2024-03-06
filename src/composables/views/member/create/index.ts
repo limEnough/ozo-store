@@ -1,5 +1,5 @@
 import { computed, reactive, ref } from 'vue';
-import { useForm, type InvalidSubmissionContext } from 'vee-validate';
+import { useForm } from 'vee-validate';
 import createCustomField, { createValidationSchema } from '@/composables/use/use-custom-field';
 import { isEmpty, isPhoneEmpty, validateEmail, validatePassword, validateTotalPhoneNumber } from '@/utils/validator';
 import { useI18n } from 'vue-i18n';
@@ -13,6 +13,8 @@ import type { MemberGenderCode, MemberTermsCode } from '@/constants/member-const
 import type { CheckboxOption } from '@/composables/elements/checkbox';
 import { termsData, type TermsData } from '@/composables/modules/modals/terms-modal';
 import { isEqual } from 'lodash-es';
+import MemberCreateService from '@/services/member/create';
+import type { MemberCreateAccount } from '@/services/member/create';
 
 interface CreateAccountForm {
   termsAgreement: CheckboxModel<CheckboxOption<MemberTermsCode>>;
@@ -52,6 +54,10 @@ export default function createComposable() {
 
       if (!validateEmail(value) || (!!email.max && value.length > email.max)) {
         return messages.t('validation.emailForm');
+      }
+
+      if (!isPassDuplicateCheck.value) {
+        return messages.t('validation.emailDuplicate');
       }
 
       return true;
@@ -253,9 +259,13 @@ export default function createComposable() {
   );
   // #endregion
 
+  // #region Data
   const birthErrorMessage = computed(() => {
     return birthYear.errorMessage || birthMonth.errorMessage || birthDate.errorMessage;
   });
+
+  const isPassDuplicateCheck = ref(false);
+  // #endregion
 
   // #region Terms
   const selectedTermsCode = ref<MemberTermsCode | null>(null);
@@ -267,6 +277,46 @@ export default function createComposable() {
   };
   // #endregion
 
+  // #region Parameter
+  const createPutParams = (values: CreateAccountForm): MemberCreateAccount => {
+    const { termsAgreement, email, password, name, phoneNumber, gender, birthYear, birthMonth, birthDate } = values;
+
+    return {
+      birth: `${birthYear.code}.${birthMonth.code}.${birthDate.code}`,
+      email,
+      gender: gender.code,
+      name,
+      password,
+      phoneNumber,
+      termsAgreement: termsAgreement.map((terms) => terms.code),
+    };
+  };
+  // #endregion
+
+  // #region API
+  const pageService = new MemberCreateService();
+
+  const checkDuplicateEmail = async (email: string): Promise<boolean> => {
+    if (!email || !email.length) alert('입력하신 이메일을 확인해주세요.');
+
+    const result = await pageService.getSameEmailUser(email);
+    return result;
+  };
+
+  const createNewAccount = async (params: MemberCreateAccount) => {
+    try {
+      await pageService.putNewUserInfo(params);
+
+      return true;
+    } catch (error) {
+      // TODO: 에러 대응 어떻게 할 것인가?
+      console.error(error);
+    }
+
+    return false;
+  };
+  // #endregion
+
   // #region Events
   const changedBirthMonth = (value: selectboxRow) => {
     if (!value.code) return;
@@ -275,16 +325,37 @@ export default function createComposable() {
     birthOptions.date = [...[birthPlaceholderOption], ...getDateList(selectedMonth)];
   };
 
-  const onValidSuccess = (values: CreateAccountForm) => {
-    alert('검증 성공하였습니다.');
+  const onVerifyEmail = async () => {
+    const inputValue = email.value;
 
-    console.log('values: ', values);
+    // 1. 중복체크를 한다.
+    const isDuplicated = await checkDuplicateEmail(inputValue);
+
+    if (isDuplicated) {
+      return alert('중복된 이메일입니다.');
+    } else {
+      isPassDuplicateCheck.value = true;
+
+      // email field 검증 재실행
+      email.validate();
+    }
+
+    // TODO: 2. 이메일 인증을 한다.
   };
 
-  const onValidFail = (values: InvalidSubmissionContext<CreateAccountForm>) => {
-    alert('검증 실패하였습니다.');
+  const onValidSuccess = async (values: CreateAccountForm) => {
+    const params = createPutParams(values);
 
-    console.log('values: ', values);
+    if (!params) return;
+
+    const result = await createNewAccount(params);
+
+    if (result) alert('회원가입이 완료되었습니다!');
+    // TODO: 로그인 페이지로 이동
+  };
+
+  const onValidFail = () => {
+    alert('alert.validationFailed');
   };
 
   const handleSubmit = veeHandleSubmit(onValidSuccess, onValidFail);
@@ -318,9 +389,12 @@ export default function createComposable() {
     birthYear,
     birthMonth,
     birthDate,
+
     birthErrorMessage,
+    isPassDuplicateCheck,
 
     changedBirthMonth,
+    onVerifyEmail,
     handleClickCancel,
     handleSubmit,
     handleOpenTermsModal,

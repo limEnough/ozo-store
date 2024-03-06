@@ -85,18 +85,38 @@
                       :error-message="email.errorMessage"
                       :maxlength="email.max"
                       :allowed-regex="email.regex"
+                      :disabled="isPassDuplicateCheck"
                       placeholder="이메일을 입력해주세요."
                       @blur="email.validate"
                     >
+                      <!-- 이메일 중복 체크 버튼 -->
                       <template #button>
                         <Button
+                          :disabled="isPassDuplicateCheck"
                           size="s"
                           case="success"
+                          @click="onVerifyEmail"
                         >
                           <span>Check</span>
                         </Button>
                       </template>
                     </Input>
+                  </template>
+
+                  <!-- 이메일 중복 체크 완료 메시지 -->
+                  <template
+                    v-if="isPassDuplicateCheck"
+                    #messages
+                  >
+                    ✅ 이메일 중복 체크를 완료하였습니다.
+                  </template>
+
+                  <!-- 이메일 중복 체크 안내 -->
+                  <template
+                    v-else
+                    #guides
+                  >
+                    버튼을 눌러 이메일 중복 체크를 해주세요.
                   </template>
                 </FormItem>
 
@@ -229,7 +249,7 @@
 
                   <!-- MEMO: 셀렉트박스가 그룹으로 묶여있기에 상위에서 에러 메시지 노출 -->
                   <template #messages>
-                    {{ birthErrorMessage }}
+                    <span class="error">{{ birthErrorMessage }}</span>
                   </template>
                 </FormItem>
               </template>
@@ -283,9 +303,12 @@
     birthYear,
     birthMonth,
     birthDate,
+
     birthErrorMessage,
+    isPassDuplicateCheck,
 
     changedBirthMonth,
+    onVerifyEmail,
     handleClickCancel,
     handleSubmit,
     handleOpenTermsModal,

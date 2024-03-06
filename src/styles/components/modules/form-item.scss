@@ -43,7 +43,36 @@
     }
 
     margin-top: rem(5px);
-    @include fontCss($point, rem(8px), 400, rem(10px));
+    @include fontCss($basic, rem(8px), 400, rem(10px));
+
+    :deep() {
+      .error {
+        color: $point;
+      }
+    }
+  }
+
+  &__guide {
+    // messages 슬롯이 비어있을 경우에 대한 처리
+    &:empty {
+      margin: 0;
+    }
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: rem(3px);
+      left: 0;
+      width: rem(2px);
+      height: rem(2px);
+      background-color: $basic;
+      border-radius: 50%;
+    }
+
+    position: relative;
+    margin-top: rem(5px);
+    padding-left: rem(4px);
+    @include fontCss($basic, rem(8px), 400, rem(10px));
   }
   // #endregion
 

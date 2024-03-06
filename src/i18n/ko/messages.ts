@@ -12,6 +12,7 @@ export default () => {
       passwordForm: '비밀번호는 8자 이상, 16자 이하 영문자, 숫자 및 특수문자를 조합해서 입력해 주세요.',
       passwordConfirm: '입력한 비밀번호가 일치하지 않습니다.',
       emailForm: '올바른 이메일 형식이 아닙니다.',
+      emailDuplicate: '이메일 중복 체크를 완료해주세요.',
       totalPhoneForm: '올바른 전화번호 형식이 아닙니다.',
       termsAgreement: '필수 약관에 동의해주세요.',
     },

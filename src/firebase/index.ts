@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -11,10 +12,7 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_APP_FIREBASE_MEASUREMENTI,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+getAnalytics(app);
 
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
-
-export { db };
+export const db = getFirestore(app);
