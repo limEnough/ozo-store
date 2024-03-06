@@ -2,13 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyC6r4qa9NQPcHbkpsfHo5zHsRFZ4HXn1Tw',
-  authDomain: 'ozo-store-da015.firebaseapp.com',
-  projectId: 'ozo-store-da015',
-  storageBucket: 'ozo-store-da015.appspot.com',
-  messagingSenderId: '404092900257',
-  appId: '1:404092900257:web:0e3d4906fbe7607a8631e0',
-  measurementId: 'G-94TR25270W',
+  apiKey: import.meta.env.VITE_APP_FIREBASE_APIKEY,
+  authDomain: import.meta.env.VITE_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_APP_FIREBASE_PROJECTID,
+  storageBucket: import.meta.env.VITE_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_APP_FIREBASE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APP_FIREBASE_APPID,
+  measurementId: import.meta.env.VITE_APP_FIREBASE_MEASUREMENTI,
 };
 
 // Initialize Firebase
