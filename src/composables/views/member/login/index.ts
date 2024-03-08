@@ -1,4 +1,4 @@
-import { reactive } from 'vue';
+import { inject, onMounted, reactive } from 'vue';
 import MemberLoginService, { type MemberLoginForm } from '@/services/member/login';
 import { useI18n } from 'vue-i18n';
 import { useForm } from 'vee-validate';
@@ -10,11 +10,13 @@ import type { CheckboxModel } from '@/types/common.types';
 import type { APICode } from '@/types/api.types';
 import { useRouter } from 'vue-router';
 import { MAIN_PAGE_NAMES } from '@/constants/path-constants';
+import { SAVE_EMAIL_COOKIE } from '@/constants/member-constants';
+import type { VueCookies } from 'vue-cookies';
 
 interface LoginForm {
   email: string;
   password: string;
-  isRememberEmail: CheckboxModel<boolean>;
+  useSaveEmail: CheckboxModel<boolean>;
 }
 
 export default function loginComposable() {
@@ -38,7 +40,7 @@ export default function loginComposable() {
   // #endregion
 
   // #region Form
-  const { handleSubmit: veeHandleSubmit } = useForm<LoginForm>();
+  const { handleSubmit: veeHandleSubmit, resetForm: veeResetForm } = useForm<LoginForm>();
 
   const validationSchema = createValidationSchema<LoginForm>({
     email: (value: LoginForm['email']) => {
@@ -85,8 +87,8 @@ export default function loginComposable() {
     ),
   );
 
-  const isRememberEmail = reactive(
-    createCustomField<LoginForm['isRememberEmail']>('isRememberEmail', undefined, {
+  const useSaveEmail = reactive(
+    createCustomField<LoginForm['useSaveEmail']>('useSaveEmail', undefined, {
       initialValue: [],
     }),
   );
@@ -94,6 +96,7 @@ export default function loginComposable() {
 
   // #region Api
   const pageService = new MemberLoginService();
+  const $cookies = inject<VueCookies>('$cookies') as VueCookies;
 
   const getUserAuth = async (params: MemberLoginForm) => {
     return await pageService.getUserAuth(params);
@@ -102,22 +105,28 @@ export default function loginComposable() {
 
   // #region Events
   const onValidSuccess = async (values: LoginForm) => {
-    const params = Object.assign(values, {
-      isRememberEmail: values.isRememberEmail.length ? values.isRememberEmail[0].code : false,
-    });
-
-    if (!params) return;
+    const params = { email: values.email, password: values.password };
 
     const result = await getUserAuth(params);
 
-    if (typeof result !== 'object') alert(result);
-    else {
-      alert('환영합니다!');
-
-      router.push({
-        name: MAIN_PAGE_NAMES['main'],
-      });
+    // 에러 케이스
+    if (typeof result !== 'object') {
+      alert(result);
+      return;
     }
+
+    // 성공 케이스
+    if (values.useSaveEmail[0]) {
+      $cookies.set(SAVE_EMAIL_COOKIE['KEY'], result.email, SAVE_EMAIL_COOKIE['MAXAGE']);
+    } else {
+      $cookies.remove(SAVE_EMAIL_COOKIE['KEY']);
+    }
+
+    alert('환영합니다! 로그인 페이지로 이동합니다.');
+
+    router.push({
+      name: MAIN_PAGE_NAMES['main'],
+    });
   };
 
   const onValidFail = () => {
@@ -127,12 +136,27 @@ export default function loginComposable() {
   const handleSubmit = veeHandleSubmit(onValidSuccess, onValidFail);
   // #endregion
 
+  onMounted(() => {
+    // 이메일 저장한 쿠키 정보 있는지 확인
+    const getSavedEmail = $cookies.get(SAVE_EMAIL_COOKIE['KEY']);
+
+    if (getSavedEmail) {
+      veeResetForm({
+        values: {
+          email: getSavedEmail,
+          password: '',
+          useSaveEmail: loginOptions,
+        },
+      });
+    }
+  });
+
   return {
     pageTitle,
     loginOptions,
     email,
     password,
-    isRememberEmail,
+    useSaveEmail,
     handleSubmit,
   };
 }

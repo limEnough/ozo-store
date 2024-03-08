@@ -35,8 +35,8 @@
         <!-- 로그인 옵션 -->
         <div class="login__option">
           <Checkbox
-            v-model="isRememberEmail.value"
-            :name="isRememberEmail.name"
+            v-model="useSaveEmail.value"
+            :name="useSaveEmail.name"
             :options="loginOptions"
             label-key="codeName"
           >
@@ -46,6 +46,7 @@
         <!-- 로그인 버튼 -->
         <Button
           width="full"
+          type="submit"
           size="l"
           case="success"
           class="login__form__button"
@@ -95,7 +96,7 @@
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
-  const { pageTitle, loginOptions, email, password, isRememberEmail, handleSubmit } = loginComposable();
+  const { pageTitle, loginOptions, email, password, useSaveEmail, handleSubmit } = loginComposable();
 </script>
 
 <style lang="scss" scoped>

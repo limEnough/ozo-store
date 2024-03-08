@@ -1,5 +1,3 @@
-import type { APICode } from '@/types/api.types';
-
 const MEMBER_GENDER_CODE = {
   MALE: 'GENDER.MALE',
   FEMALE: 'GENDER.FEMALE',
@@ -16,5 +14,10 @@ const MEMBER_TERMS_CODE = {
 
 type MemberTermsCode = (typeof MEMBER_TERMS_CODE)[keyof typeof MEMBER_TERMS_CODE];
 
-export { MEMBER_GENDER_CODE, MEMBER_TERMS_CODE };
+const SAVE_EMAIL_COOKIE = {
+  KEY: 'LOGIN.EMAIL.REMEMBER.KEY',
+  MAXAGE: '7d',
+} as const;
+
+export { MEMBER_GENDER_CODE, MEMBER_TERMS_CODE, SAVE_EMAIL_COOKIE };
 export type { MemberGenderCode, MemberTermsCode };

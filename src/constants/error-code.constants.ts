@@ -7,7 +7,7 @@ const FIREBASE_AUTH_ERROR_CODE = {
   NETWORK_FAILED: 'network-request-failed',
   INVALID_EMAIL: 'auth/invalid-email',
   INTERNAL_ERROR: 'auth/internal-error',
-};
+} as const;
 
 type FirebaseAuthErrorCode = (typeof FIREBASE_AUTH_ERROR_CODE)[keyof typeof FIREBASE_AUTH_ERROR_CODE];
 
@@ -20,7 +20,7 @@ const FIREBASE_AUTH_ERROR_MESSAGE = {
   WEAK_PASSWORD: '비밀번호는 6글자 이상이어야 합니다.',
   INTERNAL_ERROR: '잘못된 요청입니다.',
   NETWORK_FAILED: '네트워크 연결에 실패 하였습니다.',
-};
+} as const;
 
 export { FIREBASE_AUTH_ERROR_CODE, FIREBASE_AUTH_ERROR_MESSAGE };
 export type { FirebaseAuthErrorCode };
