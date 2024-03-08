@@ -306,16 +306,7 @@ export default function createComposable() {
   };
 
   const postNewAccount = async (params: MemberCreateAccount) => {
-    try {
-      await pageService.postNewAccount(params);
-
-      return true;
-    } catch (error) {
-      // TODO: 에러 대응 어떻게 할 것인가?
-      console.error(error);
-    }
-
-    return false;
+    return await pageService.postNewAccount(params);
   };
   // #endregion
 
@@ -353,7 +344,7 @@ export default function createComposable() {
     const result = await postNewAccount(params);
 
     if (result) {
-      alert('회원가입이 완료되었습니다!');
+      alert('회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.');
 
       router.replace({
         name: MEMBER_PAGE_NAMES['member-login'],

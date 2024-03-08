@@ -122,7 +122,8 @@ export default function loginComposable() {
       $cookies.remove(SAVE_EMAIL_COOKIE['KEY']);
     }
 
-    alert('환영합니다! 로그인 페이지로 이동합니다.');
+    alert('환영합니다!');
+    // TODO: 로그인 정보 담기
 
     router.push({
       name: MAIN_PAGE_NAMES['main'],
