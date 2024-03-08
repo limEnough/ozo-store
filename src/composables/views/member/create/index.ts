@@ -10,14 +10,15 @@ import { getYearList, getMonthList, getDateList } from '@/utils/date';
 import { type selectboxRow, makePlaceholder } from '@/composables/elements/selectbox';
 import type { CheckboxModel } from '@/types/common.types';
 import type { MemberGenderCode, MemberTermsCode } from '@/constants/member-constants';
-import type { CheckboxOption } from '@/composables/elements/checkbox';
 import { termsData, type TermsData } from '@/composables/modules/modals/terms-modal';
 import { isEqual } from 'lodash-es';
 import MemberCreateService from '@/services/member/create';
 import type { MemberCreateAccount } from '@/services/member/create';
+import { useRouter } from 'vue-router';
+import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
 interface CreateAccountForm {
-  termsAgreement: CheckboxModel<CheckboxOption<MemberTermsCode>>;
+  termsAgreement: CheckboxModel<MemberTermsCode>;
   email: string;
   password: string;
   passwordConfirm: string;
@@ -30,6 +31,7 @@ interface CreateAccountForm {
 }
 
 export default function createComposable() {
+  const router = useRouter();
   const messages = useI18n();
 
   // #region Form
@@ -156,7 +158,7 @@ export default function createComposable() {
   });
   // #endregion
 
-  // #region field
+  // #region fields
   const termsAgreement = reactive(
     createCustomField<CreateAccountForm['termsAgreement']>('termsAgreement', validationSchema.termsAgreement, {
       initialValue: termsAgreementOptions.value,
@@ -293,19 +295,19 @@ export default function createComposable() {
   };
   // #endregion
 
-  // #region API
+  // #region Api
   const pageService = new MemberCreateService();
 
-  const checkDuplicateEmail = async (email: string): Promise<boolean> => {
+  const getDuplicatedEmailUser = async (email: string): Promise<boolean> => {
     if (!email || !email.length) alert('입력하신 이메일을 확인해주세요.');
 
-    const result = await pageService.getSameEmailUser(email);
+    const result = await pageService.getDuplicatedEmailUser(email);
     return result;
   };
 
-  const createNewAccount = async (params: MemberCreateAccount) => {
+  const postNewAccount = async (params: MemberCreateAccount) => {
     try {
-      await pageService.putNewUserInfo(params);
+      await pageService.postNewAccount(params);
 
       return true;
     } catch (error) {
@@ -329,7 +331,7 @@ export default function createComposable() {
     const inputValue = email.value;
 
     // 1. 중복체크를 한다.
-    const isDuplicated = await checkDuplicateEmail(inputValue);
+    const isDuplicated = await getDuplicatedEmailUser(inputValue);
 
     if (isDuplicated) {
       return alert('중복된 이메일입니다.');
@@ -348,10 +350,15 @@ export default function createComposable() {
 
     if (!params) return;
 
-    const result = await createNewAccount(params);
+    const result = await postNewAccount(params);
 
-    if (result) alert('회원가입이 완료되었습니다!');
-    // TODO: 로그인 페이지로 이동
+    if (result) {
+      alert('회원가입이 완료되었습니다!');
+
+      router.replace({
+        name: MEMBER_PAGE_NAMES['member-login'],
+      });
+    }
   };
 
   const onValidFail = () => {
@@ -364,7 +371,9 @@ export default function createComposable() {
     const answer = confirm(messages.t('confirm.cancelSave'));
 
     if (answer) {
-      console.log('취소하겠습니다!');
+      router.replace({
+        name: MEMBER_PAGE_NAMES['member-login'],
+      });
     }
   };
 
