@@ -1,22 +1,16 @@
 import { type PropType, toRefs, computed, useAttrs, useSlots } from 'vue';
-import { type CheckboxModel, type CustomEmit } from '@/types/common.types';
+import { type CheckboxModel, type CheckboxOption, type CustomEmit } from '@/types/common.types';
 import { v4 as uuidV4 } from 'uuid';
 import { isObject } from 'lodash-es';
-import type { APICode } from '@/types/api.types';
 
 type Emits = 'update:modelValue';
 
-interface CheckboxOption<T = string> extends APICode<T> {
-  disabled?: boolean;
-  required?: boolean;
-  link?: string;
-}
-
 interface Props {
-  modelValue: CheckboxModel<CheckboxOption>;
+  modelValue: CheckboxModel;
   name: string;
-  value: CheckboxModel<CheckboxOption> | null;
-  options: CheckboxModel<CheckboxOption>;
+  value: CheckboxModel | null;
+  useFrontLabelText: boolean;
+  options: CheckboxModel;
   disabled: boolean;
   labelKey: string;
   valueKey: string;
@@ -40,6 +34,11 @@ const props = {
   value: {
     type: [Boolean, Object, String, Number, null] as PropType<Props['value']>,
     default: null,
+  },
+  /** 라벨 앞에 붙는 텍스트 사용 여부 */
+  useFrontLabelText: {
+    type: Boolean as PropType<Props['useFrontLabelText']>,
+    default: false,
   },
   /** 옵션 */
   options: {

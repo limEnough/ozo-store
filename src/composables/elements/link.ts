@@ -43,7 +43,7 @@ const props = {
   },
   beforeClick: {
     type: Function as PropType<Props['beforeClick']>,
-    default: false,
+    default: undefined,
   },
 };
 

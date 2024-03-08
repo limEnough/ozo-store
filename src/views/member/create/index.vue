@@ -25,6 +25,7 @@
                   :use-all-option="true"
                   :name="termsAgreement.name"
                   :options="termsAgreementOptions"
+                  :use-front-label-text="true"
                   label-key="codeName"
                 >
                   <template #all-label>약관 전체 동의하기</template>

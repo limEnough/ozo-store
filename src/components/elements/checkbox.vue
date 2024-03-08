@@ -29,6 +29,7 @@
         :key="`checkbox-${name}-${index}`"
       >
         <label
+          :class="{ 'box-type': type === 'box' }"
           class="checkbox-component__item"
           v-bind="styleAttrs"
         >
@@ -37,7 +38,6 @@
             :value="getValue(option)"
             :name="`checkbox-single-${name}-${uuid}`"
             :disabled="disabled || isDisabledOption(option)"
-            :class="{ 'box-type': type === 'box' }"
             type="checkbox"
             class="checkbox-component__input blind"
             v-bind="functionalAttrs"
@@ -50,12 +50,14 @@
               name="label"
             >
               <!-- 라벨 앞에 붙는 텍스트 -->
-              <template v-if="isRequiredOption(option)">
-                <slot name="option-front-text"> [필수] </slot>
-              </template>
+              <template v-if="useFrontLabelText">
+                <template v-if="isRequiredOption(option)">
+                  <slot name="option-front-text"> [필수] </slot>
+                </template>
 
-              <template v-else>
-                <slot name="option-front-text"> [선택] </slot>
+                <template v-else>
+                  <slot name="option-front-text"> [선택] </slot>
+                </template>
               </template>
 
               {{ getLabel(option) }}

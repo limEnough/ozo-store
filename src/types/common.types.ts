@@ -11,12 +11,15 @@ export interface CustomEmit<T> {
 // #endregion
 
 // #region Form
+export interface CheckboxOption<T = string | boolean> extends APICode<T> {
+  disabled?: boolean;
+  required?: boolean;
+  link?: string;
+}
 
 export type InputModel<T = string> = T;
-export type Option<T = string> = boolean | string | number | APICode<T>;
-// TODO: [고민] Option 고정으로 받아줄건지 고민 필요, 관련 타입에러 모두 FIX
-export type CheckboxModel<T = boolean> = T extends boolean ? boolean : T[];
-export type RadioModel<T = boolean> = T extends boolean ? boolean | null : T | null;
+export type RadioModel<T = string> = boolean | string | number | APICode<T> | null;
+export type CheckboxModel<T = string | boolean> = CheckboxOption<T>[];
 
 // #endregion
 

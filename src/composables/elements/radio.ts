@@ -3,22 +3,21 @@ import { isEqual } from 'lodash-es';
 import type { CustomEmit, RadioModel } from '@/types/common.types';
 import { v4 as uuidV4 } from 'uuid';
 import { isObject } from '@/utils/object';
-import type { Option } from '@/types/common.types';
 
 type Emits = 'update:modelValue';
 
 type RadioType = 'basic' | 'card' | 'text';
 
 interface Props {
-  modelValue: RadioModel<Option>;
+  modelValue: RadioModel;
   name: string;
   type: RadioType;
-  options: RadioModel<Option>[];
+  options: RadioModel[];
   isDisabled: boolean;
-  disableOptions: RadioModel<Option>[];
+  disableOptions: RadioModel[];
   labelKey: string;
   valueKey: string;
-  beforeUpdate?: (value?: RadioModel<Option>) => boolean | Promise<boolean>;
+  beforeUpdate?: (value?: RadioModel) => boolean | Promise<boolean>;
 }
 
 const emits: Emits[] = ['update:modelValue'];
@@ -98,7 +97,7 @@ export default function radioComposable(emits: CustomEmit<Emits>, props: Props) 
   // #endregion
 
   // radio 텍스트에 매핑할 값 반환
-  const getLabel = (option: RadioModel<Option>) => {
+  const getLabel = (option: RadioModel) => {
     if (isObject(option)) {
       return option[labelKey.value] ?? option;
     }
@@ -107,18 +106,18 @@ export default function radioComposable(emits: CustomEmit<Emits>, props: Props) 
   };
 
   // radio value에 매핑할 값 반환
-  const getValue = (option: RadioModel<Option>) => {
+  const getValue = (option: RadioModel) => {
     if (isObject(option)) return option[valueKey.value];
     else return option;
   };
 
   // 해당 옵션 checked 여부 반환
-  const getChecked = (option: RadioModel<Option>) => {
+  const getChecked = (option: RadioModel) => {
     return isEqual(restrictedValue.value, option);
   };
 
   // 비활성화 할 옵션인지 확인
-  const isDisabledOption = (option: RadioModel<Option>) => {
+  const isDisabledOption = (option: RadioModel) => {
     return disableOptions.value.includes(getValue(option));
   };
 
