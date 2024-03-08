@@ -6,48 +6,66 @@
 
       <!-- 로그인 폼 -->
       <form class="login__form">
+        <!-- 이메일 -->
         <Input
-          v-model="userEmail"
+          v-model="email.value"
+          :name="email.name"
           :use-length-count="false"
-          placeholder="Email"
-          name="email"
-          maxlength="30"
+          :maxlength="email.max"
+          :allowed-regex="email.regex"
+          placeholder="이메일을 입력해주세요."
           is-card-type
         >
         </Input>
 
+        <!-- 비밀번호 -->
         <Input
-          v-model="userPassword"
+          v-model="password.value"
+          :name="password.name"
           :use-length-count="false"
-          placeholder="password"
-          name="password"
+          :maxlength="password.max"
+          :allowed-regex="password.regex"
+          type="password"
+          placeholder="비밀번호를 입력해주세요."
           visible
           is-card-type
         >
         </Input>
 
-        <!-- TODO: 아이디 기억하기 체크박스 -->
+        <!-- 로그인 옵션 -->
+        <div class="login__option">
+          <Checkbox
+            v-model="isRememberEmail.value"
+            :name="isRememberEmail.name"
+            :options="loginOptions"
+            label-key="codeName"
+          >
+          </Checkbox>
+        </div>
 
+        <!-- 로그인 버튼 -->
         <Button
           width="full"
           size="l"
           case="success"
           class="login__form__button"
+          @click.prevent="handleSubmit"
         >
           <span>LOGIN</span>
         </Button>
       </form>
 
       <!-- 로그인 옵션 -->
-      <div class="login__option">
-        <dl class="login__option__low">
-          <dt class="login__option__title">Forgot account?</dt>
-          <dd class="login__option__cont">
+      <div class="login__search">
+        <dl class="login__search__low">
+          <dt class="login__search__title">Forgot account?</dt>
+          <dd class="login__search__cont">
             <Link
               :to="{
                 name: MEMBER_PAGE_NAMES['member-search'],
                 params: { type: 'email' },
               }"
+              case="text"
             >
               <span>Email</span>
             </Link>
@@ -56,6 +74,7 @@
                 name: MEMBER_PAGE_NAMES['member-search'],
                 params: { type: 'password' },
               }"
+              case="text"
             >
               <span>Password</span>
             </Link>
@@ -71,11 +90,12 @@
   import Title from '@/components/elements/title.vue';
   import Button from '@/components/elements/button.vue';
   import Input from '@/components/elements/input.vue';
+  import Checkbox from '@/components/elements/checkbox.vue';
   import Link from '@/components/elements/link.vue';
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
-  const { userEmail, userPassword, pageTitle } = loginComposable();
+  const { pageTitle, loginOptions, email, password, isRememberEmail, handleSubmit } = loginComposable();
 </script>
 
 <style lang="scss" scoped>

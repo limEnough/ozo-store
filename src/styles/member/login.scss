@@ -11,6 +11,20 @@
 
   // #region 로그인 옵션
   &__option {
+    margin-top: rem(3px);
+
+    :deep() {
+      .checkbox-component__label {
+        color: $basic;
+        font-weight: 600;
+        font-size: rem(8px);
+      }
+    }
+  }
+  // #endregion
+
+  // #region 로그인 정보 찾기
+  &__search {
     margin-top: rem(10px);
 
     &__low {
