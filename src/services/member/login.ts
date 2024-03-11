@@ -1,6 +1,7 @@
 import { FIREBASE_AUTH_ERROR_CODE, FIREBASE_AUTH_ERROR_MESSAGE } from '@/constants/error-code.constants';
 import { auth } from '@/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import type { MemberCreateAccount } from './create';
 
 interface LoginForm {
   email: string;
@@ -12,16 +13,23 @@ interface AuthToken {
   expirationTime: number;
 }
 
-interface UserInfo {
+interface UserAuth {
   email: LoginForm['email'];
   authToken: AuthToken['authToken'];
   expirationTime: AuthToken['expirationTime'];
 }
 
+interface UserInfo extends Pick<MemberCreateAccount, 'name'> {
+  cart: string[]; //TODO: 상품 컴포넌트 개발 후 작업할 것
+}
+
 export default class MemberLoginService {
   // private readonly collectionId = 'users';
 
-  public async getUserAuth(values: LoginForm): Promise<UserInfo | string> {
+  /**
+   * 유저 인증 결과 가져오기
+   */
+  public async getUserAuth(values: LoginForm): Promise<UserAuth | string> {
     try {
       const { user } = await signInWithEmailAndPassword(auth, values.email, values.password);
       const { stsTokenManager } = user;
@@ -54,6 +62,17 @@ export default class MemberLoginService {
         default:
           return '로그인에 실패 하였습니다.';
       }
+    }
+  }
+
+  /**
+   * TODO: 로그인된 유저 정보 가져오기
+   */
+  public async getUserInfo() {
+    try {
+      // datebase 조회 후 필요 정보 가져오기
+    } catch (error: unknown) {
+      console.log(error);
     }
   }
 }

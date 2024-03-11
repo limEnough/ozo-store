@@ -14,9 +14,7 @@ import { SAVE_EMAIL_COOKIE } from '@/constants/member-constants';
 import type { VueCookies } from 'vue-cookies';
 import { useLayoutStore } from '@/stores/layout';
 
-interface LoginForm {
-  email: string;
-  password: string;
+interface LoginForm extends MemberLoginForm {
   useSaveEmail: CheckboxModel<boolean>;
 }
 
