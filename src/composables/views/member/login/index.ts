@@ -12,6 +12,7 @@ import { useRouter } from 'vue-router';
 import { MAIN_PAGE_NAMES } from '@/constants/path-constants';
 import { SAVE_EMAIL_COOKIE } from '@/constants/member-constants';
 import type { VueCookies } from 'vue-cookies';
+import { useLayoutStore } from '@/stores/layout';
 
 interface LoginForm {
   email: string;
@@ -22,6 +23,7 @@ interface LoginForm {
 export default function loginComposable() {
   const router = useRouter();
   const messages = useI18n();
+  const layoutStore = useLayoutStore();
 
   // #region Data
   const pageTitle = reactive({
@@ -98,32 +100,34 @@ export default function loginComposable() {
   const pageService = new MemberLoginService();
   const $cookies = inject<VueCookies>('$cookies') as VueCookies;
 
-  const getUserAuth = async (params: MemberLoginForm) => {
-    return await pageService.getUserAuth(params);
-  };
-  // #endregion
+  const getUserAuth = async (values: LoginForm) => {
+    const params: MemberLoginForm = { email: values.email, password: values.password };
+    const result = await pageService.getUserAuth(params);
 
-  // #region Events
-  const onValidSuccess = async (values: LoginForm) => {
-    const params = { email: values.email, password: values.password };
-
-    const result = await getUserAuth(params);
-
-    // 에러 케이스
     if (typeof result !== 'object') {
       alert(result);
-      return;
+      return false;
     }
 
-    // 성공 케이스
     if (values.useSaveEmail[0]) {
       $cookies.set(SAVE_EMAIL_COOKIE['KEY'], result.email, SAVE_EMAIL_COOKIE['MAXAGE']);
     } else {
       $cookies.remove(SAVE_EMAIL_COOKIE['KEY']);
     }
 
+    return result;
+  };
+  // #endregion
+
+  // #region Events
+  const onValidSuccess = async (values: LoginForm) => {
+    const result = await getUserAuth(values);
+
+    if (!result) return;
+
+    layoutStore.saveAuth({ authToken: result.authToken, expirationTime: result.expirationTime });
+
     alert('환영합니다!');
-    // TODO: 로그인 정보 담기
 
     router.push({
       name: MAIN_PAGE_NAMES['main'],
