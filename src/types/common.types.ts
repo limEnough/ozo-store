@@ -1,5 +1,14 @@
 import type { RuleExpression } from 'vee-validate';
 import type { APICode } from './api.types';
+import type { Pinia } from 'pinia';
+import type { Router } from 'vue-router';
+
+// #region Context
+export interface VueContext {
+  store?: Pinia;
+  router: Router;
+}
+// #endregion
 
 // #region Component
 export interface CustomEmit<T> {

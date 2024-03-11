@@ -4,13 +4,17 @@ import { MAIN_PAGE_NAMES, MEMBER_PAGE_NAMES, MYPAGE_PAGE_NAMES, SHOP_PAGE_NAMES 
 // teleport 사용 시 to에 바인딩할 셀렉터
 export const TELEPORT_TARGET = '#destination';
 
-type RouterAccessKey = 'UserAccessibleNames' | 'NonUserAccessibleNames';
+type RouterAccessKey = 'UserAccessibleNames' | 'UserRedirectNames' | 'NonUserAccessibleNames';
 
 const routerAccess: Record<RouterAccessKey, RouteRecordName[]> = {
   /**
    * 로그인 유저 접속 가능 ROUTE NAME
    */
   UserAccessibleNames: [MYPAGE_PAGE_NAMES['mypage-main']],
+  /**
+   * 로그인 유저 리다이렉트 ROUTE NAME
+   */
+  UserRedirectNames: [MEMBER_PAGE_NAMES['member-login'], MEMBER_PAGE_NAMES['member-create']],
   /**
    * 비로그인 유저 접속 가능 ROUTE NAME
    */
