@@ -73,7 +73,7 @@
 <script setup lang="ts">
   import modalComposable, { modalEmits, modalProps } from '@/composables/modules/modal';
   import Button from '@/components/elements/button.vue';
-  import { isMobile } from '@/stores/common';
+  import { isMobile } from '@/composables/use/use-device';
 
   const emits = defineEmits(modalEmits);
   const props = defineProps(modalProps);

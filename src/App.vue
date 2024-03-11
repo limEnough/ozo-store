@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
   import { RouterView } from 'vue-router';
-  import { isMobile } from '@/stores/common';
+  import { isMobile } from '@/composables/use/use-device';
   import DesktopLayout from '@/components/layouts/desktop-layout.vue';
 </script>
 
