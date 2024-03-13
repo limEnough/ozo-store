@@ -2,7 +2,7 @@ import type { RouteRecordName } from 'vue-router';
 import { MAIN_PAGE_NAMES, MEMBER_PAGE_NAMES, MYPAGE_PAGE_NAMES, SHOP_PAGE_NAMES } from '@/constants/path-constants';
 
 // teleport 사용 시 to에 바인딩할 셀렉터
-export const TELEPORT_TARGET = '#destination';
+export const TELEPORT_TARGET = '#teleported';
 
 type RouterAccessKey = 'UserAccessibleNames' | 'UserRedirectNames' | 'NonUserAccessibleNames';
 
