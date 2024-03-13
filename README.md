@@ -1,4 +1,4 @@
-# https://ozo-store-da015.web.app/login
+# https://ozo-store-da015.web.app/member/login
 
 # OZO-store
 
