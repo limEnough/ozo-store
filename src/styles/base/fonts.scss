@@ -3,10 +3,10 @@
   font-style: normal;
   font-weight: 200;
   font-family: 'DMSans';
-  src: local('DMSans-Thin'), url(/src/assets/fonts/DMSans-Light.eot);
-  src: url(/src/assets/fonts/DMSans-Light.eot?#iefix) format('embedded-opentype'),
-    // url(/src/assets/fonts/DMSans-Light.woff2) format('woff2'),
-    url(/src/assets/fonts/DMSans-Light.woff) format('woff');
+  src: local('DMSans-Thin'), url(/src/assets/fonts/DMSans-Thin.eot);
+  src: url(/src/assets/fonts/DMSans-Thin.eot?#iefix) format('embedded-opentype'),
+    // url(/src/assets/fonts/DMSans-Thin.woff2) format('woff2'),
+    url(/src/assets/fonts/DMSans-Thin.woff) format('woff');
 }
 
 @font-face {
