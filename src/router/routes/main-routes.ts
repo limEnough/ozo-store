@@ -8,7 +8,7 @@ const getMainRoutes = (): RouteRecordRaw[] => {
     {
       path: '/',
       name: MAIN_PAGE_NAMES['main'],
-      component: () => Main,
+      component: Main,
       meta: {
         pageTitle: '메인',
         pageCode: PAGE_CODE_MAIN['MAIN'],

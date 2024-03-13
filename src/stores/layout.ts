@@ -5,6 +5,7 @@ interface TokenInfo {
   authToken: string;
   expirationTime: number;
 }
+
 export const useLayoutStore = defineStore('layout', () => {
   const token = ref(localStorage.getItem('token') ?? null);
   const isLoggedIn = ref(!!localStorage.getItem('token'));
