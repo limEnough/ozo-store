@@ -4,9 +4,6 @@ import type { Pinia } from 'pinia';
 import type { Router } from 'vue-router';
 
 // #region Context
-export interface VueServerContext {
-  [key: string]: any;
-}
 export interface VueContext {
   store?: Pinia;
   router: Router;
