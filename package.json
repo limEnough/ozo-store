@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "build-only": "vite build",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint src/**/*.{vue,ts}",
     "tslint": "npx tsc --noEmit"
