@@ -1,15 +1,32 @@
 <template>
   <div class="default-layout">
+    <!-- 헤더 -->
     <HeaderLayout></HeaderLayout>
 
-    <div class="default-layout__inner">
-      <slot></slot>
+    <div class="default-layout__container">
+      <!-- 콘텐츠 -->
+      <main class="default-layout__inner">
+        <!-- 콘텐츠 -->
+        <slot></slot>
+      </main>
+
+      <!-- TODO: 독바 -->
+      <!-- :is-scroll-down="scrollModel.isDown" -->
+      <Dockbar v-if="isShowDockbar"></Dockbar>
+
+      <!-- TODO: 푸터 -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+  import defaultLayoutComposable, { defaultLayoutProps } from '@/composables/layouts/default-layout';
   import HeaderLayout from '@/components/layouts/header-layout.vue';
+  import Dockbar from '@/components/layouts/dockbar-layout.vue';
+
+  const props = defineProps(defaultLayoutProps);
+
+  defaultLayoutComposable(props);
 </script>
 
 <style lang="scss" scoped>

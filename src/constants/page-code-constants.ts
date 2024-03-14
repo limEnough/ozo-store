@@ -25,6 +25,8 @@ const PAGE_CODE_DEPTH2 = {
   SEARCH: 'MENU.MENU_DEPTH_2.SEARCH',
   /** 마이페이지 메인 */
   MYPAGE_MAIN: 'MENU.MENU_DEPTH_2.MYPAGE_MAIN',
+  /** 마이페이지 찜 */
+  MYPAGE_WISH: 'MENU.MENU_DEPTH_2.MYPAGE_WISH',
   /** 상품 목록 */
   GOODS_LIST: 'MENU.MENU_DEPTH_2.GOODS_LIST',
 } as const;

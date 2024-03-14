@@ -3,7 +3,7 @@
   <template v-if="isExternal">
     <Button
       v-bind="$attrs"
-      :href="propsTo as string"
+      :href="propsTo"
       :case="case"
       :icon="icon"
       tag="a"

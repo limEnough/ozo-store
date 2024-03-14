@@ -19,6 +19,7 @@ export const MEMBER_PAGE_NAMES = {
 export const MYPAGE_PAGE_NAMES = {
   ['mypage']: PAGE_CODE_DEPTH1['MYPAGE'], // 마이페이지 - 1뎁스
   ['mypage-main']: PAGE_CODE_DEPTH2['MYPAGE_MAIN'], // 메인 - 2뎁스
+  ['mypage-wish']: PAGE_CODE_DEPTH2['MYPAGE_WISH'], // 찜 - 2뎁스
 } as const;
 // #endregion
 

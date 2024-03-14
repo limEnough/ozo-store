@@ -1,5 +1,8 @@
 <template>
-  <component :is="DefaultLayout">
+  <component
+    :is="DefaultLayout"
+    :is-show-dockbar="false"
+  >
     <div class="login">
       <!-- 타이틀 영역 -->
       <Title :data="pageTitle"></Title>

@@ -1,0 +1,74 @@
+:deep() {
+  .dockbar-layout {
+    &__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    &__menu {
+      border-radius: 0;
+      flex: 1 1 auto;
+      height: (60px);
+  
+      &:before {
+        content: '';
+        display: block;
+        width: (30px);
+        height: (30px);
+        margin: 0 auto;
+        background-size: 100% auto;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+  
+      &.category {
+        &:before {
+          background-image: url('/src/assets/images/common/icon-category.svg');
+        }
+
+        &.active {
+          &:before {
+            background-image: url('/src/assets/images/common/icon-category--active.svg');
+          }
+        }
+      }
+  
+      &.home {
+        &:before {
+          background-image: url('/src/assets/images/common/icon-home.svg');
+        }
+
+        &.active {
+          &:before {
+            background-image: url('/src/assets/images/common/icon-home--active.svg');
+          }
+        }
+      }
+  
+      &.wish {
+        &:before {
+          background-image: url('/src/assets/images/common/icon-wish.svg');
+        }
+
+        &.active {
+          &:before {
+            background-image: url('/src/assets/images/common/icon-wish--active.svg');
+          }
+        }
+      }
+  
+      &.mypage {
+        &:before {
+          background-image: url('/src/assets/images/common/icon-mypage.svg');
+        }
+
+        &.active {
+          &:before {
+            background-image: url('/src/assets/images/common/icon-mypage--active.svg');
+          }
+        }
+      }
+    }
+  }
+}
