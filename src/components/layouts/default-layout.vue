@@ -1,7 +1,11 @@
 <template>
   <div class="default-layout">
     <!-- 헤더 -->
-    <HeaderLayout :is-login-header="isLoginHeader"> </HeaderLayout>
+    <HeaderLayout
+      :is-login-header="isLoginPage"
+      :is-main-page="isMainPage"
+    >
+    </HeaderLayout>
 
     <div class="default-layout__container">
       <!-- 콘텐츠 -->
@@ -29,7 +33,7 @@
 
   const props = defineProps(defaultLayoutProps);
 
-  const { isLoginHeader } = defaultLayoutComposable(props);
+  const { isLoginPage, isMainPage } = defaultLayoutComposable(props);
 </script>
 
 <style lang="scss" scoped>

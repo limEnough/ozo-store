@@ -1,4 +1,4 @@
-import { MAIN_PAGE_NAMES } from '@/constants/path-constants';
+import { PAGE_CODE_DEPTH2, PAGE_CODE_MAIN } from '@/constants/page-code-constants';
 import { computed, type PropType } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -21,9 +21,10 @@ const props = {
 export default function defaultLayoutComposable(props: Props) {
   const route = useRoute();
 
-  const isLoginHeader = computed(() => route.name === MAIN_PAGE_NAMES['main']);
+  const isLoginPage = computed(() => route.meta.pageCode === PAGE_CODE_DEPTH2['LOGIN']);
+  const isMainPage = computed(() => route.meta.pageCode === PAGE_CODE_MAIN['MAIN']);
 
-  return { isLoginHeader };
+  return { isLoginPage, isMainPage };
 }
 
 export { props as defaultLayoutProps };

@@ -25,7 +25,7 @@ export default function dockbarLayoutComposable(emit: CustomEmit<Emits>, props: 
     refDrawerModal.value.openDrawer();
   };
 
-  const currentRouteName = computed(() => route.name);
+  const currentRouteName = computed(() => route.meta.pageCode);
 
   return {
     refDrawerModal,

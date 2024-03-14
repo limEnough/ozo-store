@@ -9,9 +9,9 @@
           <h3 class="main__title blind">상단 슬라이드</h3>
 
           <div class="main__visual__slider">
-            <!-- :autoplay="{ delay: 4000, disableOnInteraction: false }" -->
             <slider
               :slides="mainBannerSlides"
+              :autoplay="{ delay: 4000, disableOnInteraction: false }"
               :speed="500"
               :is-box-type="true"
               :use-caption="true"

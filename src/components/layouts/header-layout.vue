@@ -2,8 +2,8 @@
   <div class="header-layout">
     <!-- 왼쪽 영역 -->
     <div class="header-layout__left">
-      <!-- 로그인 페이지지 -->
-      <template v-if="isLoginHeader">
+      <!-- 메인 페이지 -->
+      <template v-if="isMainPage">
         <figure class="header-layout__logo">
           <img
             class="header-layout__logo__image"
@@ -38,6 +38,7 @@
     <!-- 오른쪽 영역 -->
     <div class="header-layout__right">
       <slot>
+        <!-- 로그인 페이지 -->
         <template v-if="isLoginPage">
           <div>
             <Link

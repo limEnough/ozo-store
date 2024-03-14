@@ -1,12 +1,11 @@
-import { computed, onMounted, type PropType } from 'vue';
-import { useRoute } from 'vue-router';
+import { onMounted, type PropType } from 'vue';
 import usePageTitle from '@/composables/use/use-page-title';
-import { PAGE_CODE_DEPTH2 } from '@/constants/page-code-constants';
 import { useLayoutStore } from '@/stores/layout';
 
 interface Props {
   usingTitle: boolean;
-  isLoginHeader: boolean;
+  isLoginPage: boolean;
+  isMainPage: boolean;
 }
 
 const props = {
@@ -14,18 +13,19 @@ const props = {
     type: Boolean as PropType<Props['usingTitle']>,
     default: true,
   },
-  isLoginHeader: {
-    type: Boolean as PropType<Props['isLoginHeader']>,
+  isLoginPage: {
+    type: Boolean as PropType<Props['isLoginPage']>,
+    default: false,
+  },
+  isMainPage: {
+    type: Boolean as PropType<Props['isLoginPage']>,
     default: false,
   },
 };
 
 export default function HeaderLayoutComposable(props: Props) {
-  const route = useRoute();
   const layoutStore = useLayoutStore();
   const { pageTitle } = usePageTitle();
-
-  const isLoginPage = computed(() => route.meta.pageCode === PAGE_CODE_DEPTH2['LOGIN']);
 
   const fetchClient = () => {
     if (!localStorage.getItem('expirationTime')) return;
@@ -48,7 +48,7 @@ export default function HeaderLayoutComposable(props: Props) {
   onMounted(() => {
     fetchClient();
   });
-  return { pageTitle, isLoginPage };
+  return { pageTitle };
 }
 
 export { props as headerLayoutProps };
