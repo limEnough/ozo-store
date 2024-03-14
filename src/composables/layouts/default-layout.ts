@@ -1,4 +1,6 @@
-import { type PropType } from 'vue';
+import { MAIN_PAGE_NAMES } from '@/constants/path-constants';
+import { computed, type PropType } from 'vue';
+import { useRoute } from 'vue-router';
 
 interface Props {
   isShowDockbar: boolean;
@@ -17,7 +19,11 @@ const props = {
 };
 
 export default function defaultLayoutComposable(props: Props) {
-  return {};
+  const route = useRoute();
+
+  const isLoginHeader = computed(() => route.name === MAIN_PAGE_NAMES['main']);
+
+  return { isLoginHeader };
 }
 
 export { props as defaultLayoutProps };

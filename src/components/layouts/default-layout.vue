@@ -1,7 +1,7 @@
 <template>
   <div class="default-layout">
     <!-- 헤더 -->
-    <HeaderLayout></HeaderLayout>
+    <HeaderLayout :is-login-header="isLoginHeader"> </HeaderLayout>
 
     <div class="default-layout__container">
       <!-- 콘텐츠 -->
@@ -12,7 +12,10 @@
 
       <!-- TODO: 독바 -->
       <!-- :is-scroll-down="scrollModel.isDown" -->
-      <Dockbar v-if="isShowDockbar"></Dockbar>
+      <Dockbar
+        v-if="isShowDockbar"
+        class="default-layout__dockbar"
+      ></Dockbar>
 
       <!-- TODO: 푸터 -->
     </div>
@@ -26,7 +29,7 @@
 
   const props = defineProps(defaultLayoutProps);
 
-  defaultLayoutComposable(props);
+  const { isLoginHeader } = defaultLayoutComposable(props);
 </script>
 
 <style lang="scss" scoped>

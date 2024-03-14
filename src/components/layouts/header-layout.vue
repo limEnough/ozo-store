@@ -2,23 +2,37 @@
   <div class="header-layout">
     <!-- 왼쪽 영역 -->
     <div class="header-layout__left">
-      <!-- 뒤로가기 -->
-      <Button
-        icon="back"
-        class="header-layout__back"
-        icon-only
-        @click.stop="$router.back()"
-      >
-        <span>뒤로가기</span>
-      </Button>
+      <!-- 로그인 페이지지 -->
+      <template v-if="isLoginHeader">
+        <figure class="header-layout__logo">
+          <img
+            class="header-layout__logo__image"
+            src="@/assets/images/common/image-logo.png"
+            alt="OZO-store logo"
+          />
+        </figure>
+      </template>
 
-      <!-- 타이틀 -->
-      <h1
-        v-if="usingTitle"
-        class="header-layout__title"
-      >
-        {{ pageTitle }}
-      </h1>
+      <!-- 일반 페이지 -->
+      <template v-else>
+        <!-- 뒤로가기 -->
+        <Button
+          icon="back"
+          class="header-layout__back"
+          icon-only
+          @click.stop="$router.back()"
+        >
+          <span>뒤로가기</span>
+        </Button>
+
+        <!-- 타이틀 -->
+        <h1
+          v-if="usingTitle"
+          class="header-layout__title"
+        >
+          {{ pageTitle }}
+        </h1>
+      </template>
     </div>
 
     <!-- 오른쪽 영역 -->

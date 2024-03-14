@@ -6,12 +6,17 @@ import { useLayoutStore } from '@/stores/layout';
 
 interface Props {
   usingTitle: boolean;
+  isLoginHeader: boolean;
 }
 
 const props = {
   usingTitle: {
     type: Boolean as PropType<Props['usingTitle']>,
     default: true,
+  },
+  isLoginHeader: {
+    type: Boolean as PropType<Props['isLoginHeader']>,
+    default: false,
   },
 };
 

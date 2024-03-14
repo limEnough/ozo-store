@@ -1,4 +1,6 @@
 .create {
+  padding: rem(20px 15px);
+  
   &__userInfo {
     &__profile {
       :deep() {
