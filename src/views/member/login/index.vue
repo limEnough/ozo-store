@@ -103,5 +103,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/member/login.scss';
+  @import '@/styles/member/login/index.scss';
 </style>

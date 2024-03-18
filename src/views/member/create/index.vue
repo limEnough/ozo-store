@@ -321,5 +321,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/member/create.scss';
+  @import '@/styles/member/create/index.scss';
 </style>

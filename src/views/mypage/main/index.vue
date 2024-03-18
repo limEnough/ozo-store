@@ -12,5 +12,5 @@
 </script>
 
 <style lang="scss" scoped>
-  /* @import '@/styles/views/main.scss'; */
+  @import '@/styles/mypage/main/index.scss';
 </style>
