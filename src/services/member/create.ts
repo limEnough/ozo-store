@@ -22,11 +22,11 @@ export default class MemberCreateService {
     const q = await query(usersCollectionRef, where('email', '==', email));
 
     const data = await getDocs(q);
-    const newData = data.docs.map((doc) => ({
+    const duplicatedEmailData = data.docs.map((doc) => ({
       ...doc.data(),
     }));
 
-    return newData.length > 0;
+    return duplicatedEmailData.length > 0;
   }
 
   public async postNewAccount(values: Account): Promise<boolean> {

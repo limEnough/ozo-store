@@ -12,7 +12,6 @@ interface Slides {
   link?: string;
   imagePath?: string;
   externalLink?: string;
-  src?: string;
 }
 
 interface Props {

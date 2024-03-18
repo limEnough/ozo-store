@@ -1,33 +1,38 @@
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import MainService from '@/services/main';
 
 export default function mainComposable() {
-  // TODO: 데이터화
-  const mainBannerUseYn = ref(true);
-  const mainBannerSlides = ref([
-    {
-      link: '',
-      imagePath: 'src/assets/images/main/img-banner-1.png',
-      externalLink: '',
-      src: '',
-    },
-    {
-      link: '',
-      imagePath: 'src/assets/images/main/img-banner-2.png',
-      externalLink: '',
-      src: '',
-    },
-    {
-      link: '',
-      imagePath: 'src/assets/images/main/img-banner-3.png',
-      externalLink: '',
-      src: '',
-    },
-    {
-      link: '',
-      imagePath: 'src/assets/images/main/img-banner-4.png',
-      externalLink: '',
-      src: '',
-    },
-  ]);
-  return { mainBannerUseYn, mainBannerSlides };
+  // #region 비주얼 배너
+  const visualUseYn = ref(false);
+  const visualBanner = ref([]);
+  // #endregion
+
+  // #region TODO: fethces
+  const isReady = ref(false);
+  // #endregion
+
+  // #region Api
+  const pageService = new MainService();
+
+  const getMainPageInfo = async () => {
+    const pageInfo = await pageService.getPageInfo();
+
+    if (!pageInfo) return;
+
+    visualUseYn.value = pageInfo.visualUseYn;
+    visualBanner.value = pageInfo.visualBanner;
+
+    isReady.value = true;
+  };
+  // #endregion
+
+  const init = async () => {
+    await getMainPageInfo();
+  };
+
+  onMounted(async () => {
+    await init();
+  });
+
+  return { isReady, visualUseYn, visualBanner };
 }
