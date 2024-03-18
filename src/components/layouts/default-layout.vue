@@ -9,10 +9,13 @@
 
     <div class="default-layout__container">
       <!-- 콘텐츠 -->
-      <main class="default-layout__inner">
-        <!-- 콘텐츠 -->
-        <slot></slot>
-      </main>
+      <div class="default-layout__inner">
+        <Loading v-if="isLoading"></Loading>
+
+        <main v-else>
+          <slot></slot>
+        </main>
+      </div>
 
       <!-- TODO: 독바 -->
       <!-- :is-scroll-down="scrollModel.isDown" -->
@@ -28,6 +31,7 @@
 
 <script setup lang="ts">
   import defaultLayoutComposable, { defaultLayoutProps } from '@/composables/layouts/default-layout';
+  import Loading from '@/components/elements/loading.vue';
   import HeaderLayout from '@/components/layouts/header-layout.vue';
   import Dockbar from '@/components/layouts/dockbar-layout.vue';
 

@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router';
 interface Props {
   isShowDockbar: boolean;
   isShowFooter: boolean;
+  isLoading: boolean;
 }
 
 const props = {
@@ -15,6 +16,10 @@ const props = {
   isShowFooter: {
     type: Boolean as PropType<Props['isShowFooter']>,
     default: true,
+  },
+  isLoading: {
+    type: Boolean as PropType<Props['isLoading']>,
+    default: false,
   },
 };
 

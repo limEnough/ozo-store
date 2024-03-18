@@ -8,13 +8,15 @@ export default function mainComposable() {
   // #endregion
 
   // #region TODO: fethces
-  const isReady = ref(false);
+  const isLoading = ref(false);
   // #endregion
 
   // #region Api
   const pageService = new MainService();
 
   const getMainPageInfo = async () => {
+    isLoading.value = true;
+
     const pageInfo = await pageService.getPageInfo();
 
     if (!pageInfo) return;
@@ -22,7 +24,7 @@ export default function mainComposable() {
     visualUseYn.value = pageInfo.visualUseYn;
     visualBanner.value = pageInfo.visualBanner;
 
-    isReady.value = true;
+    isLoading.value = false;
   };
   // #endregion
 
@@ -34,5 +36,5 @@ export default function mainComposable() {
     await init();
   });
 
-  return { isReady, visualUseYn, visualBanner };
+  return { isLoading, visualUseYn, visualBanner };
 }

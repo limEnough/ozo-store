@@ -1,9 +1,9 @@
 <template>
-  <component :is="DefaultLayout">
-    <div
-      v-if="isReady"
-      class="main"
-    >
+  <component
+    :is="DefaultLayout"
+    :is-loading="isLoading"
+  >
+    <div class="main">
       <!-- TODO: 검색 컴포넌트 -->
 
       <!-- visual 메인 슬라이드 -->
@@ -31,7 +31,7 @@
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import slider from '@/components/elements/slider.vue';
 
-  const { isReady, visualUseYn, visualBanner } = mainComposable();
+  const { isLoading, visualUseYn, visualBanner } = mainComposable();
 </script>
 
 <style lang="scss" scoped>
