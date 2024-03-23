@@ -1,7 +1,7 @@
 import { FIREBASE_AUTH_ERROR_CODE, FIREBASE_AUTH_ERROR_MESSAGE } from '@/constants/error-code.constants';
 import { auth } from '@/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import type { MemberCreateAccount } from './create';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { useUserStore } from '@/stores/user';
 
 interface LoginForm {
   email: string;
@@ -18,31 +18,31 @@ interface UserAuth {
   authToken: AuthToken['authToken'];
   expirationTime: AuthToken['expirationTime'];
 }
-
-interface UserInfo extends Pick<MemberCreateAccount, 'name'> {
-  cart: string[]; //TODO: 상품 컴포넌트 개발 후 작업할 것
-}
-
 export default class MemberLoginService {
   // private readonly collectionId = 'users';
 
   /**
-   * 유저 인증 결과 가져오기
+   * 로그인
    */
-  public async getUserAuth(values: LoginForm): Promise<UserAuth | string> {
+  public async authLogin(values: LoginForm): Promise<UserAuth | string> {
     try {
+      // 1. auth 로그인
       const { user } = await signInWithEmailAndPassword(auth, values.email, values.password);
       const { stsTokenManager } = user;
+
+      // 2. userInfo 업데이트
+      const userStore = useUserStore();
+      userStore.updateUserInfo(user.email);
 
       return {
         email: values.email, // '이메일 저장하기' 기능
         authToken: stsTokenManager.accessToken,
         expirationTime: stsTokenManager.expirationTime,
       };
-    } catch (error: unknown) {
-      if (!error.code) return '로그인에 실패 하였습니다.';
+    } catch ({ code, messages }) {
+      if (!code) return '로그인에 실패 하였습니다.';
 
-      switch (error.code) {
+      switch (code) {
         case FIREBASE_AUTH_ERROR_CODE['INVALID_CREDENTIAL']:
           return FIREBASE_AUTH_ERROR_MESSAGE['INVALID_CREDENTIAL'];
         case FIREBASE_AUTH_ERROR_CODE['USER_NOT_FOUND']:
@@ -66,13 +66,18 @@ export default class MemberLoginService {
   }
 
   /**
-   * TODO: 로그인된 유저 정보 가져오기
+   * 로그아웃
    */
-  public async getUserInfo() {
+  public async authLogOut() {
     try {
-      // datebase 조회 후 필요 정보 가져오기
-    } catch (error: unknown) {
-      console.log(error);
+      // 1. auth 로그아웃
+      await signOut(auth);
+
+      // 2. userInfo 업데이트
+      const userStore = useUserStore();
+      userStore.updateUserInfo(null);
+    } catch ({ code, messages }) {
+      console.error('authLogOut error: ', code);
     }
   }
 }

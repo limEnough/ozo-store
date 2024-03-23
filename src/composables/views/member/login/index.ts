@@ -98,32 +98,34 @@ export default function loginComposable() {
   const pageService = new MemberLoginService();
   const $cookies = inject<VueCookies>('$cookies') as VueCookies;
 
-  const getUserAuth = async (values: LoginForm) => {
+  const login = async (values: LoginForm) => {
     const params: MemberLoginForm = { email: values.email, password: values.password };
-    const result = await pageService.getUserAuth(params);
+    const result = await pageService.authLogin(params);
 
     if (typeof result !== 'object') {
       alert(result);
       return false;
     }
 
+    // 로그인 정보 로컬스토리지에 저장하기
+    layoutStore.saveAuth({ authToken: result.authToken, expirationTime: result.expirationTime });
+
+    // '이메일 저정하기' 쿠키 설정
     if (values.useSaveEmail[0]) {
       $cookies.set(SAVE_EMAIL_COOKIE['KEY'], result.email, SAVE_EMAIL_COOKIE['MAXAGE']);
     } else {
       $cookies.remove(SAVE_EMAIL_COOKIE['KEY']);
     }
 
-    return result;
+    return true;
   };
   // #endregion
 
   // #region Events
   const onValidSuccess = async (values: LoginForm) => {
-    const result = await getUserAuth(values);
+    const result = await login(values);
 
     if (!result) return;
-
-    layoutStore.saveAuth({ authToken: result.authToken, expirationTime: result.expirationTime });
 
     alert('환영합니다!');
 
@@ -163,3 +165,11 @@ export default function loginComposable() {
     handleSubmit,
   };
 }
+
+export const logout = async () => {
+  const pageService = new MemberLoginService();
+  const layoutStore = useLayoutStore();
+
+  await pageService.authLogOut();
+  layoutStore.deleteAuth();
+};

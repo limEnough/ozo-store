@@ -10,6 +10,9 @@ export const useLayoutStore = defineStore('layout', () => {
   const token = ref(localStorage.getItem('token') ?? null);
   const isLoggedIn = ref(!!localStorage.getItem('token'));
 
+  /**
+   * 로컬스토리지에 인증 정보 저장하기
+   */
   const saveAuth = (tokenInfo: TokenInfo) => {
     token.value = tokenInfo.authToken;
     isLoggedIn.value = true;
@@ -21,6 +24,9 @@ export const useLayoutStore = defineStore('layout', () => {
     localStorage.setItem('expirationTime', `${tokenInfo.expirationTime}`);
   };
 
+  /**
+   * 로컬스토리지에 인증 정보 삭제하기
+   */
   const deleteAuth = () => {
     token.value = null;
     isLoggedIn.value = false;
@@ -39,3 +45,5 @@ export const useLayoutStore = defineStore('layout', () => {
     deleteAuth,
   };
 });
+
+export type { TokenInfo };

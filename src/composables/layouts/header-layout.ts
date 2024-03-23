@@ -1,6 +1,6 @@
 import { onMounted, type PropType } from 'vue';
 import usePageTitle from '@/composables/use/use-page-title';
-import { useLayoutStore } from '@/stores/layout';
+import { logout } from '@/composables/views/member/login';
 
 interface Props {
   usingTitle: boolean;
@@ -24,7 +24,6 @@ const props = {
 };
 
 export default function HeaderLayoutComposable(props: Props) {
-  const layoutStore = useLayoutStore();
   const { pageTitle } = usePageTitle();
 
   const fetchClient = () => {
@@ -36,8 +35,8 @@ export default function HeaderLayoutComposable(props: Props) {
       const currentTime = new Date().getTime();
       const remainTime = expirationTime - currentTime;
 
-      setTimeout(() => {
-        layoutStore.deleteAuth();
+      setTimeout(async () => {
+        await logout();
       }, remainTime);
     } else {
       // 인증 만료기간 종료
@@ -48,6 +47,7 @@ export default function HeaderLayoutComposable(props: Props) {
   onMounted(() => {
     fetchClient();
   });
+
   return { pageTitle };
 }
 

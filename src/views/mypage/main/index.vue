@@ -1,6 +1,15 @@
 <template>
   <component :is="DefaultLayout">
-    <div class="mypageMain"></div>
+    <div class="mypageMain">
+      <!-- TODO: 파일 업로드 컴포넌트 -->
+      <figure class="profile">
+        <img
+          src="../../../assets/images/member/image-profile-sample.png"
+          alt="프로필 이미지"
+          class="profile__image"
+        />
+      </figure>
+    </div>
   </component>
 </template>
 
