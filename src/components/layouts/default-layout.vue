@@ -4,6 +4,7 @@
     <HeaderLayout
       :is-login-header="isLoginPage"
       :is-main-page="isMainPage"
+      :is-my-main-page="isMyMainPage"
     >
     </HeaderLayout>
 
@@ -37,7 +38,7 @@
 
   const props = defineProps(defaultLayoutProps);
 
-  const { isLoginPage, isMainPage } = defaultLayoutComposable(props);
+  const { isLoginPage, isMainPage, isMyMainPage } = defaultLayoutComposable(props);
 </script>
 
 <style lang="scss" scoped>

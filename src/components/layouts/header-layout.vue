@@ -1,5 +1,8 @@
 <template>
-  <div class="header-layout">
+  <div
+    :class="{ 'header-layout--mypage-main': isMyMainPage }"
+    class="header-layout"
+  >
     <!-- 왼쪽 영역 -->
     <div class="header-layout__left">
       <!-- 메인 페이지 -->

@@ -6,6 +6,26 @@
   height: 56px;
   padding-right: rem(15px);
 
+  // #region 헤더 커스텀
+  &--mypage-main {
+    background-color: $basic;
+
+    .header-layout {
+      &__title {
+        color: $white;
+      }
+
+      &__back {
+        :deep() {
+          .icon--back {
+            background-image: url(src('test', 'common', 'icon-arrow-down--white.svg'));
+          }
+        }
+      } 
+    }
+  }
+  // #endregion
+
   &__left {
     display: flex;
     align-items: center;
