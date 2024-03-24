@@ -22,6 +22,7 @@
     "firebase": "^10.8.1",
     "lodash-es": "^4.17.21",
     "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "sass": "^1.38.0",
     "sass-loader": "^13.3.2",
     "sass-rem": "^3.0.0",
