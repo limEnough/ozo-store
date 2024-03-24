@@ -1,6 +1,6 @@
 import { onMounted, type PropType } from 'vue';
 import usePageTitle from '@/composables/use/use-page-title';
-import { logout } from '@/composables/views/member/login';
+import useLogout from '@/composables/use/use-logout';
 
 interface Props {
   usingTitle: boolean;
@@ -25,6 +25,7 @@ const props = {
 
 export default function HeaderLayoutComposable(props: Props) {
   const { pageTitle } = usePageTitle();
+  const { logout } = useLogout();
 
   const fetchClient = () => {
     if (!localStorage.getItem('expirationTime')) return;

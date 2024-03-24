@@ -9,7 +9,7 @@ import { ALLOWED_REGEXS } from '@/constants/regex.constants';
 import type { CheckboxModel } from '@/types/common.types';
 import type { APICode } from '@/types/api.types';
 import { useRouter } from 'vue-router';
-import { MAIN_PAGE_NAMES } from '@/constants/path-constants';
+import { MYPAGE_PAGE_NAMES } from '@/constants/path-constants';
 import { SAVE_EMAIL_COOKIE } from '@/constants/member-constants';
 import type { VueCookies } from 'vue-cookies';
 import { useLayoutStore } from '@/stores/layout';
@@ -130,7 +130,7 @@ export default function loginComposable() {
     alert('환영합니다!');
 
     router.push({
-      name: MAIN_PAGE_NAMES['main'],
+      name: MYPAGE_PAGE_NAMES['mypage-main'],
     });
   };
 
@@ -165,11 +165,3 @@ export default function loginComposable() {
     handleSubmit,
   };
 }
-
-export const logout = async () => {
-  const pageService = new MemberLoginService();
-  const layoutStore = useLayoutStore();
-
-  await pageService.authLogOut();
-  layoutStore.deleteAuth();
-};
