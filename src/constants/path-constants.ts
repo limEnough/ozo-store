@@ -27,7 +27,14 @@ export const MEMBER_PAGE_NAMES = {
 export const MYPAGE_PAGE_NAMES = {
   ['mypage']: PAGE_CODE_DEPTH1['MYPAGE'], // 마이페이지 - 1뎁스
   ['mypage-main']: PAGE_CODE_DEPTH2['MYPAGE_MAIN'], // 메인 - 2뎁스
+  ['mypage-profile']: PAGE_CODE_DEPTH2['MYPAGE_PROFILE'], // 프로필관리 - 2뎁스
   ['mypage-wish']: PAGE_CODE_DEPTH2['MYPAGE_WISH'], // 찜 - 2뎁스
+  ['mypage-recent']: PAGE_CODE_DEPTH2['MYPAGE_RECENT'], // 최근본상품 - 2뎁스
+  ['mypage-order-history']: PAGE_CODE_DEPTH2['MYPAGE_ORDER_HISTORY'], // 주문내역 - 2뎁스
+  ['mypage-benefit']: PAGE_CODE_DEPTH2['MYPAGE_BENEFIT'], // 혜택관리 - 2뎁스
+  ['mypage-inquiry']: PAGE_CODE_DEPTH2['MYPAGE_INQUIRY'], // 문의내역 - 2뎁스
+  ['mypage-review']: PAGE_CODE_DEPTH2['MYPAGE_REVIEW'], // 후기내역 - 2뎁스
+  ['mypage-address']: PAGE_CODE_DEPTH2['MYPAGE_ADDRESS'], // 배송지관리 - 2뎁스
 } as const;
 // #endregion
 
