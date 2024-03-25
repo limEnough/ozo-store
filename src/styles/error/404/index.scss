@@ -1,0 +1,48 @@
+.error {
+  padding: rem(0 16px);
+
+  // 404 error page icon
+  &--404 {
+    .error__title:before {
+      background-image: url(src('test', 'common', 'icon-error--404.svg'));
+    }
+  }
+
+  // 500 error page icon
+  &--500 {
+    .error__title:before {
+      background-image: url(src('test', 'common', 'icon-error--500.svg'));
+    }
+  }
+
+  &__wrapper {
+    padding-top: rem(120px);
+    text-align: center;
+  }
+
+  &__title {
+    @include fontCss($basic, rem(14px), 900, rem(14px));
+
+    &:before {
+      content: '';
+      display: block;
+      margin: 0 auto rem(5px);
+      width: rem(50px);
+      height: rem(50px);
+      background-size: 100% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      
+    }
+  }
+
+  &__text {
+    display: inline-block;
+    margin-top: rem(16px);
+    @include fontCss($grey, rem(9px), 400, rem(14px));
+  }
+
+  &__button {
+    margin-top: rem(40px);
+  }
+}

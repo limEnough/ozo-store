@@ -1,4 +1,12 @@
-import { PAGE_CODE_DEPTH1, PAGE_CODE_DEPTH2, PAGE_CODE_MAIN } from './page-code-constants';
+import { PAGE_CODE_DEPTH1, PAGE_CODE_DEPTH2, PAGE_CODE_MAIN, PAGE_CODE_ERROR } from './page-code-constants';
+
+// #region 에러
+export const ERROR_PAGE_NAMES = {
+  ['error']: PAGE_CODE_ERROR['ERROR'],
+  ['error-404']: PAGE_CODE_ERROR['ERROR_404'],
+  ['error-500']: PAGE_CODE_ERROR['ERROR_500'],
+} as const;
+// #endregion
 
 // #region 메인
 export const MAIN_PAGE_NAMES = {

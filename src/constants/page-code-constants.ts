@@ -7,6 +7,12 @@ const PAGE_CODE_MAIN = {
   MAIN: 'MAIN',
 } as const;
 
+const PAGE_CODE_ERROR = {
+  ERROR: 'ERROR',
+  ERROR_404: 'ERROR-URL',
+  ERROR_500: 'ERROR-SERVER',
+} as const;
+
 const PAGE_CODE_DEPTH1 = {
   /** 회원 */
   MEMBER: 'MENU.MENU_DEPTH_1.MEMBER',
@@ -31,6 +37,6 @@ const PAGE_CODE_DEPTH2 = {
   GOODS_LIST: 'MENU.MENU_DEPTH_2.GOODS_LIST',
 } as const;
 
-export { PAGE_CODE_MAIN, PAGE_CODE_DEPTH1, PAGE_CODE_DEPTH2 };
+export { PAGE_CODE_MAIN, PAGE_CODE_ERROR, PAGE_CODE_DEPTH1, PAGE_CODE_DEPTH2 };
 
 export type { PageCodeEnum };
