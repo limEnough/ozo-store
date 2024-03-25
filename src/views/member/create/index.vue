@@ -47,7 +47,7 @@
 
             <!-- 개인정보 입력 -->
             <FormGroup
-              class="create__userInfo"
+              class="create__user-info"
               use-title
               required
             >
@@ -59,7 +59,7 @@
                 <!-- 프로필 -->
                 <FormItem
                   :hide-title="true"
-                  class="create__userInfo__profile"
+                  class="create__user-info__profile"
                 >
                   <template #contents>
                     <!-- TODO: 파일 업로드 컴포넌트 -->

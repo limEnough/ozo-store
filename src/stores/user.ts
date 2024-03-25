@@ -13,7 +13,6 @@ interface UserInfo {
   name: MemberCreateAccount['name'];
   email: MemberCreateAccount['email'];
   phoneNumber: MemberCreateAccount['phoneNumber'];
-  cart: Cart;
   // 휴면회원 여부
   // isDormant: boolean;
   // 비밀번호 만료일
@@ -23,6 +22,7 @@ interface UserInfo {
 /** 유저 접속 상태 */
 interface State {
   info: UserInfo;
+  cart: Cart;
 }
 
 export const useUserStore = defineStore('user', () => {
@@ -44,11 +44,16 @@ export const useUserStore = defineStore('user', () => {
 
     // 유저 정보 셋팅
     userInfo.value = {
-      name: result.name,
-      email: result.email,
-      // cart: result.cart,
-      // isDormant: result.isDormant,
-      // isExpiredPassword: result.isExpiredPassword,
+      info: {
+        name: result.name,
+        email: result.email,
+        phoneNumber: result.phoneNumber,
+        // isDormant: result.isDormant,
+        // isExpiredPassword: result.isExpiredPassword,
+      },
+      cart: {
+        total: 0,
+      },
     };
   };
 
