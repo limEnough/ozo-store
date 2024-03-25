@@ -1,6 +1,18 @@
 import { db } from '@/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import type { MemberCreateAccount } from '@/services/member/create';
+import type { RouteMeta, RouteRecordRaw } from 'vue-router';
+
+export interface LayoutMenuList {
+  /** 메뉴 하위 리스트 */
+  menuList?: LayoutMenuList[];
+  /** 메뉴 코드 */
+  code: RouteMeta['pageCode'];
+  /** 메뉴명 */
+  name: string;
+  /** 메뉴 URL */
+  url: RouteRecordRaw['path'];
+}
 
 export default class LayoutService {
   private readonly collectionId = 'users';

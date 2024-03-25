@@ -1,0 +1,119 @@
+.mypage-menus-component {
+  &__list {
+    padding: rem(20px 15px);
+
+    .list {
+      &__menu {
+        display: flex;
+        overflow: hidden;
+        height: rem(32px);
+        background: $bgLight;
+        border-radius: rem(8px);
+        align-items: center;
+
+        &:not(:first-of-type) {
+          margin-top: rem(10px);
+        }
+
+        // #region 메뉴 아이콘 커스텀
+        &.orderHistory {
+          &:before {
+            background-image: url(src('test', 'common', 'icon-order.svg'));
+          }
+        }
+
+        &.wish {
+          &:before {
+            background-image: url(src('test', 'common', 'icon-wish--plus.svg'));
+          }
+        }
+
+        &.recent {
+          &:before {
+            background-image: url(src('test', 'common', 'icon-recent.svg'));
+          }
+        }
+
+        &.benefit {
+          &:before {
+            background-image: url(src('test', 'common', 'icon-benefit.svg'));
+          }
+        }
+
+        &.inquiry {
+          &:before {
+            background-image: url(src('test', 'common', 'icon-inquiry.svg'));
+          }
+        }
+
+        &.review {
+          &:before {
+            background-image: url(src('test', 'common', 'icon-review.svg'));
+          }
+        }
+
+        &.address {
+          &:before {
+            background-image: url(src('test', 'common', 'icon-address.svg'));
+          }
+        }
+
+        &.logout {
+          :deep() {
+            .button-component {
+              width: rem(calc(100% - #{rem(32px)}));
+              height: 100%;
+              padding: rem(0 8px) !important;
+              text-align: left;
+              @include fontCss($deep, rem(9.5px), 400, rem(9.5px));
+            }
+          }
+
+          &:before {
+            background-image: url(src('test', 'common', 'icon-logout.svg'));
+          }
+        }
+        // #endregion
+
+        &:before {
+          content: '';
+          display: block;
+          width: rem(32px);
+          height: rem(32px);
+          background-repeat: no-repeat;
+          background-size: rem(14px auto);
+          background-position: center;
+          background-color: #e5eeff;
+          background-image: url(src('test', 'common', 'icon-order.svg'));
+          border-radius: rem(8px);
+        }
+
+        &__link {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: rem(calc(100% - #{rem(32px)}));
+          padding: rem(0 8px);
+          height: 100%;
+          font-size: 0;
+
+          &:after {
+            content: '';
+            display: block;
+            width: rem(8px);
+            height: rem(8px);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: center;
+            background-image: url(src('test', 'common', 'icon-arrow-down--basic.svg'));
+            transform: rotate(270deg)
+          }
+        }
+
+        &__text {
+          @include fontCss($deep, rem(9.5px), 400, rem(9.5px));
+        }
+      }
+    }
+  }
+}

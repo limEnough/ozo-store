@@ -14,6 +14,7 @@
   --border: #c6c9cf;
   --dim: #37366C;
   --bg: #eff1f9;
+  --bg-light: #f4f6ff;
 
   // State
   --state-fail: var(--point);
@@ -42,6 +43,7 @@ $white: var(--white);
 // background
 $dim: var(--dim);
 $bg: var(--bg);
+$bgLight: var(--bg-light);
 $border: var(--border);
 
 // state
