@@ -1,0 +1,20 @@
+.ready-component {
+  padding: rem(80px 20px);
+
+  &__text {
+    @include fontCss($basic, rem(12px), 900, rem(12px));
+    text-align: center;
+
+    &:before {
+      content: '';
+      display: block;
+      margin: 0 auto rem(10px);
+      width: rem(30px);
+      height: rem(30px);
+      background-size: 100% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url(src('test', 'common', 'icon-ready.svg'));
+    }
+  }
+}
