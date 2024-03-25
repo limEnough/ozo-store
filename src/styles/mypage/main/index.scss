@@ -1,3 +1,77 @@
-.main {
-  
+.mypage-main {
+  // #region 상단
+  &__top {
+    padding: rem(20px 0 30px);
+    background: $basic;
+    border-radius: rem(0 0 10px 10px);
+
+    &__user {
+      .user {
+        &__profile {
+          overflow: hidden;
+          width: rem(60px);
+          margin: 0 auto;
+          background: $white;
+          font-size: 0;
+          border-radius: rem(16px);
+
+          &__image {
+
+          }
+        }
+
+        &__info {
+          margin-top: rem(10px);
+          text-align: center;
+
+          &__name {
+            display: block;
+            @include fontCss($white, rem(12px), 600, rem(12px));
+          }
+
+          &__email {
+            display: block;
+            margin-top: rem(2px);
+            @include fontCss($greySoft, rem(9px), 400, rem(9px));
+          }
+        }
+      }
+    }
+
+
+    &__quick {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: rem(10px);
+      padding: rem(0 20px);
+
+      .quick {
+        &__menu {
+          width: rem(90px);
+          background: rgba(255, 255, 255, 0.5);
+          border-radius: rem(5px);
+
+          &__link {
+            display: block;
+            padding: rem(10px);
+          }
+
+          &__number {
+            display: block;
+            @include fontCss($white, rem(12px), 600, rem(12px));
+            text-align: center;
+          }
+
+          &__text {
+            display: block;
+            margin-top: rem(4px);
+            @include fontCss($basic, rem(9px), 600, rem(9px));
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  // #endregion
 }
