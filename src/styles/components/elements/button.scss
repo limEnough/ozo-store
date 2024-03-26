@@ -67,6 +67,18 @@
         @include imageCss(rem(5px), rem(5px), 'common', 'icon-plus.png');
       }
     }
+
+    &--close {
+      @include imageCss(rem(12px), rem(12px), 'common', 'icon-close--grey.png');
+    }
+
+    &--setting {
+      @include imageCss(rem(12px), rem(12px), 'common', 'icon-setting.svg');
+    }
+
+    &--edit {
+      @include imageCss(rem(12px), rem(12px), 'common', 'icon-edit.svg');
+    }
   }
   // #endregion
 
