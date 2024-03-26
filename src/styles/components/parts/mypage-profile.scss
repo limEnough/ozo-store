@@ -1,0 +1,32 @@
+.mypage-profile {
+  // MEMO: slot actions의 position 기준을 컴포넌트 자체가 갖게 하기 위해
+  display: inline-block;
+  position: relative;
+
+  &__thumb {
+    overflow: hidden;
+    position: relative;
+    width: rem(60px);
+    height: rem(60px);
+    margin: 0 auto;
+    background: $white;
+    border-radius: rem(16px);
+    box-shadow: rem(0 4px 16px 0) rgba(0, 0, 0, 0.2);
+    font-size: 0;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+  }
+}
