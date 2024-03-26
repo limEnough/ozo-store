@@ -23,12 +23,12 @@ export default function mypageMenusComposable(emit: CustomEmit<Emits>, props: Pr
   const mypageMenus = ref<LayoutMenuList[]>([
     {
       code: PAGE_CODE_DEPTH2['MYPAGE_ORDER_HISTORY'],
-      name: '나의 주문 내역',
+      name: '주문 내역',
       url: '/mypage/orderHistory',
     },
     {
       code: PAGE_CODE_DEPTH2['MYPAGE_WISH'],
-      name: '나의 관심 상품',
+      name: '관심 상품',
       url: '/mypage/wish',
     },
     {
@@ -38,22 +38,22 @@ export default function mypageMenusComposable(emit: CustomEmit<Emits>, props: Pr
     },
     {
       code: PAGE_CODE_DEPTH2['MYPAGE_BENEFIT'],
-      name: '나의 혜택 관리',
+      name: '혜택 관리',
       url: '/mypage/benefit',
     },
     {
       code: PAGE_CODE_DEPTH2['MYPAGE_INQUIRY'],
-      name: '나의 문의 내역',
+      name: '문의 내역',
       url: '/mypage/inquiry',
     },
     {
       code: PAGE_CODE_DEPTH2['MYPAGE_REVIEW'],
-      name: '나의 후기 내역',
+      name: '후기 내역',
       url: '/mypage/review',
     },
     {
       code: PAGE_CODE_DEPTH2['MYPAGE_ADDRESS'],
-      name: '나의 배송지 관리',
+      name: '배송지 관리',
       url: '/mypage/address',
     },
   ]);

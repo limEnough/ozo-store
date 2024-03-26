@@ -1,9 +1,9 @@
 <template>
-  <div class="mypage-menus-component">
+  <div class="mypage-menus">
     <!-- case. list -->
     <ul
       v-if="mypageMenus?.length"
-      class="mypage-menus-component__list"
+      class="mypage-menus__list"
     >
       <template
         v-for="menu in mypageMenus"
@@ -36,12 +36,6 @@
     <Empty v-else></Empty>
   </div>
 </template>
-<script lang="ts">
-  // declare additional options
-  export default {
-    inheritAttrs: false,
-  };
-</script>
 
 <script setup lang="ts">
   import mypageMenusComposable, { mypageMenusEmits, mypageMenusProps } from '@/composables/parts/mypage-menus';

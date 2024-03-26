@@ -1,6 +1,6 @@
 :root {
   // Basic
-  --black: ##111;
+  --black: #111;
   --grey: #ADADAD;
   --grey-soft: #ddd;
   --white: #fff;
@@ -14,7 +14,7 @@
   --border: #c6c9cf;
   --dim: #37366C;
   --bg: #eff1f9;
-  --bg-light: #f4f6ff;
+  --bg-sky: #e5eeff;
 
   // State
   --state-fail: var(--point);
@@ -43,7 +43,7 @@ $white: var(--white);
 // background
 $dim: var(--dim);
 $bg: var(--bg);
-$bgLight: var(--bg-light);
+$bgSky: var(--bg-sky);
 $border: var(--border);
 
 // state
