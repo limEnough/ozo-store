@@ -38,12 +38,16 @@ const props = {
     type: Boolean as PropType<Props['scrollLock']>,
     default: true,
   },
-  hideClose: {
-    type: Boolean as PropType<Props['hideClose']>,
+  showClose: {
+    type: Boolean as PropType<Props['showClose']>,
     default: false,
   },
   hideHeader: {
     type: Boolean as PropType<Props['hideHeader']>,
+    default: false,
+  },
+  hideTitle: {
+    type: Boolean as PropType<Props['hideTitle']>,
     default: false,
   },
   hideFooter: {

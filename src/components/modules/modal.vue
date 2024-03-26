@@ -20,12 +20,28 @@
       >
         <!-- Modal header -->
         <template v-if="!hideHeader">
-          <div class="modal-component__header">
-            <h3 class="modal-component__title">
+          <div
+            :class="{ 'no-title': hideTitle, 'no-close': !showClose }"
+            class="modal-component__header"
+          >
+            <h3
+              v-if="!hideTitle"
+              class="modal-component__title"
+            >
               <slot name="title">
                 {{ title }}
               </slot>
             </h3>
+
+            <Button
+              v-if="props.onClose && cancelOption.visible && showClose"
+              size="s"
+              icon="close"
+              icon-only
+              @click="emits('close')"
+            >
+              <span class="blind">Close modal</span>
+            </Button>
           </div>
         </template>
 

@@ -6,8 +6,9 @@ type ModalSize = Omit<Sizes, 'xs' | 'xl'>;
 
 interface Modal extends Dialog {
   size: ModalSize;
-  hideClose: boolean;
+  showClose: boolean;
   hideHeader: boolean;
+  hideTitle: boolean;
   hideFooter: boolean;
   closeOnClickOutside: boolean;
   cancel?: {
