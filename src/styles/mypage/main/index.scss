@@ -1,22 +1,25 @@
 .mypage-main {
-  // #region 상단
   &__top {
     padding: rem(20px 0 30px);
     background: $basic;
     border-radius: rem(0 0 10px 10px);
 
+    // #region 유저
     &__user {
+      text-align: center;
+
       .user {
         &__profile {
-          overflow: hidden;
-          width: rem(60px);
-          margin: 0 auto;
-          background: $white;
-          font-size: 0;
-          border-radius: rem(16px);
-
-          &__image {
-
+          :deep() {
+            .user__profile__edit {
+              display: inline-block;
+              position: absolute;
+              right: rem(-5px);
+              bottom: rem(-3px);
+              padding: rem(5px) !important;
+              border-radius: 50%;
+              background: $deep;
+            }
           }
         }
 
@@ -37,8 +40,9 @@
         }
       }
     }
+    // #endregion
 
-
+    // #region 퀵 메뉴
     &__quick {
       display: flex;
       justify-content: space-between;
@@ -72,6 +76,6 @@
         }
       }
     }
+    // #endregion
   }
-  // #endregion
 }

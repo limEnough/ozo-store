@@ -2,16 +2,27 @@
   <component :is="DefaultLayout">
     <div class="mypage-main">
       <div class="mypage-main__top">
-        <!-- 유저 TODO: 프로필 수정 페이지 링크 처리 -->
         <div class="mypage-main__top__user">
           <!-- 유저 프로필 -->
-          <figure class="user__profile">
-            <img
-              src="../../../assets/images/member/image-profile-sample.png"
-              alt="프로필 이미지"
-              class="user__profile__image"
-            />
-          </figure>
+          <!-- TODO: 이미지 URL 받아오기 -->
+          <MypageProfile
+            image-path=""
+            class="user__profile"
+          >
+            <template #actions>
+              <Link
+                :to="{
+                  name: MYPAGE_PAGE_NAMES['mypage-profile'],
+                }"
+                case="text"
+                icon="edit"
+                class="user__profile__edit"
+                icon-only
+              >
+                <span>수정하기</span>
+              </Link>
+            </template>
+          </MypageProfile>
 
           <!-- 유저 정보 -->
           <div class="user__info">
@@ -20,12 +31,15 @@
           </div>
         </div>
 
-        <!-- 퀵 메뉴 TODO: 할까 말까 -->
-        <!-- <ul class="mypage-main__top__quick">
+        <!-- TODO: 할까 말까 퀵 메뉴  -->
+        <ul
+          v-if="false"
+          class="mypage-main__top__quick"
+        >
           <li class="quick__menu">
             <router-link
               :to="{
-                name: MAIN_PAGE_NAMES['main'],
+                name: MYPAGE_PAGE_NAMES['mypage-benefit'],
               }"
               class="quick__menu__link"
             >
@@ -37,7 +51,7 @@
           <li class="quick__menu">
             <router-link
               :to="{
-                name: MAIN_PAGE_NAMES['main'],
+                name: MYPAGE_PAGE_NAMES['mypage-order-history'],
               }"
               class="quick__menu__link"
             >
@@ -45,7 +59,7 @@
               <span class="quick__menu__text">Order</span>
             </router-link>
           </li>
-        </ul> -->
+        </ul>
       </div>
 
       <div class="mypage-main__menu">
@@ -59,6 +73,9 @@
   import mypageMainComposable from '@/composables/views/mypage/main/index';
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import MypageMenus from '@/components/parts/mypage-menus.vue';
+  import MypageProfile from '@/components/parts/mypage-profile.vue';
+  import Link from '@/components/elements/link.vue';
+  import { MYPAGE_PAGE_NAMES } from '@/constants/path-constants';
 
   const { userInfo } = mypageMainComposable();
 </script>
