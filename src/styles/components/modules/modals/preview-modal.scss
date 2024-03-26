@@ -1,0 +1,24 @@
+.preview-modal-component {
+  &__contents {
+    width: 100%;
+    background: $white;
+  }
+}
+
+// #region 모달 커스텀
+:deep() {
+  .modal-component {
+    &__contents {
+      background: $black;
+    }
+
+    &__body {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: calc(100% - #{rem(42px)}); //헤더
+      padding: 0; 
+    }
+  }
+}
+// #endregion
