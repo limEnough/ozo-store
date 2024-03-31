@@ -10,14 +10,14 @@
 </script>
 
 <script setup lang="ts">
-  // import goodsComposable, {goodsEmits, goodsProps} from '@/composables/modules/goods'
+  import goodsComposable, { goodsEmits, goodsProps } from '@/composables/modules/goods';
 
-  // const emits = defineEmits(goodsEmits);
-  // const props = defineProps(goodsProps);
+  const emits = defineEmits(goodsEmits);
+  const props = defineProps(goodsProps);
 
-  // const {  } = goodsComposable(emits, props);
+  const {} = goodsComposable(emits, props);
 </script>
 
 <style lang="scss" scoped>
-  /* @import '@/styles/components/modules/goods.scss'; */
+  @import '@/styles/components/modules/goods.scss';
 </style>
