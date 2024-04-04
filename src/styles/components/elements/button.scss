@@ -12,7 +12,7 @@
   // #region Type
   &.case {
     &--normal {
-      background: $bg;
+      background: $white;
       color: $deep;
     }
 
@@ -56,7 +56,9 @@
     }
 
     &--back {
-      @include imageCss(rem(35px), rem(35px), 'common', 'icon-arrow-prev.svg', no-repeat, center, rem(10px) auto);
+      border-radius: rem(5px);
+      background-color: $white;
+      @include imageCss(rem(22px), rem(22px), 'common', 'icon-arrow-prev.svg', no-repeat, center, rem(10px) auto);
     }
 
     &--add {

@@ -8,6 +8,7 @@
       <!-- 메인 페이지 -->
       <template v-if="isMainPage">
         <figure class="header-layout__logo">
+          <!-- TODO: 로고 어떻게 할건지? -->
           <img
             class="header-layout__logo__image"
             src="@/assets/images/common/image-logo.png"

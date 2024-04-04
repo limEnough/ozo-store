@@ -10,9 +10,10 @@ interface Props {
 }
 
 const props = {
+  // MEMO: 테마 변경하면서 타이틀은 노출 안함이 default
   usingTitle: {
     type: Boolean as PropType<Props['usingTitle']>,
-    default: true,
+    default: false,
   },
   isLoginPage: {
     type: Boolean as PropType<Props['isLoginPage']>,
