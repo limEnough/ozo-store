@@ -6,7 +6,6 @@ interface Props {
   usingTitle: boolean;
   isLoginPage: boolean;
   isMainPage: boolean;
-  isMyMainPage: boolean;
 }
 
 const props = {
@@ -21,10 +20,6 @@ const props = {
   },
   isMainPage: {
     type: Boolean as PropType<Props['isMainPage']>,
-    default: false,
-  },
-  isMyMainPage: {
-    type: Boolean as PropType<Props['isMyMainPage']>,
     default: false,
   },
 };

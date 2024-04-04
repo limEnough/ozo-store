@@ -74,7 +74,7 @@
     }
 
     &--close {
-      @include imageCss(rem(12px), rem(12px), 'common', 'icon-close.svg');
+      @include imageCss(rem(18px), rem(18px), 'common', 'icon-close--white.svg');
     }
 
     &--setting {
@@ -82,7 +82,7 @@
     }
 
     &--edit {
-      @include imageCss(rem(12px), rem(12px), 'common', 'icon-edit.svg');
+      @include imageCss(rem(12px), rem(12px), 'common', 'icon-edit--white.svg');
     }
   }
   // #endregion
