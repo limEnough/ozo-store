@@ -2,7 +2,7 @@
   <div class="default-layout">
     <!-- 헤더 -->
     <HeaderLayout
-      :is-login-header="isLoginPage"
+      :is-login-page="isLoginPage"
       :is-main-page="isMainPage"
       :is-my-main-page="isMyMainPage"
     >

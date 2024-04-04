@@ -68,7 +68,7 @@
 
   const props = defineProps(headerLayoutProps);
 
-  const { pageTitle, isLoginPage } = HeaderLayoutComposable(props);
+  const { pageTitle } = HeaderLayoutComposable(props);
 </script>
 
 <style lang="scss" scoped>
