@@ -1,7 +1,13 @@
 <template>
-  <div class="title-component">
+  <div
+    :class="{ ['align-center']: isAlignCenter }"
+    class="title-component"
+  >
     <!-- 메인 타이틀 -->
-    <h2 class="title-component__main">
+    <h2
+      v-if="hasMainTitle"
+      class="title-component__main"
+    >
       <slot name="title">
         {{ titleInfo.main }}
       </slot>
@@ -24,7 +30,7 @@
 
   const props = defineProps(titleProps);
 
-  const { titleInfo, hasSubTitle } = titleComposable(props);
+  const { titleInfo, hasMainTitle, hasSubTitle } = titleComposable(props);
 </script>
 
 <style lang="scss" scoped>

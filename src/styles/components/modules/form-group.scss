@@ -1,6 +1,6 @@
 .form-group-component {
   & + .form-group-component {
-    margin-top: rem(20px);
+    margin-top: rem(10px);
   }
   
   // #region 타이틀 영역
@@ -20,7 +20,7 @@
 
   // #region 콘텐츠 영역
   &__contents {
-    padding-top: rem(10px);
+    padding: rem(10px 0);
   }
   // #endregion
 
@@ -87,11 +87,18 @@
 
   // #region 아코디언 사용
   &__accordion {
+    .form-group-component__contents {
+      padding: rem(10px);
+      background: $white;
+      border-radius: rem( 0 0 4px 4px);
+    }
+
     :deep() {
       .accordion-component__header {
         .form-group-component__title {
-          padding: rem(8px);
+          padding: rem(10px);
           border-radius: rem(4px);
+          background-color: $white;
         }
       }
     }
@@ -100,7 +107,7 @@
       :deep() {
         .accordion-component__header {
           .form-group-component__title {
-            background-color: $bg;
+            border-radius: rem(4px 4px 0 0);
             border: none;
           }
         }

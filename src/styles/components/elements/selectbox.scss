@@ -1,13 +1,12 @@
 .select-component {
   width: 100%;
-  padding: rem(6px 15px 6px 0);
-  background: url(src('test', 'common', 'icon-arrow-open.svg')) right center/rem(6px auto) no-repeat;
+  padding: rem(6px 10px 6px 0);
+  background: url(src('test', 'common', 'icon-arrow-open.svg')) right center/rem(10px auto) no-repeat;
   border-bottom: 1px solid $grey;
   @include fontCss($deep, rem(9px), 400,  rem(9px));
 
   // #region Focus 케이스
   &:focus {
-    background-image: url(src('test', 'common', 'icon-arrow-open.svg'));
     // MEMO: error 케이스를 이기기위해 importatn 부여
     border-color: $deep !important;
     color: $deep;
@@ -31,7 +30,7 @@
   // #region Props
   // TODO: [디자인]
   $selectSize: (
-    's': rem(45px),
+    's': rem(40px),
     'm': rem(60px),
     'l': 100%,
   );

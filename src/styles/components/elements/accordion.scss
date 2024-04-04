@@ -6,7 +6,6 @@
 
         &:before {
           background-image: url(src('test', 'common', 'icon-arrow-fold.svg'));
-          transform: rotate(180deg);
         }
       }
     }
@@ -43,7 +42,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      @include imageCss(100%, 100%, 'common', 'icon-arrow-open.svg', no-repeat, center, rem(10px));
+      @include imageCss(100%, 100%, 'common', 'icon-arrow-open--white.svg', no-repeat, center rem(2px), rem(15px));
     }
 
     span {

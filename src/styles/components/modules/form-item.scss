@@ -4,20 +4,20 @@
   align-items: center;
 
   & + .form-item-component {
-    margin-top: rem(8px);
+    margin-top: rem(12px);
   }
 
   // #region 타이틀 영역
   &__title {
     display: flex;
-    flex: rem(0 0 50px);
+    flex: rem(0 0 45px);
     align-items: center;
     cursor: default;
 
     .title {
       &__text {
         word-break: break-all;
-        @include fontCss($grey, rem(9px), 600, rem(9px));
+        @include fontCss($deep, rem(8px), 600, rem(8px));
       }
     }
   }

@@ -1,10 +1,15 @@
 .login {
   padding: rem(20px 15px);
+
+  // #region 로고
+  &__logo {
+    width: rem(60px);
+    margin: rem(15px auto 45px);
+  }
+  // #endregion
   
   // #region 로그인 폼
   &__form {
-    margin-top: rem(40px);
-
     &__button {
       margin-top: rem(20px);
     }
@@ -25,36 +30,13 @@
   }
   // #endregion
 
-  // #region 로그인 정보 찾기
-  &__search {
-    margin-top: rem(10px);
+  // #region 버튼 영역
+  &__actions {
+    text-align: center;
+    margin-top: rem(30px);
 
-    &__low {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      &:not(:first-of-type) {
-        margin-top: rem(4px);
-      }
-    }
-
-    &__title {
-      @include fontCss($grey, rem(8px), 400, rem(8px));
-    }
-
-    &__cont {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      :deep() {
-        .link-component__button {
-          &:not(:first-of-type) {
-            margin-left: rem(5px)
-          }
-        }
-      }
+    button + button {
+      margin-left: rem(10px);
     }
   }
   // #endregion

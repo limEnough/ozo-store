@@ -1,5 +1,4 @@
 .button-component {
-  border-radius: rem(4px);
   font-weight: 600;
 
   // #region Disabled
@@ -20,8 +19,13 @@
       
     }
 
-    &--success {
+    &--continue {
       background: $deep;
+      color: $white;
+    }
+
+    &--success {
+      background: $point;
       color: $white;
     }
 
@@ -87,20 +91,22 @@
   &.size {
     &--s {
       padding: rem(4px);
-      border-radius: rem(3px);
+      border-radius: rem(8px);
       font-size: rem(7px);
       line-height: rem(7px);
     }
 
     &--m {
-      padding: rem(7px);
+      padding: rem(6px 8px);
+      border-radius: rem(10px);
       font-size: rem(8px);
       line-height: rem(8px);
     }
 
     &--l {
-      padding: rem(10px);
-      font-size: rem(9px);
+      padding: rem(10px 20px);
+      border-radius: rem(14px);
+      font-size: rem(8px);
       line-height: rem(9px);
     }
   }
