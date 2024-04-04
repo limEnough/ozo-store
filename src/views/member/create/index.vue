@@ -82,8 +82,8 @@
                       v-model="email.value"
                       :name="email.name"
                       :use-length-count="false"
-                      :is-error="email.isError"
-                      :error-message="email.errorMessage"
+                      :is-error="email.isError || !isPassDuplicateCheck"
+                      :error-message="email.errorMessage || (!isPassDuplicateCheck ? duplicateCheckErrorMessage : '')"
                       :maxlength="email.max"
                       :allowed-regex="email.regex"
                       :disabled="isPassDuplicateCheck"
@@ -93,9 +93,9 @@
                       <!-- 이메일 중복 체크 버튼 -->
                       <template #button>
                         <Button
-                          :disabled="isPassDuplicateCheck"
+                          :disabled="isPassDuplicateCheck || !email.value.length"
                           size="s"
-                          case="success"
+                          case="continue"
                           @click="onVerifyEmail"
                         >
                           <span>Check</span>
@@ -110,14 +110,6 @@
                     #messages
                   >
                     ✅ 이메일 중복 체크를 완료하였습니다.
-                  </template>
-
-                  <!-- 이메일 중복 체크 안내 -->
-                  <template
-                    v-else
-                    #guides
-                  >
-                    버튼을 눌러 이메일 중복 체크를 해주세요.
                   </template>
                 </FormItem>
 
@@ -307,6 +299,7 @@
 
     birthErrorMessage,
     isPassDuplicateCheck,
+    duplicateCheckErrorMessage,
 
     changedBirthMonth,
     onVerifyEmail,

@@ -58,10 +58,6 @@ export default function createComposable() {
         return messages.t('validation.emailForm');
       }
 
-      if (!isPassDuplicateCheck.value) {
-        return messages.t('validation.emailDuplicate');
-      }
-
       return true;
     },
     password(value: CreateAccountForm['password']) {
@@ -267,6 +263,7 @@ export default function createComposable() {
   });
 
   const isPassDuplicateCheck = ref(false);
+  const duplicateCheckErrorMessage = messages.t('validation.emailDuplicate');
   // #endregion
 
   // #region Terms
@@ -319,6 +316,11 @@ export default function createComposable() {
   };
 
   const onVerifyEmail = async () => {
+    if (email.isError) {
+      alert('이메일 형식을 확인해주세요.');
+      return;
+    }
+
     const inputValue = email.value;
 
     // 1. 중복체크를 한다.
@@ -337,6 +339,8 @@ export default function createComposable() {
   };
 
   const onValidSuccess = async (values: CreateAccountForm) => {
+    if (!isPassDuplicateCheck.value) return;
+
     const params = createPutParams(values);
 
     if (!params) return;
@@ -353,7 +357,7 @@ export default function createComposable() {
   };
 
   const onValidFail = () => {
-    alert('alert.validationFailed');
+    alert(messages.t('alert.validationFailed'));
   };
 
   const handleSubmit = veeHandleSubmit(onValidSuccess, onValidFail);
@@ -392,6 +396,7 @@ export default function createComposable() {
 
     birthErrorMessage,
     isPassDuplicateCheck,
+    duplicateCheckErrorMessage,
 
     changedBirthMonth,
     onVerifyEmail,
