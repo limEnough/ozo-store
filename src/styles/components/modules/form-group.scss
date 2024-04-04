@@ -90,7 +90,7 @@
     .form-group-component__contents {
       padding: rem(10px);
       background: $white;
-      border-radius: rem( 0 0 4px 4px);
+      border-radius: rem( 0 0 8px 8px);
     }
 
     :deep() {
@@ -107,7 +107,7 @@
       :deep() {
         .accordion-component__header {
           .form-group-component__title {
-            border-radius: rem(4px 4px 0 0);
+            border-radius: rem(8px 8px 0 0);
             border: none;
           }
         }
