@@ -24,7 +24,7 @@
 
         &.wish {
           &:before {
-            background-image: url(src('test', 'common', 'icon-wish--plus.svg'));
+            background-image: url(src('test', 'common', 'icon-wish--grey.svg'));
           }
         }
 
@@ -83,7 +83,7 @@
           background-repeat: no-repeat;
           background-size: rem(14px auto);
           background-position: center;
-          background-color: $bgSky;
+          background-color: grey;
           background-image: url(src('test', 'common', 'icon-order.svg'));
           border-radius: rem(8px);
         }
@@ -105,8 +105,7 @@
             background-repeat: no-repeat;
             background-size: 100% auto;
             background-position: center;
-            background-image: url(src('test', 'common', 'icon-arrow-down--basic.svg'));
-            transform: rotate(270deg)
+            background-image: url(src('test', 'common', 'icon-arrow-next.svg'));
           }
         }
 

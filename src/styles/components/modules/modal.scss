@@ -91,7 +91,7 @@
   }
 
   &__title {
-    @include fontCss($basic, rem(9px), 600, rem(14px));
+    @include fontCss($deep, rem(9px), 600, rem(14px));
     text-align: center;
     word-break: break-all;
   }

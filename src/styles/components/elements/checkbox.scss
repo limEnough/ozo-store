@@ -18,24 +18,24 @@
           width: rem(16px);
           height: rem(16px);
           border-radius: rem(2px);
-          background: $bg url(src('test', 'common', 'icon-arrow-down--white.svg')) center/ rem(8px auto) no-repeat;
+          background: $bg url(src('test', 'common', 'icon-check.svg')) center/ rem(8px auto) no-repeat;
         }
 
         // Checked
         &:checked + .checkbox-component__label:before {
-          background: $basic url(src('test', 'common', 'icon-arrow-down--white.svg')) center/ rem(8px auto) no-repeat;
+          background: $deep url(src('test', 'common', 'icon-check.svg')) center/ rem(8px auto) no-repeat;
         } 
 
         // Disabled 케이스
         &:disabled {
           // default
           & + .checkbox-component__label:before {
-            background: $greySoft url(src('test', 'common', 'icon-arrow-down--white.svg')) center/ rem(8px auto) no-repeat;
+            background: $greySoft url(src('test', 'common', 'icon-check.svg')) center/ rem(8px auto) no-repeat;
           }
 
           // checked
           &:checked + .checkbox-component__label:before {
-            background: $greySoft url(src('test', 'common', 'icon-arrow-down--grey.svg')) center/ rem(8px auto) no-repeat;
+            background: $greySoft url(src('test', 'common', 'icon-check.svg')) center/ rem(8px auto) no-repeat;
           }
         }
       }
@@ -54,19 +54,19 @@
   &__input {
     // Checked 케이스
     &:checked + .checkbox-component__label:before {
-      background: url(src('test', 'common', 'icon-arrow-down--basic.svg')) center/ rem(8px auto) no-repeat;
+      background: url(src('test', 'common', 'icon-check.svg')) center/ rem(8px auto) no-repeat;
     }
 
     // Disabled 케이스
     &:disabled {
       // default
       & + .checkbox-component__label:before {
-        background: $greySoft url(src('test', 'common', 'icon-arrow-down--white.svg')) center/ rem(5px auto) no-repeat;
+        background: $greySoft url(src('test', 'common', 'icon-check.svg')) center/ rem(5px auto) no-repeat;
       }
 
       // checked
       &:checked + .checkbox-component__label:before {
-        background: $greySoft url(src('test', 'common', 'icon-arrow-down--grey.svg')) center/ rem(5px auto) no-repeat;
+        background: $greySoft url(src('test', 'common', 'icon-check.svg')) center/ rem(5px auto) no-repeat;
       }
     }
   }
@@ -89,10 +89,9 @@
       left: rem(2px);
       width: rem(12px);
       height: rem(12px);
-      background: url(src('test', 'common', 'icon-arrow-down--bg.svg')) center/ rem(8px auto) no-repeat;
+      background: url(src('test', 'common', 'icon-check.svg')) center/ rem(8px auto) no-repeat;
       border-radius: 50%;
       box-sizing: border-box;
-      transform: translate(0, -50%);
     }
   }
   // #endregion

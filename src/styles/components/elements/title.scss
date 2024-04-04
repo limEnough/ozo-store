@@ -1,6 +1,6 @@
 .title-component {
   &__main {
-    @include fontCss($basic, rem(16px), 900, rem(16px));
+    @include fontCss($deep, rem(16px), 900, rem(16px));
   }
 
   &__sub {

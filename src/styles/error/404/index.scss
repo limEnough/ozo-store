@@ -21,7 +21,7 @@
   }
 
   &__title {
-    @include fontCss($basic, rem(14px), 900, rem(14px));
+    @include fontCss($deep, rem(14px), 900, rem(14px));
 
     &:before {
       content: '';

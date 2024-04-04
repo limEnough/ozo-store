@@ -12,7 +12,7 @@
     :deep() {
       > h3 {
         display: inline-block;
-        @include fontCss($basic, rem(10px), 800, rem(10px));
+        @include fontCss($deep, rem(10px), 800, rem(10px));
       } 
     }
   }
@@ -63,7 +63,7 @@
       .form-group-component__accordion {
         .accordion-component__header {
           .form-group-component__title {
-            background: $basic;
+            background: $deep;
           }
         }
       }

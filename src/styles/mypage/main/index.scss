@@ -1,7 +1,7 @@
 .mypage-main {
   &__top {
     padding: rem(20px 0 30px);
-    background: $basic;
+    background: $deep;
     border-radius: rem(0 0 10px 10px);
 
     // #region 유저
@@ -70,7 +70,7 @@
           &__text {
             display: block;
             margin-top: rem(4px);
-            @include fontCss($basic, rem(9px), 600, rem(9px));
+            @include fontCss($deep, rem(9px), 600, rem(9px));
             text-align: center;
           }
         }

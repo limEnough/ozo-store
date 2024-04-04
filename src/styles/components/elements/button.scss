@@ -21,7 +21,7 @@
     }
 
     &--success {
-      background: $basic;
+      background: $deep;
       color: $white;
     }
 
@@ -56,20 +56,19 @@
     }
 
     &--back {
-      @include imageCss(rem(35px), rem(35px), 'common', 'icon-arrow-down--deep.svg', no-repeat, center, rem(10px) auto);
-      transform: rotate(90deg);
+      @include imageCss(rem(35px), rem(35px), 'common', 'icon-arrow-prev.svg', no-repeat, center, rem(10px) auto);
     }
 
     &--add {
       &:before {
         content: '';
         margin-right: rem(3px);
-        @include imageCss(rem(5px), rem(5px), 'common', 'icon-plus.png');
+        @include imageCss(rem(5px), rem(5px), 'common', 'icon-plus.svg');
       }
     }
 
     &--close {
-      @include imageCss(rem(12px), rem(12px), 'common', 'icon-close--grey.png');
+      @include imageCss(rem(12px), rem(12px), 'common', 'icon-close.svg');
     }
 
     &--setting {

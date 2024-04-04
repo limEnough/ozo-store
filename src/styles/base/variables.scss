@@ -1,20 +1,21 @@
 :root {
   // Basic
   --black: #111;
-  --grey: #ADADAD;
+  // --grey: #ADADAD;
+  --grey: #9F9DAB;
   --grey-soft: #ddd;
   --white: #fff;
 
   // Primary
-  --basic: #567DF4;
-  --deep: #22215B;
-  --point: #FE0034;
+  // --basic: #567DF4;
+  // --deep: #22215B;
+  --deep: #403B58;
+  --point: #FA543B;
 
   // Border / Background
   --border: #c6c9cf;
   --dim: #37366C;
-  --bg: #eff1f9;
-  --bg-sky: #e5eeff;
+  --bg: #F5F5F5;
 
   // State
   --state-fail: var(--point);
@@ -30,7 +31,7 @@
 
 // #region Colors 
 // primary
-$basic: var(--basic);
+$deep: var(--deep);
 $point: var(--point);
 
 // font
@@ -43,7 +44,6 @@ $white: var(--white);
 // background
 $dim: var(--dim);
 $bg: var(--bg);
-$bgSky: var(--bg-sky);
 $border: var(--border);
 
 // state
@@ -52,10 +52,9 @@ $success: var(--state-success);
 
 // colors map
 $colors: (
-  black: var(--basic),
+  black: var(--deep),
   white: var(--white),
   grey: var(--grey),
-  blue: var(--basic),
   red: var(--point),
 );
 // #endregion

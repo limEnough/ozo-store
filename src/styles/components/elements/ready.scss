@@ -2,7 +2,7 @@
   padding: rem(80px 20px);
 
   &__text {
-    @include fontCss($basic, rem(12px), 900, rem(12px));
+    @include fontCss($deep, rem(12px), 900, rem(12px));
     text-align: center;
 
     &:before {

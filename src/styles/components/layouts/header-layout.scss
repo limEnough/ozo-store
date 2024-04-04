@@ -8,7 +8,7 @@
 
   // #region 헤더 커스텀
   &--mypage-main {
-    background-color: $basic;
+    background-color: $deep;
 
     .header-layout {
       &__title {
@@ -18,7 +18,7 @@
       &__back {
         :deep() {
           .icon--back {
-            background-image: url(src('test', 'common', 'icon-arrow-down--white.svg'));
+            background-image: url(src('test', 'common', 'icon-arrow-prev.svg'));
           }
         }
       } 

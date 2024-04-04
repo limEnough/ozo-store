@@ -5,7 +5,7 @@
         background-color: transparent;
 
         &:before {
-          background-image: url(src('test', 'common', 'icon-arrow-down--basic.svg'));
+          background-image: url(src('test', 'common', 'icon-arrow-fold.svg'));
           transform: rotate(180deg);
         }
       }
@@ -22,7 +22,7 @@
       .accordion-component__toggle {
         border: none;
         background-color: unset;
-        @include imageCss(100%, 100%, 'common', 'icon-arrow-down--deep.svg', no-repeat, center, rem(10px));
+        @include imageCss(100%, 100%, 'common', 'icon-arrow-open.svg', no-repeat, center, rem(10px));
       }
     }
   }
@@ -33,7 +33,7 @@
     right: rem(8px);
     width: rem(18px);
     height: rem(18px);
-    background: $basic;
+    background: $deep;
     border-radius: rem(4px);
     transform: translate(0, -50%);
     cursor: pointer;
@@ -43,8 +43,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      @include imageCss(100%, 100%, 'common', 'icon-arrow-down--white.svg', no-repeat, center, rem(10px));
-      transform: rotate(0);
+      @include imageCss(100%, 100%, 'common', 'icon-arrow-open.svg', no-repeat, center, rem(10px));
     }
 
     span {

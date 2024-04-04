@@ -16,7 +16,7 @@
       }
 
       &:checked + .radio-component__label {
-        color: $basic;
+        color: $deep;
       } 
     }
   }
@@ -34,7 +34,7 @@
 
       &:checked {
         & + .radio-component__label {
-          background: $basic;
+          background: $deep;
           color: $white;
           font-weight: 400;
         } 
@@ -59,7 +59,7 @@
   &__input {
     &:checked {
       & + .radio-component__icon {
-        background-color: $basic;
+        background-color: $deep;
       }
     }
 
@@ -70,7 +70,7 @@
 
       &:checked {
         & + .radio-component__icon:before {
-          background-color: $basic;
+          background-color: $deep;
         }
       }
     }
