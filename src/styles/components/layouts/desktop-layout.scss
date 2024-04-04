@@ -9,4 +9,12 @@
     border-right: 1px solid #eee;
     margin: 0 auto;
   }
+
+  :deep() {
+    .default-layout__dockbar {
+      left: 50%;
+      width: 375px;
+      transform: translate(-50%, 0);
+    }
+  }
 }

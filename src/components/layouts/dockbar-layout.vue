@@ -9,7 +9,7 @@
         icon-only
         @click="handleDrawerOpen()"
       >
-        <span>카테고리</span>
+        <span class="dockbar-layout__menu__text">Menu</span>
       </Button>
 
       <!-- <Drawer ref="refDrawerModal"> </Drawer> -->
@@ -22,7 +22,7 @@
         class="dockbar-layout__menu home"
         icon-only
       >
-        <span>홈</span>
+        <span class="dockbar-layout__menu__text">Home</span>
       </Link>
 
       <Link
@@ -33,7 +33,7 @@
         class="dockbar-layout__menu wish"
         icon-only
       >
-        <span>찜</span>
+        <span class="dockbar-layout__menu__text">Wish</span>
       </Link>
 
       <Link
@@ -44,7 +44,7 @@
         class="dockbar-layout__menu mypage"
         icon-only
       >
-        <span>마이페이지</span>
+        <span class="dockbar-layout__menu__text">Mypage</span>
       </Link>
     </div>
   </nav>
