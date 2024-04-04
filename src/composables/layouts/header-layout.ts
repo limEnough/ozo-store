@@ -6,13 +6,13 @@ interface Props {
   usingTitle: boolean;
   isLoginPage: boolean;
   isMainPage: boolean;
-  isMyMainPage: boolean;
 }
 
 const props = {
+  // MEMO: 테마 변경하면서 타이틀은 노출 안함이 default
   usingTitle: {
     type: Boolean as PropType<Props['usingTitle']>,
-    default: true,
+    default: false,
   },
   isLoginPage: {
     type: Boolean as PropType<Props['isLoginPage']>,
@@ -20,10 +20,6 @@ const props = {
   },
   isMainPage: {
     type: Boolean as PropType<Props['isMainPage']>,
-    default: false,
-  },
-  isMyMainPage: {
-    type: Boolean as PropType<Props['isMyMainPage']>,
     default: false,
   },
 };

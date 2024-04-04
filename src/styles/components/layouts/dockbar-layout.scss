@@ -1,5 +1,5 @@
 :deep() {
-  .dockbar-layout {    
+  .dockbar-layout {
     &__inner {
       display: flex;
       align-items: center;
@@ -7,66 +7,95 @@
     }
   
     &__menu {
-      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex: 1 1 auto;
-      height: (60px);
-  
-      &:before {
-        content: '';
-        display: block;
-        width: (30px);
-        height: (30px);
-        margin: 0 auto;
-        background-size: 100% auto;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-  
+      border-radius: 0;
+      height: rem(38px);
+
+      // #region 아이콘 커스텀
       &.category {
-        &:before {
+        .dockbar-layout__menu__text:before {
           background-image: url('/src/assets/images/common/icon-category.svg');
         }
 
         &.active {
-          &:before {
-            background-image: url('/src/assets/images/common/icon-category--active.svg');
+        .dockbar-layout__menu__text:before {
+            background-image: url('/src/assets/images/common/icon-category--white.svg');
           }
         }
       }
   
       &.home {
-        &:before {
+        .dockbar-layout__menu__text:before {
           background-image: url('/src/assets/images/common/icon-home.svg');
         }
 
         &.active {
-          &:before {
-            background-image: url('/src/assets/images/common/icon-home--active.svg');
+        .dockbar-layout__menu__text:before {
+            background-image: url('/src/assets/images/common/icon-home--white.svg');
           }
         }
       }
   
       &.wish {
-        &:before {
-          background-image: url('/src/assets/images/common/icon-wish.svg');
+        .dockbar-layout__menu__text:before {
+          // svg 아이콘 자체의 여백으로 인해
+          background-position: center rem(1px);
+          background-image: url('/src/assets/images/common/icon-wish--grey.svg');
         }
 
         &.active {
-          &:before {
-            background-image: url('/src/assets/images/common/icon-wish--active.svg');
+        .dockbar-layout__menu__text:before {
+            background-image: url('/src/assets/images/common/icon-wish--white.svg');
           }
         }
       }
   
       &.mypage {
-        &:before {
+        .dockbar-layout__menu__text:before {
           background-image: url('/src/assets/images/common/icon-mypage.svg');
         }
 
         &.active {
-          &:before {
-            background-image: url('/src/assets/images/common/icon-mypage--active.svg');
+        .dockbar-layout__menu__text:before {
+            background-image: url('/src/assets/images/common/icon-mypage--white.svg');
           }
+        }
+      }
+      // #endregion
+
+      // #region 활성화 케이스
+      &.active {
+        .dockbar-layout__menu__text {
+          font-size: rem(9px);
+          background-color: $point;
+
+          &:before {
+            margin-right: rem(3px);
+          }
+        }
+      }
+      // #endregion
+
+      &__text {
+        display: flex;
+        align-items: center;
+        padding: rem(4px 8px);
+        border-radius: rem(14px);
+        @include fontCss($white, 0, 600, rem(9px));
+
+        &:before {
+          content: '';
+          display: block;
+          margin-right: 0;
+          width: rem(18px);
+          height: rem(18px);
+          background-size: 100% auto;
+          background-position: center;
+          background-repeat: no-repeat;
+          border-radius: 50%;
         }
       }
     }

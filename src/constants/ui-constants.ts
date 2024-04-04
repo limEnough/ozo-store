@@ -3,7 +3,6 @@ const COLORS = {
   BLACK: 'black',
   WHITE: 'white',
   GREY: 'grey',
-  BLUE: 'blue',
   RED: 'red',
 };
 

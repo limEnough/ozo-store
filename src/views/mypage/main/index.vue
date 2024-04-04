@@ -31,11 +31,7 @@
           </div>
         </div>
 
-        <!-- TODO: 할까 말까 퀵 메뉴  -->
-        <ul
-          v-if="false"
-          class="mypage-main__top__quick"
-        >
+        <ul class="mypage-main__top__quick">
           <li class="quick__menu">
             <router-link
               :to="{

@@ -1,13 +1,11 @@
 <template>
-  <div
-    :class="{ 'header-layout--mypage-main': isMyMainPage }"
-    class="header-layout"
-  >
+  <div class="header-layout">
     <!-- 왼쪽 영역 -->
     <div class="header-layout__left">
       <!-- 메인 페이지 -->
       <template v-if="isMainPage">
         <figure class="header-layout__logo">
+          <!-- TODO: 로고 어떻게 할건지? -->
           <img
             class="header-layout__logo__image"
             src="@/assets/images/common/image-logo.png"
@@ -68,7 +66,7 @@
 
   const props = defineProps(headerLayoutProps);
 
-  const { pageTitle, isLoginPage } = HeaderLayoutComposable(props);
+  const { pageTitle } = HeaderLayoutComposable(props);
 </script>
 
 <style lang="scss" scoped>

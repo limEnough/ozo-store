@@ -4,8 +4,13 @@
     :is-show-dockbar="false"
   >
     <div class="login">
-      <!-- 타이틀 영역 -->
-      <Title :data="pageTitle"></Title>
+      <!-- 로고 -->
+      <figure class="login__logo">
+        <img
+          src="@/assets/images/common/image-logo.png"
+          alt="OZO-store logo"
+        />
+      </figure>
 
       <!-- 로그인 폼 -->
       <form class="login__form">
@@ -46,52 +51,37 @@
           </Checkbox>
         </div>
 
-        <!-- 로그인 버튼 -->
-        <Button
-          width="full"
-          type="submit"
-          size="l"
-          case="success"
-          class="login__form__button"
-          @click.prevent="handleSubmit"
-        >
-          <span>LOGIN</span>
-        </Button>
-      </form>
+        <!-- 버튼 영역 -->
+        <div class="login__actions">
+          <!-- 계정 찾기 -->
+          <Link
+            :to="{
+              name: MEMBER_PAGE_NAMES['member-search'],
+              params: { type: 'email' },
+            }"
+            size="l"
+            case="normal"
+          >
+            <span>Forgot account</span>
+          </Link>
 
-      <!-- 로그인 옵션 -->
-      <div class="login__search">
-        <dl class="login__search__low">
-          <dt class="login__search__title">Forgot account?</dt>
-          <dd class="login__search__cont">
-            <Link
-              :to="{
-                name: MEMBER_PAGE_NAMES['member-search'],
-                params: { type: 'email' },
-              }"
-              case="text"
-            >
-              <span>Email</span>
-            </Link>
-            <Link
-              :to="{
-                name: MEMBER_PAGE_NAMES['member-search'],
-                params: { type: 'password' },
-              }"
-              case="text"
-            >
-              <span>Password</span>
-            </Link>
-          </dd>
-        </dl>
-      </div>
+          <!-- 로그인 -->
+          <Button
+            type="submit"
+            size="l"
+            case="success"
+            @click.prevent="handleSubmit"
+          >
+            <span>LOGIN</span>
+          </Button>
+        </div>
+      </form>
     </div>
   </component>
 </template>
 
 <script setup lang="ts">
   import loginComposable from '@/composables/views/member/login';
-  import Title from '@/components/elements/title.vue';
   import Button from '@/components/elements/button.vue';
   import Input from '@/components/elements/input.vue';
   import Checkbox from '@/components/elements/checkbox.vue';
@@ -99,7 +89,7 @@
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
-  const { pageTitle, loginOptions, email, password, useSaveEmail, handleSubmit } = loginComposable();
+  const { loginOptions, email, password, useSaveEmail, handleSubmit } = loginComposable();
 </script>
 
 <style lang="scss" scoped>

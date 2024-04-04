@@ -2,30 +2,32 @@ import { computed } from 'vue';
 import type { PropType } from 'vue';
 
 interface TitleData {
-  main: string;
-  sub: string;
+  main?: string;
+  sub?: string;
 }
 
 interface Props {
   data: TitleData;
+  isAlignCenter: boolean;
 }
 
 const props = {
   data: {
     type: Object as PropType<Props['data']>,
-    default: () => ({
-      main: '',
-      sub: '',
-    }),
     required: true as const,
+  },
+  isAlignCenter: {
+    type: Boolean as PropType<Props['isAlignCenter']>,
+    default: false,
   },
 };
 
 export default function titleComposable(props: Props) {
   const titleInfo = computed(() => props.data);
-  const hasSubTitle = computed(() => props.data.sub.length);
+  const hasMainTitle = computed(() => props.data.main?.length);
+  const hasSubTitle = computed(() => props.data.sub?.length);
 
-  return { titleInfo, hasSubTitle };
+  return { titleInfo, hasMainTitle, hasSubTitle };
 }
 
 export { props as titleProps };

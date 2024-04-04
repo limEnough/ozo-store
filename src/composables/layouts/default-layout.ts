@@ -28,9 +28,8 @@ export default function defaultLayoutComposable(props: Props) {
 
   const isLoginPage = computed(() => route.meta.pageCode === PAGE_CODE_DEPTH2['LOGIN']);
   const isMainPage = computed(() => route.meta.pageCode === PAGE_CODE_MAIN['MAIN']);
-  const isMyMainPage = computed(() => route.meta.pageCode === PAGE_CODE_DEPTH2['MYPAGE_MAIN']);
 
-  return { isLoginPage, isMainPage, isMyMainPage };
+  return { isLoginPage, isMainPage };
 }
 
 export { props as defaultLayoutProps };

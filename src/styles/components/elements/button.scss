@@ -1,5 +1,4 @@
 .button-component {
-  border-radius: rem(4px);
   font-weight: 600;
 
   // #region Disabled
@@ -12,7 +11,7 @@
   // #region Type
   &.case {
     &--normal {
-      background: $bg;
+      background: $white;
       color: $deep;
     }
 
@@ -20,8 +19,13 @@
       
     }
 
+    &--continue {
+      background: $deep;
+      color: $white;
+    }
+
     &--success {
-      background: $basic;
+      background: $point;
       color: $white;
     }
 
@@ -56,20 +60,21 @@
     }
 
     &--back {
-      @include imageCss(rem(35px), rem(35px), 'common', 'icon-arrow-down--deep.svg', no-repeat, center, rem(10px) auto);
-      transform: rotate(90deg);
+      border-radius: rem(5px);
+      background-color: $white;
+      @include imageCss(rem(22px), rem(22px), 'common', 'icon-arrow-prev.svg', no-repeat, center, rem(10px) auto);
     }
 
     &--add {
       &:before {
         content: '';
         margin-right: rem(3px);
-        @include imageCss(rem(5px), rem(5px), 'common', 'icon-plus.png');
+        @include imageCss(rem(5px), rem(5px), 'common', 'icon-plus.svg');
       }
     }
 
     &--close {
-      @include imageCss(rem(12px), rem(12px), 'common', 'icon-close--grey.png');
+      @include imageCss(rem(18px), rem(18px), 'common', 'icon-close--white.svg');
     }
 
     &--setting {
@@ -77,7 +82,7 @@
     }
 
     &--edit {
-      @include imageCss(rem(12px), rem(12px), 'common', 'icon-edit.svg');
+      @include imageCss(rem(12px), rem(12px), 'common', 'icon-edit--white.svg');
     }
   }
   // #endregion
@@ -86,20 +91,22 @@
   &.size {
     &--s {
       padding: rem(4px);
-      border-radius: rem(3px);
+      border-radius: rem(8px);
       font-size: rem(7px);
       line-height: rem(7px);
     }
 
     &--m {
-      padding: rem(7px);
+      padding: rem(6px 8px);
+      border-radius: rem(10px);
       font-size: rem(8px);
       line-height: rem(8px);
     }
 
     &--l {
-      padding: rem(10px);
-      font-size: rem(9px);
+      padding: rem(10px 20px);
+      border-radius: rem(14px);
+      font-size: rem(8px);
       line-height: rem(9px);
     }
   }

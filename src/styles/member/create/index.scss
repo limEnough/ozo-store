@@ -1,5 +1,5 @@
 .create {
-  padding: rem(20px 15px);
+  padding: rem(15px);
   
   &__user-info {
     &__profile {
@@ -14,7 +14,7 @@
         display: inline-block;
         width: rem(60px);
         height: rem(60px);
-        background-color: $bg;
+        background-color: $white;
         border-radius: 50%;
 
         &__image {

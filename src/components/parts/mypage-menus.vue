@@ -27,7 +27,7 @@
           case="text"
           @click.prevent="logout"
         >
-          로그아웃
+          Log out
         </Button>
       </li>
     </ul>

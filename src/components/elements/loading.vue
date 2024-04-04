@@ -14,7 +14,7 @@
           cx="50"
           cy="50"
           fill="none"
-          stroke="#0d68f9"
+          stroke="#403B58"
           stroke-width="6"
           r="20"
           stroke-dasharray="94.24777960769379 33.41592653589793"

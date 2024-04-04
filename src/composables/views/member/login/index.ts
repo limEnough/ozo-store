@@ -23,13 +23,6 @@ export default function loginComposable() {
   const messages = useI18n();
   const layoutStore = useLayoutStore();
 
-  // #region Data
-  const pageTitle = reactive({
-    main: 'Welcome back!',
-    sub: 'Sign to continue',
-  });
-  // #endregion
-
   // #region Options
   const loginOptions = reactive<APICode<boolean>[]>([
     {
@@ -157,7 +150,6 @@ export default function loginComposable() {
   });
 
   return {
-    pageTitle,
     loginOptions,
     email,
     password,

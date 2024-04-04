@@ -1,7 +1,7 @@
 import { type PropType, computed, toRefs } from 'vue';
 
 type Icon = 'visible' | 'back' | 'clear' | 'search' | 'close' | 'edit' | 'setting' | 'add';
-type Case = 'normal' | 'process' | 'success' | 'delete' | 'text';
+type Case = 'normal' | 'process' | 'continue' | 'success' | 'delete' | 'text';
 
 interface Props {
   tag: 'button' | 'a' | 'router-link';
@@ -71,6 +71,7 @@ export default function buttonComposable(props: Props) {
       {
         normal: 'case--normal',
         process: 'case--process',
+        continue: 'case--continue',
         success: 'case--success',
         delete: 'case--delete',
         text: 'case--text',
