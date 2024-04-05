@@ -10,30 +10,24 @@ const getErrorRoutes = (): RouteRecordRaw[] => {
       path: '/:pathMatch(.*)*',
       name: ERROR_PAGE_NAMES['error'],
       redirect: '/error/404',
+    },
+    {
+      path: '/error/404',
+      name: ERROR_PAGE_NAMES['error-404'],
+      component: Error404,
       meta: {
-        pageTitle: '에러 페이지',
-        pageCode: PAGE_CODE_ERROR['ERROR'],
+        pageTitle: '404 error',
+        pageCode: PAGE_CODE_ERROR['ERROR_404'],
       },
-      children: [
-        {
-          path: '/error/404',
-          name: ERROR_PAGE_NAMES['error-404'],
-          component: Error404,
-          meta: {
-            pageTitle: '404 error',
-            pageCode: PAGE_CODE_ERROR['ERROR_404'],
-          },
-        },
-        {
-          path: '/error/500',
-          name: ERROR_PAGE_NAMES['error-500'],
-          component: Error500,
-          meta: {
-            pageTitle: '500 error',
-            pageCode: PAGE_CODE_ERROR['ERROR_500'],
-          },
-        },
-      ],
+    },
+    {
+      path: '/error/500',
+      name: ERROR_PAGE_NAMES['error-500'],
+      component: Error500,
+      meta: {
+        pageTitle: '500 error',
+        pageCode: PAGE_CODE_ERROR['ERROR_500'],
+      },
     },
   ];
 };
