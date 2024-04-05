@@ -2,6 +2,7 @@
   overflow: hidden;
   display: flex;
   justify-content: space-between;
+  position: relative;
   align-items: center;
   min-height: rem(40px);
   padding: rem(0 15px);
@@ -17,6 +18,11 @@
   }
 
   &__title {
+    // 정중앙에 위치하도록 하기 위해 position 설정
+    position: absolute;
+    top: 50%;
+    left: 50%;
     @include fontCss($deep, rem(10px), 800, rem(10px));
+    transform: translate(-50%, -50%);
   }
 }

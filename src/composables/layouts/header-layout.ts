@@ -1,19 +1,13 @@
-import { onMounted, type PropType } from 'vue';
+import { computed, onMounted, type PropType } from 'vue';
 import usePageTitle from '@/composables/use/use-page-title';
 import useLogout from '@/composables/use/use-logout';
 
 interface Props {
-  usingTitle: boolean;
   isLoginPage: boolean;
   isMainPage: boolean;
 }
 
 const props = {
-  // MEMO: 테마 변경하면서 타이틀은 노출 안함이 default
-  usingTitle: {
-    type: Boolean as PropType<Props['usingTitle']>,
-    default: false,
-  },
   isLoginPage: {
     type: Boolean as PropType<Props['isLoginPage']>,
     default: false,
@@ -27,6 +21,10 @@ const props = {
 export default function HeaderLayoutComposable(props: Props) {
   const { pageTitle } = usePageTitle();
   const { logout } = useLogout();
+
+  const isShowTitlePage = computed(() => {
+    return !props.isLoginPage && !props.isMainPage;
+  });
 
   const fetchClient = () => {
     if (!localStorage.getItem('expirationTime')) return;
@@ -50,7 +48,7 @@ export default function HeaderLayoutComposable(props: Props) {
     fetchClient();
   });
 
-  return { pageTitle };
+  return { pageTitle, isShowTitlePage };
 }
 
 export { props as headerLayoutProps };

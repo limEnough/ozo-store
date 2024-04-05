@@ -25,16 +25,16 @@
         >
           <span>뒤로가기</span>
         </Button>
-
-        <!-- 타이틀 -->
-        <h1
-          v-if="usingTitle"
-          class="header-layout__title"
-        >
-          {{ pageTitle }}
-        </h1>
       </template>
     </div>
+
+    <!-- 정중앙 타이틀 -->
+    <h1
+      v-if="isShowTitlePage"
+      class="header-layout__title"
+    >
+      {{ pageTitle }}
+    </h1>
 
     <!-- 오른쪽 영역 -->
     <div class="header-layout__right">
@@ -66,7 +66,7 @@
 
   const props = defineProps(headerLayoutProps);
 
-  const { pageTitle } = HeaderLayoutComposable(props);
+  const { pageTitle, isShowTitlePage } = HeaderLayoutComposable(props);
 </script>
 
 <style lang="scss" scoped>
