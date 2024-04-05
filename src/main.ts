@@ -4,6 +4,7 @@ import { createRouter, addOnRouter } from './router/index';
 import createCustomI18n from '@/plugins/i18n';
 import vueCookies from 'vue-cookies';
 import { createPersistedState } from 'pinia-plugin-persistedstate';
+import VueLazyLoad from 'vue-lazyload';
 
 import App from './App.vue';
 import type { VueContext } from './types/common.types';
@@ -32,6 +33,11 @@ const createProject = async () => {
   app.use(router);
   app.use(i18n);
   app.use(vueCookies);
+  app.use(VueLazyLoad, {
+    loading: '/assets/images/common/icon-loading.svg',
+    error: '/assets/images/common/icon-image.svg',
+    listenEvents: ['scroll', 'click', 'transitionend', 'wheel', 'mousewheel', 'touchmove'], //FIXME: LazyLoadElement
+  });
 
   app.mount('#app');
 };
