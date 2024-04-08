@@ -20,17 +20,9 @@ export interface CustomEmit<T> {
 // #endregion
 
 // #region Form
-export interface CheckboxGroupOption<T = string | boolean> extends APICode<T> {
-  disabled?: boolean;
-  required?: boolean;
-  link?: string;
-}
-
 export type InputModel<T = string> = T;
-export type RadioModel<T = string> = boolean | string | number | APICode<T> | null;
-export type CheckboxModel<T = boolean> = T;
-export type CheckboxGroupModel<T = string | boolean> = CheckboxGroupOption<T>[];
-
+export type RadioModel<T = string> = T extends boolean ? boolean : APICode<T> | null;
+export type CheckboxModel<T = boolean> = T extends boolean ? boolean : T[];
 // #endregion
 
 // #region vee-validate 커스텀

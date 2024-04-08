@@ -1,4 +1,4 @@
-.checkbox-group-component {
+.checkbox-component {
   position: relative;
 
   // #region 체크박스 하나
@@ -9,11 +9,18 @@
       margin-top: rem(2px);
     }
     
+     // 전체선택
+     &.item-all {
+      .checkbox-component__label {
+        font-weight: 600;
+      }
+    }
+
     // Box-type (전체선택과 동일)
     &.box-type {
-      .checkbox-group-component__input {
+      .checkbox-component__input {
         // Default 케이스
-        & + .checkbox-group-component__label:before {
+        & + .checkbox-component__label:before {
           left: 0;
           width: rem(16px);
           height: rem(16px);
@@ -22,29 +29,22 @@
         }
 
         // Checked
-        &:checked + .checkbox-group-component__label:before {
+        &:checked + .checkbox-component__label:before {
           background: $deep url(src('test', 'common', 'icon-check--white.svg')) center/ rem(14px auto) no-repeat;
         } 
 
         // Disabled 케이스
         &:disabled {
           // default
-          & + .checkbox-group-component__label:before {
+          & + .checkbox-component__label:before {
             background: $greySoft url(src('test', 'common', 'icon-check--white.svg')) center/ rem(14px auto) no-repeat;
           }
 
           // checked
-          &:checked + .checkbox-group-component__label:before {
+          &:checked + .checkbox-component__label:before {
             background: $greySoft url(src('test', 'common', 'icon-check--grey.svg')) center/ rem(14px auto) no-repeat;
           }
         }
-      }
-    }
-
-    // 전체선택
-    &--all {
-      .checkbox-group-component__label {
-        font-weight: 600;
       }
     }
   }
@@ -53,19 +53,19 @@
   // #region Input
   &__input {
     // Checked 케이스
-    &:checked + .checkbox-group-component__label:before {
+    &:checked + .checkbox-component__label:before {
       background: url(src('test', 'common', 'icon-check.svg')) center/ 100% auto no-repeat;
     }
 
     // Disabled 케이스
     &:disabled {
       // default
-      & + .checkbox-group-component__label:before {
+      & + .checkbox-component__label:before {
         background: $greySoft url(src('test', 'common', 'icon-check--white.svg')) center/ rem(8px auto) no-repeat;
       }
 
       // checked
-      &:checked + .checkbox-group-component__label:before {
+      &:checked + .checkbox-component__label:before {
         background: $greySoft url(src('test', 'common', 'icon-check--grey.svg')) center/ rem(8px auto) no-repeat;
       }
     }
@@ -93,18 +93,6 @@
       border-radius: 50%;
       box-sizing: border-box;
       transform: translate(0, -50%);
-    }
-  }
-  // #endregion
-
-  // #region Message (에러 메시지)
-  &__message {
-    margin-top: rem(10px);
-
-    .message {
-      &__text {
-        @include fontCss($point, rem(8px), 400, rem(10px));
-      }
     }
   }
   // #endregion

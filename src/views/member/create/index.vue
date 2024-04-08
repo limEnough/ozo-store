@@ -277,7 +277,7 @@
   import InputPhone from '@/components/elements/input-phone.vue';
   import Radio from '@/components/elements/radio.vue';
   import Selectbox from '@/components/elements/selectbox.vue';
-  import CheckboxGroup from '@/components/elements/checkbox-group.vue';
+  import CheckboxGroup from '@/components/modules/checkbox-group.vue';
   import TermsModal from '@/components/modules/modals/terms-modal.vue';
   import type { MemberTermsCode } from '@/constants/member-constants';
 

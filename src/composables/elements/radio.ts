@@ -25,7 +25,7 @@ const emits: Emits[] = ['update:modelValue'];
 const props = {
   /** 입력 값 */
   modelValue: {
-    type: [Boolean, String, Number, Object, null] as PropType<Props['modelValue']>,
+    type: [Boolean, String, Object, null] as PropType<Props['modelValue']>,
     required: true as const,
   },
   /** 타입 */

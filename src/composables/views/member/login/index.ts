@@ -6,8 +6,7 @@ import createCustomField, { createValidationSchema } from '@/composables/use/use
 import { isEmpty } from '@/utils/validator';
 import formConfig from '@/configs/form.config';
 import { ALLOWED_REGEXS } from '@/constants/regex.constants';
-import type { CheckboxGroupModel } from '@/types/common.types';
-import type { APICode } from '@/types/api.types';
+import type { CheckboxModel } from '@/types/common.types';
 import { useRouter } from 'vue-router';
 import { MYPAGE_PAGE_NAMES } from '@/constants/path-constants';
 import { SAVE_EMAIL_COOKIE } from '@/constants/member-constants';
@@ -15,22 +14,13 @@ import type { VueCookies } from 'vue-cookies';
 import { useLayoutStore } from '@/stores/layout';
 
 interface LoginForm extends MemberLoginForm {
-  useSaveEmail: CheckboxGroupModel<boolean>;
+  useSaveEmail: CheckboxModel<boolean>;
 }
 
 export default function loginComposable() {
   const router = useRouter();
   const messages = useI18n();
   const layoutStore = useLayoutStore();
-
-  // #region Options
-  const loginOptions = reactive<APICode<boolean>[]>([
-    {
-      code: true,
-      codeName: 'Save Email',
-    },
-  ]);
-  // #endregion
 
   // #region Form
   const { handleSubmit: veeHandleSubmit, resetForm: veeResetForm } = useForm<LoginForm>();
@@ -82,7 +72,7 @@ export default function loginComposable() {
 
   const useSaveEmail = reactive(
     createCustomField<LoginForm['useSaveEmail']>('useSaveEmail', undefined, {
-      initialValue: [],
+      initialValue: true,
     }),
   );
   // #endregion
@@ -104,7 +94,7 @@ export default function loginComposable() {
     layoutStore.saveAuth({ authToken: result.authToken, expirationTime: result.expirationTime });
 
     // '이메일 저정하기' 쿠키 설정
-    if (values.useSaveEmail[0]) {
+    if (values.useSaveEmail) {
       $cookies.set(SAVE_EMAIL_COOKIE['KEY'], result.email, SAVE_EMAIL_COOKIE['MAXAGE']);
     } else {
       $cookies.remove(SAVE_EMAIL_COOKIE['KEY']);
@@ -143,14 +133,13 @@ export default function loginComposable() {
         values: {
           email: getSavedEmail,
           password: '',
-          useSaveEmail: loginOptions,
+          useSaveEmail: true,
         },
       });
     }
   });
 
   return {
-    loginOptions,
     email,
     password,
     useSaveEmail,

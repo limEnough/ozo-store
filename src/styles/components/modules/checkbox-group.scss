@@ -1,0 +1,13 @@
+.checkbox-group-component {
+  // #region Message (에러 메시지)
+  &__message {
+    margin-top: rem(10px);
+
+    .message {
+      &__text {
+        @include fontCss($point, rem(8px), 400, rem(10px));
+      }
+    }
+  }
+  // #endregion
+}

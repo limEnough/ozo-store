@@ -8,7 +8,7 @@ import { ALLOWED_REGEXS } from '@/constants/regex.constants';
 import type { APICode } from '@/types/api.types';
 import { getYearList, getMonthList, getDateList } from '@/utils/date';
 import { type selectboxRow, makePlaceholder } from '@/composables/elements/selectbox';
-import type { CheckboxGroupModel } from '@/types/common.types';
+import type { CheckboxModel } from '@/types/common.types';
 import type { MemberGenderCode, MemberTermsCode } from '@/constants/member-constants';
 import { termsData, type TermsData } from '@/composables/modules/modals/terms-modal';
 import { isEqual } from 'lodash-es';
@@ -16,9 +16,10 @@ import MemberCreateService from '@/services/member/create';
 import type { MemberCreateAccount } from '@/services/member/create';
 import { useRouter } from 'vue-router';
 import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
+import type { CheckboxGroupOption } from '@/composables/modules/checkbox-group';
 
 interface CreateAccountForm {
-  termsAgreement: CheckboxGroupModel<MemberTermsCode>;
+  termsAgreement: CheckboxModel<CheckboxGroupOption<MemberTermsCode>>;
   email: string;
   password: string;
   passwordConfirm: string;
