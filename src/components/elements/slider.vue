@@ -24,7 +24,7 @@
     <slot name="slides">
       <template
         v-for="(item, index) in slides"
-        :key="`slider${index}`"
+        :key="`slider-${index}`"
       >
         <!-- 슬라이드 -->
         <swiper-slide class="slider-component__item swiper-slide">

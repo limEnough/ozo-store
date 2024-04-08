@@ -36,7 +36,7 @@ const createProject = async () => {
   app.use(VueLazyLoad, {
     loading: '/assets/images/common/icon-loading.svg',
     error: '/assets/images/common/icon-image.svg',
-    listenEvents: ['scroll', 'click', 'transitionend', 'wheel', 'mousewheel', 'touchmove'], //FIXME: LazyLoadElement
+    listenEvents: ['scroll', 'click', 'transitionend', 'wheel', 'mousewheel', 'touchmove'], //TODO: LazyLoadElement
   });
 
   app.mount('#app');

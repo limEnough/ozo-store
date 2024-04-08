@@ -1,3 +1,81 @@
 .goods-component {
-  
+  // #region 상품 썸네일
+  &__thumb {
+    img {
+
+    }
+  }
+  // #endregion
+
+  // #region 상품 정보
+  &__info {
+    &__link {
+    
+    }
+
+    &__brand {
+
+    }
+
+    &__name {
+
+    }
+
+    &__price {
+      .price {
+        &--sold-out {
+
+        }
+
+        &--origin {
+
+        }
+
+        &--rate {
+
+        }
+
+        &--current {
+
+        }
+
+        &__box {
+
+        }
+      }
+    }
+
+    &__option {
+      &:not(:first-of-type) {
+        margin-left: rem(4px);
+      }
+
+      .option {
+        &__name {
+
+        }
+        &__value {
+
+        }
+      }
+    }
+
+    // [order] 결제금액 | 수량 : 일반 텍스트로 노출
+    &__etc {
+      .etc {
+        &__text {
+
+        }
+      }
+    }
+  }
+  // #endregion
+
+  // #region 관심상품 버튼
+  &__wish {
+    &__button {
+      
+    }
+  }
+  // #endregion
 }

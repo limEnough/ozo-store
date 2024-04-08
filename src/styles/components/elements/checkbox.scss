@@ -9,8 +9,13 @@
       margin-top: rem(2px);
     }
     
-     // 전체선택
-     &.item-all {
+    // Icon 
+    &.icon-only {
+      // TODO: [디자인]
+    }
+
+    // 전체선택
+    &.item-all {
       .checkbox-component__label {
         font-weight: 600;
       }

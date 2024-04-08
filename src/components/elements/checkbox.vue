@@ -1,8 +1,9 @@
 <template>
   <div class="checkbox-component">
     <label
-      class="checkbox-component__item"
       v-bind="styleAttrs"
+      :class="{ ['icon-only']: iconOnly }"
+      class="checkbox-component__item"
     >
       <input
         v-model="model"

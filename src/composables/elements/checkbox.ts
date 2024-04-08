@@ -9,6 +9,7 @@ interface Props {
   value: boolean | object;
   disabled: boolean;
   type: 'basic' | 'box';
+  iconOnly: boolean;
 }
 
 const emits: Emits[] = ['update:modelValue'];
@@ -33,6 +34,10 @@ const props = {
   type: {
     type: String as PropType<Props['type']>,
     default: 'basic',
+  },
+  iconOnly: {
+    type: Boolean as PropType<Props['disabled']>,
+    default: false,
   },
 };
 
