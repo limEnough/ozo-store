@@ -42,13 +42,13 @@
 
         <!-- 로그인 옵션 -->
         <div class="login__option">
-          <Checkbox
+          <CheckboxGroup
             v-model="useSaveEmail.value"
             :name="useSaveEmail.name"
             :options="loginOptions"
             label-key="codeName"
           >
-          </Checkbox>
+          </CheckboxGroup>
         </div>
 
         <!-- 버튼 영역 -->
@@ -84,7 +84,7 @@
   import loginComposable from '@/composables/views/member/login';
   import Button from '@/components/elements/button.vue';
   import Input from '@/components/elements/input.vue';
-  import Checkbox from '@/components/elements/checkbox.vue';
+  import CheckboxGroup from '@/components/elements/checkbox-group.vue';
   import Link from '@/components/elements/link.vue';
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';

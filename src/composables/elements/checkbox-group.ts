@@ -1,19 +1,17 @@
 import { type PropType, toRefs, computed, useAttrs, useSlots } from 'vue';
-import { type CheckboxModel, type CheckboxOption, type CustomEmit } from '@/types/common.types';
+import { type CheckboxGroupModel, type CheckboxGroupOption, type CustomEmit } from '@/types/common.types';
 import { v4 as uuidV4 } from 'uuid';
-import { isObject } from 'lodash-es';
 
 type Emits = 'update:modelValue';
 
 interface Props {
-  modelValue: CheckboxModel;
+  modelValue: CheckboxGroupModel;
   name: string;
-  value: CheckboxModel | null;
+  value: CheckboxGroupModel | null;
   useFrontLabelText: boolean;
-  options: CheckboxModel;
+  options: CheckboxGroupModel;
   disabled: boolean;
   labelKey: string;
-  valueKey: string;
   useAllOption: boolean;
   type: 'basic' | 'box';
   isError: boolean;
@@ -32,7 +30,7 @@ const props = {
     required: true as const,
   },
   value: {
-    type: [Boolean, Object, String, Number, null] as PropType<Props['value']>,
+    type: Object as PropType<Props['value']>,
     default: null,
   },
   /** 라벨 앞에 붙는 텍스트 사용 여부 */
@@ -54,11 +52,6 @@ const props = {
   labelKey: {
     type: String as PropType<Props['labelKey']>,
     default: 'codeName',
-  },
-  /** value로 사용할 key 값 */
-  valueKey: {
-    type: String as PropType<Props['valueKey']>,
-    default: 'code',
   },
   /** 전체 선택 사용 여부  */
   useAllOption: {
@@ -84,7 +77,7 @@ const props = {
   // #endregion
 };
 
-export default function checkboxComposable(emit: CustomEmit<Emits>, props: Props) {
+export default function checkboxGroupComposable(emit: CustomEmit<Emits>, props: Props) {
   const { labelKey, options } = toRefs(props);
   const slots = useSlots();
 
@@ -114,27 +107,23 @@ export default function checkboxComposable(emit: CustomEmit<Emits>, props: Props
     },
   });
 
-  // radio 텍스트에 매핑할 값 반환
-  const getLabel = (option: CheckboxOption) => {
-    if (isObject(option)) {
-      return option[labelKey.value] ?? option;
-    }
-
-    return option;
+  // checkbox 텍스트에 매핑할 값 반환
+  const getLabel = (option: CheckboxGroupOption) => {
+    return option[labelKey.value];
   };
 
-  // radio value에 매핑할 값 반환
-  const getValue = (option: CheckboxOption) => {
+  // checkbox value에 매핑할 값 반환
+  const getValue = (option: CheckboxGroupOption) => {
     return option;
   };
 
   // 비활성화 할 옵션인지 체크
-  const isDisabledOption = (option: CheckboxOption) => {
+  const isDisabledOption = (option: CheckboxGroupOption) => {
     return option.disabled;
   };
 
   // 필수 옵션인지 체크
-  const isRequiredOption = (option: CheckboxOption) => {
+  const isRequiredOption = (option: CheckboxGroupOption) => {
     return option.required ?? false;
   };
 
@@ -185,5 +174,5 @@ export default function checkboxComposable(emit: CustomEmit<Emits>, props: Props
   };
 }
 
-export { props as checkboxProps, emits as checkboxEmits };
-export type { CheckboxOption };
+export { props as checkboxGroupProps, emits as checkboxGroupEmits };
+export type { CheckboxGroupOption };

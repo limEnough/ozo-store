@@ -1,10 +1,10 @@
 <template>
   <template v-if="options">
-    <div class="checkbox-component">
+    <div class="checkbox-group-component">
       <!-- [박스] 전체 선택 체크박스 -->
       <template v-if="useAllOption">
         <label
-          class="checkbox-component__item checkbox-component__item--all box-type"
+          class="checkbox-group-component__item checkbox-group-component__item--all box-type"
           v-bind="styleAttrs"
         >
           <input
@@ -13,11 +13,11 @@
             :value="value"
             :disabled="disabled || isAllDisabled"
             type="checkbox"
-            class="checkbox-component__input blind"
+            class="checkbox-group-component__input blind"
             v-bind="functionalAttrs"
           />
 
-          <span class="checkbox-component__label">
+          <span class="checkbox-group-component__label">
             <slot name="all-label"> 전체 </slot>
           </span>
         </label>
@@ -30,7 +30,7 @@
       >
         <label
           :class="{ 'box-type': type === 'box' }"
-          class="checkbox-component__item"
+          class="checkbox-group-component__item"
           v-bind="styleAttrs"
         >
           <input
@@ -39,11 +39,11 @@
             :name="`checkbox-single-${name}-${uuid}`"
             :disabled="disabled || isDisabledOption(option)"
             type="checkbox"
-            class="checkbox-component__input blind"
+            class="checkbox-group-component__input blind"
             v-bind="functionalAttrs"
           />
 
-          <span class="checkbox-component__label">
+          <span class="checkbox-group-component__label">
             <slot
               :label="getLabel(option)"
               :option="option"
@@ -77,7 +77,7 @@
       <!-- 에러 메시지 -->
       <div
         v-if="errorMessage.length"
-        class="checkbox-component__message"
+        class="checkbox-group-component__message"
       >
         <p class="message__text">
           {{ errorMessage }}
@@ -95,10 +95,13 @@
 </script>
 
 <script setup lang="ts">
-  import checkboxComposable, { checkboxEmits, checkboxProps } from '@/composables/elements/checkbox';
+  import checkboxGroupComposable, {
+    checkboxGroupEmits,
+    checkboxGroupProps,
+  } from '@/composables/elements/checkbox-group';
 
-  const emits = defineEmits(checkboxEmits);
-  const props = defineProps(checkboxProps);
+  const emits = defineEmits(checkboxGroupEmits);
+  const props = defineProps(checkboxGroupProps);
 
   const {
     slots,
@@ -112,9 +115,9 @@
     getValue,
     styleAttrs,
     functionalAttrs,
-  } = checkboxComposable(emits, props);
+  } = checkboxGroupComposable(emits, props);
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/components/elements/checkbox.scss';
+  @import '@/styles/components/elements/checkbox-group.scss';
 </style>

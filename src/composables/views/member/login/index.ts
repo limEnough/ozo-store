@@ -6,7 +6,7 @@ import createCustomField, { createValidationSchema } from '@/composables/use/use
 import { isEmpty } from '@/utils/validator';
 import formConfig from '@/configs/form.config';
 import { ALLOWED_REGEXS } from '@/constants/regex.constants';
-import type { CheckboxModel } from '@/types/common.types';
+import type { CheckboxGroupModel } from '@/types/common.types';
 import type { APICode } from '@/types/api.types';
 import { useRouter } from 'vue-router';
 import { MYPAGE_PAGE_NAMES } from '@/constants/path-constants';
@@ -15,7 +15,7 @@ import type { VueCookies } from 'vue-cookies';
 import { useLayoutStore } from '@/stores/layout';
 
 interface LoginForm extends MemberLoginForm {
-  useSaveEmail: CheckboxModel<boolean>;
+  useSaveEmail: CheckboxGroupModel<boolean>;
 }
 
 export default function loginComposable() {
