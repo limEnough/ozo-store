@@ -35,7 +35,7 @@ export default class MemberLoginService {
       userStore.updateUserInfo(user.email);
 
       return {
-        email: values.email, // '이메일 저장하기' 기능
+        email: values.email, // '이메일 저장하기' 기능을 위해
         authToken: stsTokenManager.accessToken,
         expirationTime: stsTokenManager.expirationTime,
       };

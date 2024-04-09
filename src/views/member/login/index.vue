@@ -45,9 +45,8 @@
           <Checkbox
             v-model="useSaveEmail.value"
             :name="useSaveEmail.name"
-            :options="loginOptions"
-            label-key="codeName"
           >
+            Save Email
           </Checkbox>
         </div>
 
@@ -89,7 +88,7 @@
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 
-  const { loginOptions, email, password, useSaveEmail, handleSubmit } = loginComposable();
+  const { email, password, useSaveEmail, handleSubmit } = loginComposable();
 </script>
 
 <style lang="scss" scoped>

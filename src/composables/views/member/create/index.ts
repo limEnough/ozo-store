@@ -16,9 +16,10 @@ import MemberCreateService from '@/services/member/create';
 import type { MemberCreateAccount } from '@/services/member/create';
 import { useRouter } from 'vue-router';
 import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
+import type { CheckboxGroupOption } from '@/composables/modules/checkbox-group';
 
 interface CreateAccountForm {
-  termsAgreement: CheckboxModel<MemberTermsCode>;
+  termsAgreement: CheckboxModel<CheckboxGroupOption<MemberTermsCode>>;
   email: string;
   password: string;
   passwordConfirm: string;

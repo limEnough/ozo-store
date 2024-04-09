@@ -33,6 +33,7 @@
     "vue": "^3.3.11",
     "vue-cookies": "^1.8.3",
     "vue-i18n": "^9.9.1",
+    "vue-lazyload": "^3.0.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

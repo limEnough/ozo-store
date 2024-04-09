@@ -62,7 +62,6 @@ export default function buttonComposable(props: Props) {
   const { case: caseProp, size, width, iconOnly } = toRefs(props);
 
   const mapClasses = (mapping: ClassMapping, propValue: string) => {
-    // TODO: [스킬] console.log
     return Object.fromEntries(Object.entries(mapping).map(([key, value]) => [value, key === propValue]));
   };
 

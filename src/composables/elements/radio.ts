@@ -13,7 +13,7 @@ interface Props {
   name: string;
   type: RadioType;
   options: RadioModel[];
-  isDisabled: boolean;
+  disabled: boolean;
   disableOptions: RadioModel[];
   labelKey: string;
   valueKey: string;
@@ -25,7 +25,7 @@ const emits: Emits[] = ['update:modelValue'];
 const props = {
   /** 입력 값 */
   modelValue: {
-    type: [Boolean, String, Number, Object, null] as PropType<Props['modelValue']>,
+    type: [Boolean, String, Object, null] as PropType<Props['modelValue']>,
     required: true as const,
   },
   /** 타입 */
@@ -38,9 +38,9 @@ const props = {
     type: Array as PropType<Props['options']>,
     required: true as const,
   },
-  /** 비활성화 여부 (disabled attribute와 분리하기 위해서 따로 설정) */
-  isDisabled: {
-    type: Boolean as PropType<Props['isDisabled']>,
+  /** 전체 비활성화 여부 */
+  disabled: {
+    type: Boolean as PropType<Props['disabled']>,
     default: false,
   },
   /** 비활성화 옵션 */

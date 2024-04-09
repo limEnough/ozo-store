@@ -41,6 +41,7 @@ export const MYPAGE_PAGE_NAMES = {
 // #region 상점
 export const SHOP_PAGE_NAMES = {
   ['shop']: PAGE_CODE_DEPTH1['SHOP'], // 상점 - 1뎁스
-  ['shop-goodsList']: PAGE_CODE_DEPTH2['GOODS_LIST'], // 상품 리스트 - 2뎁스
+  ['shop-goods-list']: PAGE_CODE_DEPTH2['GOODS_LIST'], // 상품목록 - 2뎁스
+  ['shop-goods-view']: PAGE_CODE_DEPTH2['GOODS_VIEW'], // 상품상세 - 2뎁스
 } as const;
 // #endregion

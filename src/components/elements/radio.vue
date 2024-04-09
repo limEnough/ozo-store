@@ -13,7 +13,7 @@
         :checked="getChecked(option)"
         :value="getValue(option)"
         :name="`radio-${name}-${uuid}`"
-        :disabled="isDisabled || isDisabledOption(option)"
+        :disabled="disabled || isDisabledOption(option)"
         ref="refRadio"
         type="radio"
         class="radio-component__input blind"

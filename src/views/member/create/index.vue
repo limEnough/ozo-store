@@ -18,7 +18,7 @@
               </template>
 
               <template #contents>
-                <Checkbox
+                <CheckboxGroup
                   v-model="termsAgreement.value"
                   :is-error="termsAgreement.isError"
                   :error-message="termsAgreement.errorMessage"
@@ -41,7 +41,7 @@
                       </Button>
                     </template>
                   </template>
-                </Checkbox>
+                </CheckboxGroup>
               </template>
             </FormGroup>
 
@@ -277,7 +277,7 @@
   import InputPhone from '@/components/elements/input-phone.vue';
   import Radio from '@/components/elements/radio.vue';
   import Selectbox from '@/components/elements/selectbox.vue';
-  import Checkbox from '@/components/elements/checkbox.vue';
+  import CheckboxGroup from '@/components/modules/checkbox-group.vue';
   import TermsModal from '@/components/modules/modals/terms-modal.vue';
   import type { MemberTermsCode } from '@/constants/member-constants';
 

@@ -56,6 +56,8 @@ const PAGE_CODE_DEPTH2 = {
   // #region 상품
   /** 상품 목록 */
   GOODS_LIST: 'MENU.MENU_DEPTH_2.GOODS_LIST',
+  /** 상품 상세 */
+  GOODS_VIEW: 'MENU.MENU_DEPTH_2.GOODS_VIEW',
   // #endregion
 } as const;
 
