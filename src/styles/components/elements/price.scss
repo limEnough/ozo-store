@@ -1,0 +1,87 @@
+.price-component {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0;
+
+  // #region Sizes
+  // [card]
+  &.size--s {
+    .price-component {
+      &__number {
+        font-size: rem(9px);
+        font-weight: 600;
+      }
+
+      &__unit {
+        font-size: rem(9px);
+        font-weight: 600;
+      }
+    }
+  }
+
+  // [list|slide|order]
+  &.size--m {
+    .price-component {
+      &__number {
+        font-size: rem(11px);
+        font-weight: 400;
+      }
+
+      &__unit {
+        font-size: rem(11px);
+        font-weight: 400;
+      }
+    }
+  }
+
+  // cart 전체금액
+  &.size--l {
+    .price-component {
+      &__number {
+        font-size: rem(15px);
+        font-weight: 800;
+      }
+
+      &__unit {
+        font-size: rem(15px);
+      }
+    }
+  }
+  // #endregion
+
+  // #region Colors
+  &.text--black {
+    .price-component {
+      &__number {
+        color: $deep
+;      }
+
+      &__unit {
+        color: $deep;
+      }
+    }
+  }
+
+  &.text--red {
+    .price-component {
+      &__number {
+        color: $point;
+      }
+
+      &__unit {
+        color: $point;
+      }
+    }
+  }
+  // #endregion
+
+  &__number {
+    font-family: $dm;
+    line-height: 1;
+  }
+
+  &__unit {
+    font-family: $dm;
+    line-height: 1;
+  }
+}
