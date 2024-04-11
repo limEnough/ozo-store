@@ -68,17 +68,21 @@
             <template v-if="isDiscount">
               <!-- 원가 -->
               <span class="price--origin">
-                {{ goods.originPrice }}
+                <Price
+                  :money="goods.originPrice"
+                  :use-unit="isTypeCart"
+                ></Price>
               </span>
               <!-- 할인율 | 판매가 -->
               <span class="price__box">
                 <!-- 할인율 -->
-                <span class="price--rate">
-                  {{ goods.discountRate }}
-                </span>
+                <span class="price--rate"> {{ goods.discountRate }} </span>
                 <!-- 판매가 -->
                 <span class="price--current">
-                  {{ goods.salePrice }}
+                  <Price
+                    :money="goods.salePrice"
+                    :use-unit="isTypeCart"
+                  ></Price>
                 </span>
               </span>
             </template>
@@ -88,7 +92,10 @@
               v-else
               class="price--current"
             >
-              {{ goods.salePrice }}
+              <Price
+                :money="goods.salePrice"
+                :use-unit="isTypeCart"
+              ></Price>
             </span>
           </template>
         </div>
@@ -113,7 +120,10 @@
           class="goods-component__info__etc"
         >
           <span class="etc__text">
-            {{ goods.salePrice }}
+            <Price
+              :money="goods.salePrice"
+              use-unit
+            ></Price>
           </span>
           <span class="etc__text">{{ goods?.buyCnt || 1 }}개</span>
         </div>
@@ -142,6 +152,7 @@
   import goodsComposable, { goodsEmits, goodsProps } from '@/composables/modules/goods';
   import Button from '@/components/elements/button.vue';
   import Checkbox from '@/components/elements/checkbox.vue';
+  import Price from '@/components/elements/price.vue';
 
   const emits = defineEmits(goodsEmits);
   const props = defineProps(goodsProps);

@@ -2,6 +2,7 @@ import { computed, toRefs, type PropType } from 'vue';
 import { type CustomEmit, type Goods } from '@/types/common.types';
 import { GOODS_DISPLAY_SALES_STATUS_CODE } from '@/constants/shop-constants';
 
+// TODO: 29cm 참고해서 card 타입 추가하기
 type Type = 'list' | 'order' | 'cart' | 'slide';
 type state = 'sale' | 'out' | 'stop';
 
@@ -79,7 +80,6 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
 
     const stateClasses = mapClasses(
       {
-        sale: 'state--sale',
         out: 'state--out',
         stop: 'state--stop',
       },
@@ -126,7 +126,7 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
 
   /** discount 여부 */
   const isDiscount = computed(() => {
-    return goods.value.discountRate > 0 && goods.value.salePrice;
+    return goods.value.discountRate > 0 && goods.value.originPrice;
   });
 
   /** 품절 여부 */
