@@ -29,11 +29,11 @@
   &__toggle {
     position: absolute;
     top: 50%;
-    right: rem(8px);
-    width: rem(18px);
-    height: rem(18px);
+    right: rem(20px);
+    width: rem(22px);
+    height: rem(22px);
     background: $deep;
-    border-radius: rem(4px);
+    border-radius: rem(5px);
     transform: translate(0, -50%);
     cursor: pointer;
 
@@ -42,7 +42,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      @include imageCss(100%, 100%, 'common', 'icon-arrow-open--white.svg', no-repeat, center rem(2px), rem(15px));
+      @include imageCss(100%, 100%, 'common', 'icon-arrow-open--white.svg', no-repeat, center rem(2px), rem(20px));
     }
 
     span {

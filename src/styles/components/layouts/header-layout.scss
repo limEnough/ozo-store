@@ -4,8 +4,8 @@
   justify-content: space-between;
   position: relative;
   align-items: center;
-  min-height: rem(40px);
-  padding: rem(0 15px);
+  min-height: rem(55px);
+  padding: rem(0 20px);
 
   &__left {
     display: flex;
@@ -14,7 +14,7 @@
   }
 
   &__logo {
-    width: rem(30px);
+    width: rem(50px);
   }
 
   &__title {
@@ -22,7 +22,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    @include fontCss($deep, rem(10px), 800, rem(10px));
+    @include fontCss($deep, rem(16px), 800, rem(16px));
     transform: translate(-50%, -50%);
   }
 }

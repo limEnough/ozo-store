@@ -1,23 +1,20 @@
 .form-item-component {
-  position: relative;
-  display: flex;
-  align-items: center;
-
-  & + .form-item-component {
-    margin-top: rem(12px);
+  &:not(:first-of-type) {
+    margin-top: rem(15px);
   }
+
+  position: relative;
 
   // #region 타이틀 영역
   &__title {
-    display: flex;
-    flex: rem(0 0 45px);
-    align-items: center;
+    display: block;
+    margin-bottom: rem(5px);
     cursor: default;
 
     .title {
       &__text {
+        @include fontCss($grey, rem(12px), 600, rem(12px));
         word-break: break-all;
-        @include fontCss($deep, rem(8px), 600, rem(8px));
       }
     }
   }
@@ -25,12 +22,8 @@
 
   // #region 콘텐츠 영역
   &__contents {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    .contents + .contents {
-      margin-top: rem(5px);
+    .contents:not(:first-of-type) {
+      margin-top: rem(15px);
     }
   }
   // #endregion
@@ -43,13 +36,7 @@
     }
 
     margin-top: rem(5px);
-    @include fontCss($deep, rem(8px), 400, rem(10px));
-
-    :deep() {
-      .error {
-        color: $point;
-      }
-    }
+    @include fontCss($point, rem(12px), 400, rem(15px));
   }
 
   &__guide {
@@ -72,7 +59,7 @@
     position: relative;
     margin-top: rem(5px);
     padding-left: rem(4px);
-    @include fontCss($deep, rem(8px), 400, rem(10px));
+    @include fontCss($deep, rem(12px), 400, rem(15px));
   }
   // #endregion
 
@@ -84,7 +71,7 @@
           content: '*';
           display: inline-block;
           margin-left: rem(3px);
-          @include fontCss($point, rem(10px), 800, rem(10px));
+          @include fontCss($point, rem(12px), 800, rem(12px));
         }
       }
     }

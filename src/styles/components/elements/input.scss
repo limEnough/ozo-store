@@ -2,12 +2,12 @@
   overflow: hidden;
   
   &:not(:first-of-type) {
-    margin-top: rem(5px);
+    margin-top: rem(10px);
   }
 
   &.card-type {
     .input-component__bottom {
-      padding: rem(8px 8px);
+      padding: rem(15px 12px);
       border-radius: rem(8px);
       background: $white;
       border: none;
@@ -33,10 +33,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: rem(5px);
+    margin-bottom: rem(10px);
 
     &__label {
-      @include fontCss($grey, rem(9px), 400, rem(9px));
+      @include fontCss($grey, rem(14px), 400, rem(14px));
     }
 
     &__count {
@@ -50,7 +50,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: rem(3px);
+    padding-bottom: rem(6px);
     border-bottom: 1px solid $grey;
 
     &__input {
@@ -58,10 +58,10 @@
       outline: none;
       flex: rem(120px);
       background-color: transparent;
-      @include fontCss($deep, rem(10px), 400, rem(10px));
+      @include fontCss($deep, rem(14px), 400, rem(14px));
 
       &::placeholder {
-        @include fontCss($grey, rem(9px), 400, rem(9px));
+        @include fontCss($grey, rem(14px), 400, rem(14px));
       }
 
       &:disabled {
@@ -73,18 +73,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-left: rem(4px);
+      padding-left: rem(6px);
     }
   }
   // #endregion
 
   // #region Message (에러 메시지)
   &__message {
-    margin-top: rem(5px);
+    margin-top: rem(8px);
     
     .message {
       &__text {
-        @include fontCss($point, rem(8px), 400, rem(10px));
+        @include fontCss($point, rem(12px), 400, rem(15px));
       }
     }
   }

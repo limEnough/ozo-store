@@ -7,22 +7,27 @@
   &__input {
     :deep() {
       .input-component {
-        width: rem(40px);
+        width: rem(60px);
+        
+        &__bottom {
+          padding-left: rem(10px);
+          padding-right: rem(10px);
+        }
       }
     }
   }
 
   &__split {
-    padding: rem(0 3px);
+    padding: rem(0 5px);
   }
 
   // #region Message (에러 메시지)
   &__message {
-    margin-top: rem(5px);
+    margin-top: rem(8px);
     
     .message {
       &__text {
-        @include fontCss($point, rem(8px), 400, rem(10px));
+        @include fontCss($point, rem(12px), 400, rem(15px));
       }
     }
   }

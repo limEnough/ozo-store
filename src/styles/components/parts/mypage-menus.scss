@@ -1,17 +1,17 @@
 .mypage-menus {
   &__list {
-    margin: rem(-4px);
-    padding: rem(15px 0);
+    margin: rem(-6px);
+    padding: rem(14px 0);
 
     .list {
       &__menu {
         overflow: hidden;
         display: inline-block;
-        width: calc(33.333% - #{rem(8px)});
-        height: rem(65px);
-        margin: rem(4px);
+        width: calc(33.333% - #{rem(12px)});
+        height: rem(100px);
+        margin: rem(6px);
         background: $white;
-        border-radius: rem(8px);
+        border-radius: rem(12px);
         align-items: center;
         font-size: 0;
         box-shadow: 0px 7px 30px 0px rgba(0, 0, 0, 0.05);
@@ -73,8 +73,8 @@
               &:before {
                 content: '';
                 display: block;
-                width: rem(20px);
-                height: rem(20px);
+                width: rem(25px);
+                height: rem(25px);
                 margin: 0 auto;
                 background-repeat: no-repeat;
                 background-size: 100% auto;
@@ -85,9 +85,9 @@
               span {
                 display: block;
                 width: 100%;
-                margin-top: rem(6px);
+                margin-top: rem(15px);
                 text-align: center;
-                @include fontCss($deep, rem(8px), 600, rem(8px));
+                @include fontCss($deep, rem(12px), 600, rem(12px));
               }
             }
           }
@@ -104,8 +104,8 @@
           &:before {
             content: '';
             display: block;
-            width: rem(20px);
-            height: rem(20px);
+            width: rem(25px);
+            height: rem(25px);
             margin: 0 auto;
             background-repeat: no-repeat;
             background-size: 100% auto;
@@ -116,9 +116,9 @@
 
         &__text {
           display: block;
-          margin-top: rem(6px);
+          margin-top: rem(15px);
           text-align: center;
-          @include fontCss($deep, rem(8px), 600, rem(8px));
+          @include fontCss($deep, rem(12px), 600, rem(12px));
         }
       }
     }

@@ -1,16 +1,16 @@
 import { toRefs, computed, type PropType } from 'vue';
 import { type CustomEmit } from '@/types/common.types';
-import type { Colors, Sizes } from '@/constants/ui-constants';
 import type { APIMoney } from '@/types/api.types';
 import { currencySymbols } from '@/configs/unit.config';
+import type { GoodsType } from '@/composables/modules/goods';
+import { mapClasses } from '@/utils/classes';
 
 type Emits = '';
 
 interface Props {
   money: APIMoney;
-  color: Colors;
-  size: Sizes;
   useUnit: boolean;
+  type: GoodsType;
 }
 const emits: Emits[] = [''];
 
@@ -19,13 +19,9 @@ const props = {
     type: Object as PropType<Props['money']>,
     default: () => ({}),
   },
-  size: {
-    type: String as PropType<Props['size']>,
-    default: 'm',
-  },
-  color: {
-    type: String as PropType<Props['color']>,
-    default: 'black',
+  type: {
+    type: String as PropType<Props['type']>,
+    default: 'list',
   },
   /** 단위 사용여부 [goods-type cart|order] */
   useUnit: {
@@ -35,7 +31,26 @@ const props = {
 };
 
 export default function priceComposable(emit: CustomEmit<Emits>, props: Props) {
-  const { money } = toRefs(props);
+  const { type: typeProp, money } = toRefs(props);
+
+  // #region Props class
+  const priceClasses = computed(() => {
+    const typeClasses = mapClasses(
+      {
+        list: 'type--list',
+        order: 'type--order',
+        card: 'type--card',
+        cart: 'type--cart',
+        slide: 'type--slide',
+      },
+      typeProp.value,
+    );
+
+    return {
+      ...typeClasses,
+    };
+  });
+  // #endregion
 
   const currencyUnit = computed(() => {
     return currencySymbols[money.value.currencyCode];
@@ -49,7 +64,7 @@ export default function priceComposable(emit: CustomEmit<Emits>, props: Props) {
     };
   });
 
-  return { priceFormat };
+  return { priceFormat, priceClasses };
 }
 
 export { props as priceProps, emits as priceEmits };

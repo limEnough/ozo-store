@@ -1,9 +1,9 @@
 .select-component {
   width: 100%;
-  padding: rem(6px 10px 6px 0);
-  background: url(src('test', 'common', 'icon-arrow-open.svg')) right center/rem(10px auto) no-repeat;
+  padding: rem(10px 16px 10px 0);
+  background: url(src('test', 'common', 'icon-arrow-open.svg')) right center/rem(14px auto) no-repeat;
   border-bottom: 1px solid $grey;
-  @include fontCss($deep, rem(9px), 400,  rem(9px));
+  @include fontCss($deep, rem(13px), 400, rem(13px));
 
   // #region Focus 케이스
   &:focus {
@@ -22,16 +22,15 @@
   // #endregion
 
   // #region Selectbox 여러개 케이스
-  & + .select-component {
-    margin-left: rem(8px);
+  &:not(:first-of-type) {
+    margin-left: rem(12px);
   }
   // #endregion
 
   // #region Props
-  // TODO: [디자인]
   $selectSize: (
-    's': rem(40px),
-    'm': rem(60px),
+    's': rem(70px),
+    'm': rem(90px),
     'l': 100%,
   );
 

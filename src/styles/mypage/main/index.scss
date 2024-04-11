@@ -1,8 +1,8 @@
 .mypage-main {
-  padding: rem(15px);
+  padding: rem(20px);
 
   &__top {
-    padding: rem(20px 0 10px);
+    padding: rem(30px 0 15px);
     background: $white;
     border-radius: rem(15px);
     box-shadow: 0px 7px 30px 0px rgba(0, 0, 0, 0.05);
@@ -27,18 +27,18 @@
         }
 
         &__info {
-          margin-top: rem(10px);
+          margin-top: rem(15px);
           text-align: center;
 
           &__name {
             display: block;
-            @include fontCss($deep, rem(12px), 600, rem(12px));
+            @include fontCss($deep, rem(15px), 600, rem(15px));
           }
 
           &__email {
             display: block;
-            margin-top: rem(2px);
-            @include fontCss($deep, rem(9px), 400, rem(9px));
+            margin-top: rem(5px);
+            @include fontCss($grey, rem(13px), 400, rem(13px));
           }
         }
       }
@@ -50,14 +50,24 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: rem(10px);
+      margin-top: rem(15px);
       padding: rem(0 20px);
 
       .quick {
         &__menu {
-          width: rem(90px);
-          background: rgba(255, 255, 255, 0.5);
-          border-radius: rem(5px);
+          position: relative;
+          width: 50%;
+
+          &:not(:first-of-type):before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 1px;
+            height: 50%;
+            background: $greySoft;
+            transform: translate(0, -50%);
+          }
 
           &__link {
             display: block;
@@ -66,14 +76,14 @@
 
           &__number {
             display: block;
-            @include fontCss($point, rem(12px), 900, rem(12px));
+            @include fontCss($point, rem(16px), 900, rem(16px));
             text-align: center;
           }
 
           &__text {
             display: block;
             margin-top: rem(4px);
-            @include fontCss($deep, rem(9px), 600, rem(9px));
+            @include fontCss($deep, rem(13px), 600, rem(13px));
             text-align: center;
           }
         }

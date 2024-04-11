@@ -1,4 +1,5 @@
 import { type PropType, computed, toRefs } from 'vue';
+import { mapClasses } from '@/utils/classes';
 
 type Icon = 'visible' | 'back' | 'clear' | 'search' | 'close' | 'edit' | 'setting' | 'add';
 type Case = 'normal' | 'process' | 'continue' | 'success' | 'delete' | 'text';
@@ -54,17 +55,10 @@ const props = {
   },
 };
 
-interface ClassMapping {
-  [key: string]: string;
-}
-
 export default function buttonComposable(props: Props) {
   const { case: caseProp, size, width, iconOnly } = toRefs(props);
 
-  const mapClasses = (mapping: ClassMapping, propValue: string) => {
-    return Object.fromEntries(Object.entries(mapping).map(([key, value]) => [value, key === propValue]));
-  };
-
+  // #region Props class
   const buttonClasses = computed(() => {
     const caseClasses = mapClasses(
       {
@@ -100,6 +94,7 @@ export default function buttonComposable(props: Props) {
       ['icon-only']: iconOnly?.value,
     };
   });
+  // #endregion
 
   return { buttonClasses };
 }

@@ -12,7 +12,7 @@
       justify-content: center;
       flex: 1 1 auto;
       border-radius: 0;
-      height: rem(38px);
+      height: rem(60px);
 
       // #region 아이콘 커스텀
       &.category {
@@ -69,11 +69,11 @@
       // #region 활성화 케이스
       &.active {
         .dockbar-layout__menu__text {
-          font-size: rem(9px);
+          font-size: rem(14px);
           background-color: $point;
 
           &:before {
-            margin-right: rem(3px);
+            margin-right: rem(5px);
           }
         }
       }
@@ -82,16 +82,16 @@
       &__text {
         display: flex;
         align-items: center;
-        padding: rem(4px 8px);
-        border-radius: rem(14px);
-        @include fontCss($white, 0, 600, rem(9px));
+        padding: rem(6px 12px);
+        border-radius: rem(18px);
+        @include fontCss($white, 0, 600, rem(14px));
 
         &:before {
           content: '';
           display: block;
           margin-right: 0;
-          width: rem(18px);
-          height: rem(18px);
+          width: rem(26px);
+          height: rem(26px);
           background-size: 100% auto;
           background-position: center;
           background-repeat: no-repeat;

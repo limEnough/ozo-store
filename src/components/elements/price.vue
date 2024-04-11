@@ -1,15 +1,6 @@
 <template>
   <span
-    :class="{
-      //size
-      'size--s': 's' === size, //9
-      'size--m': 'm' === size, //11
-      'size--l': 'l' === size, //15
-
-      //color
-      'text--black': 'black' === color,
-      'text--red': 'red' === color,
-    }"
+    :class="priceClasses"
     class="price-component"
   >
     <template v-if="useUnit && priceFormat.unitDir === 'front'">
@@ -30,7 +21,7 @@
   const emits = defineEmits(priceEmits);
   const props = defineProps(priceProps);
 
-  const { priceFormat } = priceComposable(emits, props);
+  const { priceFormat, priceClasses } = priceComposable(emits, props);
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 .create {
-  padding: rem(15px);
+  padding: rem(20px);
   
   &__user-info {
     &__profile {
@@ -12,8 +12,8 @@
       .profile {
         overflow: hidden;
         display: inline-block;
-        width: rem(60px);
-        height: rem(60px);
+        width: rem(80px);
+        height: rem(80px);
         background-color: $white;
         border-radius: 50%;
 

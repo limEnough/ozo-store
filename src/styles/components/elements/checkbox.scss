@@ -1,17 +1,26 @@
 .checkbox-component {
   position: relative;
 
+  // Icon 
+  &.icon-only {
+    display: inline-block;
+
+    .checkbox-component__label {
+      min-height: auto;
+      
+      &::before {
+        display: none;
+      }
+    }
+  }
+
   // #region 체크박스 하나
   &__item {
     display: block;
+    font-size: 0;
 
     &:not(:first-of-type) {
-      margin-top: rem(2px);
-    }
-    
-    // Icon 
-    &.icon-only {
-      // TODO: [디자인]
+      margin-top: rem(4px);
     }
 
     // 전체선택
@@ -27,27 +36,27 @@
         // Default 케이스
         & + .checkbox-component__label:before {
           left: 0;
-          width: rem(16px);
-          height: rem(16px);
-          border-radius: rem(4px);
-          background: $bg url(src('test', 'common', 'icon-check--white.svg')) center/ rem(14px auto) no-repeat;
+          width: rem(22px);
+          height: rem(22px);
+          border-radius: rem(5px);
+          background: $bg url(src('test', 'common', 'icon-check--white.svg')) center/ rem(18px auto) no-repeat;
         }
 
         // Checked
         &:checked + .checkbox-component__label:before {
-          background: $deep url(src('test', 'common', 'icon-check--white.svg')) center/ rem(14px auto) no-repeat;
+          background: $deep url(src('test', 'common', 'icon-check--white.svg')) center/ rem(18px auto) no-repeat;
         } 
 
         // Disabled 케이스
         &:disabled {
           // default
           & + .checkbox-component__label:before {
-            background: $greySoft url(src('test', 'common', 'icon-check--white.svg')) center/ rem(14px auto) no-repeat;
+            background: $greySoft url(src('test', 'common', 'icon-check--white.svg')) center/ rem(18px auto) no-repeat;
           }
 
           // checked
           &:checked + .checkbox-component__label:before {
-            background: $greySoft url(src('test', 'common', 'icon-check--grey.svg')) center/ rem(14px auto) no-repeat;
+            background: $greySoft url(src('test', 'common', 'icon-check--grey.svg')) center/ rem(18px auto) no-repeat;
           }
         }
       }
@@ -62,16 +71,16 @@
       background: url(src('test', 'common', 'icon-check.svg')) center/ 100% auto no-repeat;
     }
 
-    // Disabled 케이스
+    // Disabled 케이스 TODO:
     &:disabled {
       // default
       & + .checkbox-component__label:before {
-        background: $greySoft url(src('test', 'common', 'icon-check--white.svg')) center/ rem(8px auto) no-repeat;
+        background: $greySoft url(src('test', 'common', 'icon-check--white.svg')) center/ rem(16px auto) no-repeat;
       }
 
       // checked
       &:checked + .checkbox-component__label:before {
-        background: $greySoft url(src('test', 'common', 'icon-check--grey.svg')) center/ rem(8px auto) no-repeat;
+        background: $greySoft url(src('test', 'common', 'icon-check--grey.svg')) center/ rem(16px auto) no-repeat;
       }
     }
   }
@@ -81,10 +90,10 @@
   &__label {
     position: relative;
     display: block;
-    min-height: rem(20px);
-    padding: rem(4px 0 4px 20px);
+    min-height: rem(30px);
+    padding: rem(7px 0 7px 30px);
     cursor: pointer;
-    @include fontCss($deep, rem(9px), 400, rem(12px));
+    @include fontCss($deep, rem(13px), 400, rem(16px));
 
     // Default 케이스
     &:before {
@@ -92,8 +101,8 @@
       position: absolute;
       top: 50%;
       left: rem(2px);
-      width: rem(12px);
-      height: rem(12px);
+      width: rem(18px);
+      height: rem(18px);
       background: url(src('test', 'common', 'icon-check--grey-soft.svg')) center/ 100% auto no-repeat;
       border-radius: 50%;
       box-sizing: border-box;

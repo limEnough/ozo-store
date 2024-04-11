@@ -34,7 +34,7 @@
     }
 
     &--text {
-      padding: rem(3px) !important;
+      padding: rem(6px) !important;
       color: $deep;
     }
   }
@@ -56,33 +56,42 @@
 
   .icon {
     &--visible {
-      @include imageCss(rem(13px), rem(13px), 'member', 'icon-password--off.svg', no-repeat, center, rem(11px));
+      @include imageCss(rem(15px), rem(15px), 'member', 'icon-password--off.svg', no-repeat, center, 100% auto);
     }
 
     &--back {
       border-radius: rem(5px);
       background-color: $white;
-      @include imageCss(rem(22px), rem(22px), 'common', 'icon-arrow-prev.svg', no-repeat, center, rem(10px) auto);
+      @include imageCss(rem(30px), rem(30px), 'common', 'icon-arrow-prev.svg', no-repeat, center, rem(15px) auto);
     }
 
     &--add {
       &:before {
         content: '';
-        margin-right: rem(3px);
-        @include imageCss(rem(5px), rem(5px), 'common', 'icon-plus.svg');
+        margin-right: rem(5px);
+        @include imageCss(rem(14px), rem(14px), 'common', 'icon-plus.svg');
+        vertical-align: middle;
+      }
+
+      :deep() {
+        span {
+          display: inline-block;
+          vertical-align: middle;
+        }
       }
     }
 
     &--close {
-      @include imageCss(rem(18px), rem(18px), 'common', 'icon-close--white.svg');
+      @include imageCss(rem(30px), rem(30px), 'common', 'icon-close--white.svg');
     }
 
     &--setting {
-      @include imageCss(rem(12px), rem(12px), 'common', 'icon-setting.svg');
+      @include imageCss(rem(20px), rem(20px), 'common', 'icon-setting.svg');
     }
 
     &--edit {
-      @include imageCss(rem(12px), rem(12px), 'common', 'icon-edit--white.svg');
+      @include imageCss(rem(20px), rem(20px), 'common', 'icon-edit--white.svg');
+      background-size: 80% auto;
     }
   }
   // #endregion
@@ -90,24 +99,27 @@
   // #region Size
   &.size {
     &--s {
-      padding: rem(4px);
+      padding: rem(6px);
       border-radius: rem(8px);
-      font-size: rem(7px);
-      line-height: rem(7px);
+      font-size: rem(10px);
+      font-family: $dm;
+      line-height: rem(10px);
     }
 
     &--m {
-      padding: rem(6px 8px);
-      border-radius: rem(10px);
-      font-size: rem(8px);
-      line-height: rem(8px);
+      padding: rem(8px 10px);
+      border-radius: rem(9px);
+      font-size: rem(11px);
+      font-family: $dm;
+      line-height: rem(11px);
     }
 
     &--l {
-      padding: rem(10px 20px);
-      border-radius: rem(14px);
-      font-size: rem(8px);
-      line-height: rem(9px);
+      padding: rem(13px 26px);
+      border-radius: rem(12px);
+      font-size: rem(13px);
+      font-family: $dm;
+      line-height: rem(13px);
     }
   }
   // #endregion
@@ -116,13 +128,15 @@
   &.width {
     &--full {
       width: 100%;
+      height: rem(45px);
     }
 
     &--half {
-      width: calc(50% - #{rem(2px)});
+      width: calc(50% - #{rem(4px)});
+      height: rem(45px);
       
       & + .button-component.width--half {
-        margin-left: rem(4px);
+        margin-left: rem(8px);
       }
     }
   }
