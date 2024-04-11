@@ -3,8 +3,8 @@
   font-size: 0;
   vertical-align: middle;
 
-  & + .radio-component {
-    margin-left: rem(4px);
+  &:not(:first-of-type) {
+    margin-left: rem(6px);
   }
 
   // #region TODO: [디자인] 텍스트 타입 
@@ -26,9 +26,9 @@
   &.type-card {
     .radio-component__input {
       & + .radio-component__label {
-        padding: rem(6px 12px);
+        padding: rem(10px 14px);
         background: $bg;
-        border-radius: rem(13px);
+        border-radius: rem(10px);
         font-weight: 400;
       }
 
@@ -79,8 +79,8 @@
   &__icon {
     display: inline-block;
     position: relative;
-    width: rem(8px);
-    height: rem(8px);
+    width: rem(12px);
+    height: rem(12px);
     border-radius: 50%;
     background-color: $grey;
     font-size: 0;
@@ -91,8 +91,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: rem(4px);
-      height: rem(4px);
+      width: rem(6px);
+      height: rem(6px);
       border-radius: 50%;
       background-color: $white;
       transform: translate(-50%, -50%,);
@@ -101,7 +101,7 @@
 
   &__label {
     display: inline-block;
-    padding: rem(0 4px);
-    @include fontCss($deep, rem(9px), 400, rem(9px));
+    padding: rem(0 6px);
+    @include fontCss($deep, rem(13px), 400, rem(13px));
   }
 }

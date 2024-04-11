@@ -1,6 +1,4 @@
 .error {
-  padding: rem(0 16px);
-
   // 404 error page icon
   &--404 {
     .error__title:before {
@@ -21,12 +19,12 @@
   }
 
   &__title {
-    @include fontCss($deep, rem(14px), 800, rem(14px));
+    @include fontCss($deep, rem(16px), 900, rem(16px));
 
     &:before {
       content: '';
       display: block;
-      margin: 0 auto rem(5px);
+      margin: 0 auto rem(10px);
       width: rem(50px);
       height: rem(50px);
       background-size: 100% auto;
@@ -37,8 +35,8 @@
 
   &__text {
     display: inline-block;
-    margin-top: rem(16px);
-    @include fontCss($grey, rem(9px), 400, rem(14px));
+    margin-top: rem(25px);
+    @include fontCss($grey, rem(13px), 400, rem(20px));
   }
 
   &__button {

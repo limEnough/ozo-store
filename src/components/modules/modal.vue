@@ -61,7 +61,7 @@
               <Button
                 v-if="props.onClose && cancelOption.visible"
                 :disabled="cancelOption.disabled"
-                case="normal"
+                case="continue"
                 width="half"
                 @click="emits('close')"
               >

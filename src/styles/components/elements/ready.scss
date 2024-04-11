@@ -1,16 +1,16 @@
 .ready-component {
-  padding: rem(80px 20px);
+  padding-top: rem(120px);
 
   &__text {
-    @include fontCss($deep, rem(12px), 900, rem(12px));
+    @include fontCss($deep, rem(14px), 900, rem(14px));
     text-align: center;
 
     &:before {
       content: '';
       display: block;
-      margin: 0 auto rem(10px);
-      width: rem(30px);
-      height: rem(30px);
+      margin: 0 auto rem(20px);
+      width: rem(50px);
+      height: rem(50px);
       background-size: 100% auto;
       background-position: center;
       background-repeat: no-repeat;

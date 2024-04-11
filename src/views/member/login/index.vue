@@ -58,8 +58,9 @@
               name: MEMBER_PAGE_NAMES['member-search'],
               params: { type: 'email' },
             }"
-            size="l"
             case="normal"
+            size="l"
+            width="half"
           >
             <span>Forgot account</span>
           </Link>
@@ -67,11 +68,12 @@
           <!-- 로그인 -->
           <Button
             type="submit"
-            size="l"
             case="success"
+            size="l"
+            width="half"
             @click.prevent="handleSubmit"
           >
-            <span>LOGIN</span>
+            <span>Login</span>
           </Button>
         </div>
       </form>
