@@ -1,21 +1,15 @@
 import { computed, toRefs, type PropType } from 'vue';
 import { type CustomEmit, type Goods } from '@/types/common.types';
 import { GOODS_DISPLAY_SALES_STATUS_CODE } from '@/constants/shop-constants';
+import { mapClasses } from '@/utils/classes';
 
-// TODO: 29cm 참고해서 card 타입 추가하기
-type Type = 'list' | 'order' | 'cart' | 'slide';
-type state = 'sale' | 'out' | 'stop';
-
-interface ClassMapping {
-  [key: string]: string;
-}
+type Type = 'list' | 'order' | 'cart' | 'card' | 'slide';
 
 type Emits = '';
 
 interface Props {
   goods: Goods;
   type: Type;
-  state: state;
   link: string;
   useLink: boolean;
   openOnNewTab: boolean;
@@ -32,10 +26,6 @@ const props = {
   type: {
     type: String as PropType<Props['type']>,
     default: 'list',
-  },
-  state: {
-    type: String as PropType<Props['state']>,
-    default: 'sale',
   },
   /** 상품상세 말고 다른 링크로 설정하고 싶을 경우 */
   link: {
@@ -60,38 +50,72 @@ const props = {
 };
 
 export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
-  const { type: typeProp, state, goods } = toRefs(props);
+  const { type: typeProp, goods } = toRefs(props);
 
-  // #region Props control
-  const mapClasses = (mapping: ClassMapping, propValue: string) => {
-    return Object.fromEntries(Object.entries(mapping).map(([key, value]) => [value, key === propValue]));
-  };
-
+  // #region Props class
   const goodsClasses = computed(() => {
     const typeClasses = mapClasses(
       {
         list: 'type--list',
         order: 'type--order',
+        card: 'type--card',
         cart: 'type--cart',
         slide: 'type--slide',
       },
       typeProp.value,
     );
 
-    const stateClasses = mapClasses(
-      {
-        out: 'state--out',
-        stop: 'state--stop',
-      },
-      state.value,
-    );
-
     return {
       ...typeClasses,
-      ...stateClasses,
     };
   });
+  // #endregion
 
+  // #region Props type
+  /** type order 여부 */
+  const isTypeOrder = computed(() => {
+    return typeProp.value === 'order';
+  });
+
+  /** type cart 여부 */
+  const isTypeCart = computed(() => {
+    return typeProp.value === 'cart';
+  });
+
+  /** type list 여부 */
+  const isTypeList = computed(() => {
+    return typeProp.value === 'list';
+  });
+
+  /** type card 여부 */
+  const isTypeCard = computed(() => {
+    return typeProp.value === 'card';
+  });
+
+  /** type slide 여부 */
+  const isTypeSlide = computed(() => {
+    return typeProp.value === 'slide';
+  });
+  // #endregion
+
+  // #region Props sale states
+  /** discount 여부 */
+  const isDiscount = computed(() => {
+    return goods.value.discountRate > 0 && goods.value.originPrice;
+  });
+
+  /** 품절 여부 */
+  const isSoldOut = computed(() => {
+    return goods.value.displaySaleStatusEnum.code === GOODS_DISPLAY_SALES_STATUS_CODE['OUT_OF_STOCK'];
+  });
+
+  /** 판매 중지 여부 */
+  const isSoldStop = computed(() => {
+    return goods.value.displaySaleStatusEnum.code === GOODS_DISPLAY_SALES_STATUS_CODE['STOP'];
+  });
+  // #endregion
+
+  // #region Set url
   /** 상품정보 URL 생성 */
   const makeGoodsURL = (goods: Goods) => {
     return `goodsView/${goods.goodsId}`;
@@ -113,34 +137,6 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
 
     return useLink && url.value !== '#';
   });
-
-  /** type order 여부 */
-  const isTypeOrder = computed(() => {
-    return typeProp.value === 'order';
-  });
-
-  /** type cart 여부 */
-  const isTypeCart = computed(() => {
-    return typeProp.value === 'cart';
-  });
-
-  /** discount 여부 */
-  const isDiscount = computed(() => {
-    return goods.value.discountRate > 0 && goods.value.originPrice;
-  });
-
-  /** 품절 여부 */
-  const isSoldOut = computed(() => {
-    return goods.value.displaySaleStatusEnum.code === GOODS_DISPLAY_SALES_STATUS_CODE['OUT_OF_STOCK'];
-  });
-
-  /** 판매 중지 여부 */
-  const isSoldStop = computed(() => {
-    return goods.value.displaySaleStatusEnum.code === GOODS_DISPLAY_SALES_STATUS_CODE['STOP'];
-  });
-  // #endregion
-
-  // #region Data
   // #endregion
 
   // #region Events
@@ -159,6 +155,9 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
     isTypeOrder,
     isTypeCart,
     isDiscount,
+    isTypeList,
+    isTypeCard,
+    isTypeSlide,
     isSoldOut,
     isSoldStop,
     handleToggleWish,
@@ -166,3 +165,4 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
 }
 
 export { props as goodsProps, emits as goodsEmits };
+export type { Type as GoodsType };

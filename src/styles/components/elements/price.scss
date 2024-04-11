@@ -3,78 +3,69 @@
   align-items: center;
   font-size: 0;
 
-  // #region Sizes
-  // [card]
-  &.size--s {
-    .price-component {
-      &__number {
-        font-size: rem(9px);
-        font-weight: 600;
+  // #region Type
+  &.type {
+    &--list {
+      .price-component {
+        &__number {
+          @include fontCss($deep, rem(16px), 800, rem(16px));
+        }
+  
+        &__unit {
+          @include fontCss($deep, rem(16px), 800, rem(16px));
+        }
       }
+    }
 
-      &__unit {
-        font-size: rem(9px);
-        font-weight: 600;
+    &--order {
+      .price-component {
+        &__number {
+          @include fontCss($deep, rem(14px), 400, rem(14px));
+        }
+  
+        &__unit {
+          @include fontCss($deep, rem(14px), 400, rem(14px));
+        }
+      }
+    }
+
+    &--cart {
+      .price-component {
+        &__number {
+          @include fontCss($deep, rem(14px), 400, rem(14px));
+        }
+  
+        &__unit {
+          @include fontCss($deep, rem(14px), 400, rem(14px));
+        }
+      }
+    }
+
+    &--card {
+      .price-component {
+        &__number {
+          @include fontCss($deep, rem(14px), 800, rem(14px));
+        }
+  
+        &__unit {
+          @include fontCss($deep, rem(14px), 800, rem(14px));
+        }
+      }
+    }
+
+    &--slide {
+      .price-component {
+        &__number {
+          @include fontCss($deep, rem(16px), 800, rem(16px));
+        }
+  
+        &__unit {
+          @include fontCss($deep, rem(16px), 800, rem(16px));
+        }
       }
     }
   }
-
-  // [list|slide|order]
-  &.size--m {
-    .price-component {
-      &__number {
-        font-size: rem(11px);
-        font-weight: 400;
-      }
-
-      &__unit {
-        font-size: rem(11px);
-        font-weight: 400;
-      }
-    }
-  }
-
-  // cart 전체금액
-  &.size--l {
-    .price-component {
-      &__number {
-        font-size: rem(15px);
-        font-weight: 800;
-      }
-
-      &__unit {
-        font-size: rem(15px);
-      }
-    }
-  }
-  // #endregion
-
-  // #region Colors
-  &.text--black {
-    .price-component {
-      &__number {
-        color: $deep
-;      }
-
-      &__unit {
-        color: $deep;
-      }
-    }
-  }
-
-  &.text--red {
-    .price-component {
-      &__number {
-        color: $point;
-      }
-
-      &__unit {
-        color: $point;
-      }
-    }
-  }
-  // #endregion
-
+ 
   &__number {
     font-family: $dm;
     line-height: 1;

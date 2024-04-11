@@ -9,6 +9,7 @@
       :tag="hasUrl ? 'router-link' : 'button'"
       :to="url"
       :target="openOnNewTab ? '_blank' : ''"
+      :class="{ 'sold-out': isSoldOut || isSoldStop }"
       class="goods-component__thumb"
     >
       <!-- 이미지 -->
@@ -41,24 +42,23 @@
           {{ goods.displayGoodsName }}
         </span>
 
+        <!-- [slide] 상품설명 -->
+        <p
+          v-if="goods.displayGoodsDesc && isTypeSlide"
+          class="goods-component__info__desc"
+        >
+          {{ goods.displayGoodsDesc }}
+        </p>
+
         <!-- [list|cart|slide] 가격 -->
         <div
           v-if="!isTypeOrder"
           class="goods-component__info__price"
         >
-          <!-- 품절 | 판매종료 -->
+          <!-- 품절 | 판매중지 -->
           <template v-if="isSoldOut || isSoldStop">
-            <span
-              v-if="isSoldOut"
-              class="price--sold-out"
-            >
-              품절
-            </span>
-            <span
-              v-else
-              class="price--sold-out"
-            >
-              판매중지
+            <span class="price--sold-out">
+              {{ isSoldOut ? 'Sold out' : 'Sold stop' }}
             </span>
           </template>
 
@@ -67,19 +67,36 @@
             <!-- case. 할인 -->
             <template v-if="isDiscount">
               <!-- 원가 -->
-              <span class="price--origin">
+              <span
+                v-if="isTypeCart && isTypeOrder"
+                class="price--origin"
+              >
                 <Price
-                  :money="goods.originPrice"
+                  :type="type"
+                  :money="goods.originPrice as APIMoney"
                   :use-unit="isTypeCart"
                 ></Price>
               </span>
+
               <!-- 할인율 | 판매가 -->
               <span class="price__box">
                 <!-- 할인율 -->
-                <span class="price--rate"> {{ goods.discountRate }} </span>
+                <span
+                  v-if="isTypeCart"
+                  class="price--rate"
+                >
+                  [{{ goods.discountRate }}%]</span
+                >
+                <span
+                  v-else
+                  class="price--rate"
+                >
+                  {{ goods.discountRate }}%</span
+                >
                 <!-- 판매가 -->
                 <span class="price--current">
                   <Price
+                    :type="type"
                     :money="goods.salePrice"
                     :use-unit="isTypeCart"
                   ></Price>
@@ -93,6 +110,7 @@
               class="price--current"
             >
               <Price
+                :type="type"
                 :money="goods.salePrice"
                 :use-unit="isTypeCart"
               ></Price>
@@ -101,31 +119,34 @@
         </div>
 
         <!-- 옵션 -->
-        <template v-if="goods.options?.length">
+        <div
+          v-if="goods.options?.length && isTypeCart && isTypeOrder"
+          class="goods-component__info__option"
+        >
           <dl
             v-for="(option, index) in goods.options"
             :key="`goods-option-${index}`"
-            class="goods-component__info__option"
+            class="option__item"
           >
             <dt class="option__name">[{{ option.name }}]</dt>
             <dd class="option__value">
               {{ option.value }}
             </dd>
           </dl>
-        </template>
+        </div>
 
         <!-- [order] 결제금액 | 수량 -->
         <div
           v-if="isTypeOrder"
-          class="goods-component__info__etc"
+          class="goods-component__info__total"
         >
-          <span class="etc__text">
-            <Price
-              :money="goods.salePrice"
-              use-unit
-            ></Price>
-          </span>
-          <span class="etc__text">{{ goods?.buyCnt || 1 }}개</span>
+          <Price
+            :type="type"
+            :money="goods.salePrice"
+            use-unit
+          ></Price>
+
+          <span class="total__count"> / {{ goods?.buyCnt || 1 }}개</span>
         </div>
       </component>
     </div>
@@ -135,12 +156,11 @@
       v-if="!hideWish && !isTypeCart && !isTypeOrder"
       class="goods-component__wish"
     >
+      <!-- @click="handleToggleWish($event)" -->
       <Checkbox
         v-model="goods.isWish"
         name="wish"
-        class="goods-component__wish__button"
         icon-only
-        @click="handleToggleWish($event)"
       >
         <span class="blind">관심상품 등록</span>
       </Checkbox>
@@ -153,11 +173,12 @@
   import Button from '@/components/elements/button.vue';
   import Checkbox from '@/components/elements/checkbox.vue';
   import Price from '@/components/elements/price.vue';
+  import type { APIMoney } from '@/types/api.types';
 
   const emits = defineEmits(goodsEmits);
   const props = defineProps(goodsProps);
 
-  const { goodsClasses, hasUrl, url, isTypeOrder, isTypeCart, isDiscount, isSoldOut, isSoldStop, handleToggleWish } =
+  const { goodsClasses, hasUrl, url, isTypeOrder, isTypeCart, isTypeSlide, isDiscount, isSoldOut, isSoldStop } =
     goodsComposable(emits, props);
 </script>
 

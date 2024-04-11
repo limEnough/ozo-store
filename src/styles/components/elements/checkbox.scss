@@ -1,17 +1,26 @@
 .checkbox-component {
   position: relative;
 
+  // Icon 
+  &.icon-only {
+    display: inline-block;
+
+    .checkbox-component__label {
+      min-height: auto;
+      
+      &::before {
+        display: none;
+      }
+    }
+  }
+
   // #region 체크박스 하나
   &__item {
     display: block;
+    font-size: 0;
 
     &:not(:first-of-type) {
       margin-top: rem(4px);
-    }
-    
-    // Icon 
-    &.icon-only {
-      // TODO: [디자인]
     }
 
     // 전체선택

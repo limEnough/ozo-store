@@ -1,71 +1,305 @@
 .goods-component {
+  position: relative;
+  
+  // #region Type Custom
+  &.type {
+    &--list {
+      display: inline-block;
+      margin: rem(5px 10px);
+
+      .goods-component {
+        &__thumb {
+          width: rem(156.5px);
+          height: rem(156.5px);
+        }
+
+        &__info {
+          width: rem(150px);
+          margin-top: rem(15px);
+        }
+      }
+    }
+
+    &--order {
+      display: flex;
+      flex-direction: row-reverse;
+
+      .goods-component {
+        &__thumb {
+          width: rem(80px);
+          height: rem(80px);
+        }
+
+        &__info {
+          width: calc(100% - #{rem(80px)});
+          padding-right: 20px;
+
+          &__name {
+            @include fontCss($deep, rem(16px), 800, rem(16px));
+          }
+        }
+      }
+    }
+
+    &--cart {
+      display: flex;
+      flex-direction: row-reverse;
+
+      .goods-component {
+        &__thumb {
+          width: rem(80px);
+          height: rem(80px);
+        }
+
+        &__info {
+          width: calc(100% - #{rem(80px)});
+          padding-right: 20px;
+
+          &__name {
+            @include fontCss($deep, rem(16px), 800, rem(16px));
+          }
+
+          &__price {
+            .price {
+              &__box {
+                display: block;
+                margin-top: rem(10px);
+
+                :deep() {
+                  .price-component {
+                    &__number {
+                      @include fontCss($point, rem(14px), 400, rem(14px));
+                    }
+  
+                    &__unit {
+                      @include fontCss($point, rem(14px), 400, rem(14px));
+                    }
+                  }
+                }
+              }
+
+              &--rate {
+                @include fontCss($point, rem(14px), 400, rem(14px));
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &--card {
+      display: flex;
+      padding: rem(12px 0);
+      border-top: 1px solid $greySoft;
+
+      &:last-of-type {
+        border-bottom: 1px solid $greySoft;
+      }
+
+      .goods-component {
+        &__thumb {
+          width: rem(60px);
+          height: rem(60px);
+        }
+
+        &__info {
+          width: calc(100% - #{rem(50px)});
+          padding: 0 50px 0 20px;
+
+          &__name {
+            margin-top: rem(5px);
+            @include fontCss($deep, rem(14px), 400, rem(14px));
+          }
+
+          &__price {
+            margin-top: rem(5px);
+
+            .price {
+              &--rate {
+                @include fontCss($point, rem(14px), 400, rem(14px));
+              }
+
+              &--sold-out {
+                @include fontCss($grey, rem(14px), 800, rem(14px));
+              }
+            }
+          }
+        }
+
+        &__wish {
+          top: 50%;
+          transform: translate(0, -50%);
+        }
+      }
+    }
+
+    &--slide {
+      display: flex;
+
+      .goods-component {
+        &__thumb {
+          width: rem(130px);
+          height: rem(130px);
+        }
+
+        &__info {
+          width: calc(100% - #{rem(130px)});
+          padding-left: rem(15px);
+
+          &__brand {
+            margin-top: rem(10px);
+            width: rem(145px);
+            @include fontCss($deep, rem(13px), 400, rem(13px));
+          }
+
+          &__name {
+            width: rem(145px);
+            @include fontCss($deep, rem(16px), 800, rem(16px));
+          }
+        }
+
+        &__wish {
+          top: rem(15px);
+        }
+      }
+    }
+  }
+  // #endregion
+
   // #region 상품 썸네일
   &__thumb {
-    img {
+    display: block;
+    padding: 0;
+    @include imageResize('width');
 
+    &.sold-out {
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: dim(0.4);
+      }
+    }
+    
+    img[src*='loading'] {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  // Button 컴포넌트 초기화
+  :deep() {
+    .button-component.goods-component__thumb {
+      padding: 0;
+      border-radius: rem(14px);
+
+      .button-component__text {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   // #endregion
 
   // #region 상품 정보
   &__info {
+    overflow: hidden;
+
     &__link {
-    
+      display: block;
+      width: 100%;
+      height: 100%;
     }
-
+ 
     &__brand {
-
+      display: block;
+      @include fontCss($deep, rem(13px), 800, rem(13px));
+      @include line(1);
     }
 
     &__name {
+      display: block;
+      margin-top: rem(10px);
+      @include fontCss($deep, rem(15px), 400, rem(15px));
+      @include line(1);
+    }
 
+    &__desc {
+      margin-top: rem(10px);
+      @include fontCss($grey, rem(13px), 400, rem(18px));
+      @include line(2);
     }
 
     &__price {
+      margin-top: rem(10px);
+      font-size: 0;
+
       .price {
         &--sold-out {
-
+          @include fontCss($grey, rem(16px), 800, rem(16px));
         }
 
         &--origin {
-
-        }
-
-        &--rate {
-
-        }
-
-        &--current {
-
+          margin-bottom: rem(8px);
         }
 
         &__box {
+          display: inline-flex;
+          align-items: center;
+          font-size: 0;
+        }
 
+        &--rate {
+          margin-right: rem(5px);
+          @include fontCss($point, rem(16px), 800, rem(16px));
         }
       }
     }
 
     &__option {
-      &:not(:first-of-type) {
-        margin-left: rem(4px);
-      }
-
+      margin-top: rem(10px);
+      font-size: 0;
+      
       .option {
-        &__name {
+        &__item {
+          display: inline-block;
 
+          &:not(:first-of-type) {
+            margin-left: rem(4px);
+          }
+    
         }
-        &__value {
 
+        &__name {
+          display: inline-block;
+          @include fontCss($deep, rem(13px), 400, rem(18px));
+        }
+
+        &__value {
+          display: inline-block;
+          @include fontCss($deep, rem(13px), 400, rem(18px));
         }
       }
     }
 
-    // [order] 결제금액 | 수량 : 일반 텍스트로 노출
-    &__etc {
-      .etc {
-        &__text {
+    // [order] 결제금액 | 수량 
+    &__total {
+      margin-top: rem(10px);
+      font-size: 0;
 
-        }
+      .total__count {
+        @include fontCss($deep, rem(14px), 400, rem(14px));
       }
     }
   }
@@ -73,8 +307,23 @@
 
   // #region 관심상품 버튼
   &__wish {
-    &__button {
-      
+    position: absolute;
+    top: rem(9px);
+    right: rem(9px);
+    font-size: 0;
+
+    :deep() {
+      .checkbox-component {
+        &__input {
+          &:checked + .checkbox-component__label {
+            background-image: url(src('test', 'common', 'icon-wish--point.svg'));
+          }
+        }
+        &__label {
+          padding: 0;
+          @include imageCss(rem(25px), rem(25px), 'common', 'icon-wish--grey-soft.svg' )
+        }
+      }
     }
   }
   // #endregion

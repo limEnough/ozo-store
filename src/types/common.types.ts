@@ -49,6 +49,8 @@ export interface Goods {
   displayGoodsName: string;
   /** 브랜드명 */
   brandName: string;
+  /** 상품 설명 */
+  displayGoodsDesc?: string;
   /** 이미지 */
   imagePath: string;
   /** 원가 */
