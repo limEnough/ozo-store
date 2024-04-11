@@ -2,7 +2,7 @@
   <component :is="DefaultLayout">
     <div class="goods-list">
       <template
-        v-for="(goods, index) in sampleData"
+        v-for="(goods, index) in goodsList"
         :key="`goods-${index}-${goods.goodsId}`"
       >
         <Goods
@@ -19,7 +19,7 @@
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import Goods from '@/components/modules/goods.vue';
 
-  const { sampleData } = goodsListComposable();
+  const { goodsList } = goodsListComposable();
 </script>
 
 <style lang="scss" scoped>
