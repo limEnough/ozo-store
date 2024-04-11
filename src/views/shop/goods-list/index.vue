@@ -5,7 +5,10 @@
         v-for="(goods, index) in sampleData"
         :key="`goods-${index}-${goods.goodsId}`"
       >
-        <Goods :goods="goods"></Goods>
+        <Goods
+          :goods="goods"
+          type="list"
+        ></Goods>
       </template>
     </div>
   </component>

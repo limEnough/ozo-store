@@ -1,5 +1,5 @@
 import type { Goods } from '@/types/common.types';
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 
 export default function goodsListComposable() {
   const sampleData = ref<Goods[]>([
@@ -7,6 +7,8 @@ export default function goodsListComposable() {
       goodsId: 100,
       displayGoodsName: 'Zomier',
       brandName: 'Bubble Puff Sofa',
+      displayGoodsDesc:
+        'High-elastic foam fillings are added to make it more comfortable, and the skin-contacting area is finished with thick grain leather to create a luxurious atmosphere.',
       imagePath: 'https://i.pinimg.com/564x/19/ce/1f/19ce1f51c2a523a72901fbf05a7c0d9c.jpg',
       originPrice: {
         number: 460000,
@@ -34,6 +36,8 @@ export default function goodsListComposable() {
       goodsId: 101,
       displayGoodsName: 'Pausa',
       brandName: 'Eichholtz Bernd Sofa',
+      displayGoodsDesc:
+        'High-elastic foam fillings are added to make it more comfortable, and the skin-contacting area is finished with thick grain leather to create a luxurious atmosphere.',
       imagePath: 'https://i.pinimg.com/564x/19/ce/1f/19ce1f51c2a523a72901fbf05a7c0d9c.jpg',
       originPrice: {
         number: 500000,
@@ -53,6 +57,10 @@ export default function goodsListComposable() {
           name: 'color',
           value: 'beige',
         },
+        {
+          name: 'size',
+          value: 'small',
+        },
       ],
       saleStock: 100,
       isWish: false,
@@ -61,6 +69,8 @@ export default function goodsListComposable() {
       goodsId: 102,
       displayGoodsName: 'Upholstery Unleashed',
       brandName: 'Rico',
+      displayGoodsDesc:
+        'High-elastic foam fillings are added to make it more comfortable, and the skin-contacting area is finished with thick grain leather to create a luxurious atmosphere.',
       imagePath: 'https://i.pinimg.com/564x/19/ce/1f/19ce1f51c2a523a72901fbf05a7c0d9c.jpg',
       originPrice: null,
       salePrice: {
@@ -79,6 +89,8 @@ export default function goodsListComposable() {
       goodsId: 103,
       displayGoodsName: 'Contemporary Wood Chair',
       brandName: '1stDibs',
+      displayGoodsDesc:
+        'High-elastic foam fillings are added to make it more comfortable, and the skin-contacting area is finished with thick grain leather to create a luxurious atmosphere.',
       imagePath: 'https://i.pinimg.com/564x/19/ce/1f/19ce1f51c2a523a72901fbf05a7c0d9c.jpg',
       originPrice: null,
       salePrice: {
@@ -97,6 +109,8 @@ export default function goodsListComposable() {
       goodsId: 104,
       displayGoodsName: 'Mia Chair',
       brandName: 'Shake',
+      displayGoodsDesc:
+        'High-elastic foam fillings are added to make it more comfortable, and the skin-contacting area is finished with thick grain leather to create a luxurious atmosphere.',
       imagePath: 'https://i.pinimg.com/564x/19/ce/1f/19ce1f51c2a523a72901fbf05a7c0d9c.jpg',
       originPrice: {
         number: 1280000,
