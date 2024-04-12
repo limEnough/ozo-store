@@ -4,7 +4,12 @@
     :is-loading="isLoading"
   >
     <div class="main">
+      <Title :data="pageTitle"></Title>
+
       <!-- TODO: 검색 컴포넌트 -->
+      <section class="main__search main__section">
+        <SearchBar></SearchBar>
+      </section>
 
       <!-- 베스트 상품 -->
       <section class="main__best main__section">
@@ -41,8 +46,10 @@
   import DefaultLayout from '@/components/layouts/default-layout.vue';
   import Slider from '@/components/elements/slider.vue';
   import Goods from '@/components/modules/goods.vue';
+  import Title from '@/components/elements/title.vue';
+  import SearchBar from '@/components/modules/search-bar.vue';
 
-  const { isLoading, visualUseYn, visualBanner, bestGoods } = mainComposable();
+  const { pageTitle, isLoading, visualUseYn, visualBanner, bestGoods } = mainComposable();
 </script>
 
 <style lang="scss" scoped>

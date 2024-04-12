@@ -20,7 +20,7 @@ export default function dockbarLayoutComposable(emit: CustomEmit<Emits>, props: 
   const refDrawerModal = ref();
 
   const handleDrawerOpen = () => {
-    alert('LNB 준비중입니다!');
+    alert('LNB 개발중입니다.');
 
     if (!refDrawerModal.value) return;
 

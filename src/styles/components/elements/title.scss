@@ -4,15 +4,15 @@
   }
 
   &__main {
-    @include fontCss($deep, rem(16px), 900, rem(16px));
+    @include fontCss($deep, rem(24px), 800, rem(24px));
 
     & + .title-component__sub {
-      margin-top: rem(3px);
+      margin-top: rem(8px);
     }
   }
 
   &__sub {
     display: block;
-    @include fontCss($deep, rem(10px), 400, rem(10px));
+    @include fontCss($deep, rem(15px), 400, rem(15px));
   }
 }

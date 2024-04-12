@@ -1,3 +1,9 @@
 .main {
+  padding: rem(15px 20px);
   
+  .main {
+    &__section{
+      margin-top: rem(20px);
+    }
+  }
 }
