@@ -6,32 +6,43 @@
     <div class="main">
       <!-- TODO: 검색 컴포넌트 -->
 
-      <!-- visual 메인 슬라이드 -->
-      <template v-if="visualUseYn && visualBanner?.length">
-        <section class="main__visual main__section">
-          <h3 class="main__title blind">상단 슬라이드</h3>
+      <!-- 베스트 상품 -->
+      <section class="main__best main__section">
+        <h3 class="main__title blind">베스트 상품</h3>
 
-          <div class="main__visual__slider">
-            <slider
-              :slides="visualBanner"
-              :autoplay="{ delay: 4000, disableOnInteraction: false }"
-              :speed="500"
-              :is-box-type="true"
-              :use-caption="true"
-            ></slider>
-          </div>
-        </section>
-      </template>
+        <Slider
+          v-if="bestGoods?.length >= 2"
+          :slides="bestGoods"
+          :autoplay="{ delay: 4000, disableOnInteraction: false }"
+          :speed="500"
+          :use-caption="true"
+        >
+          <template #slides>
+            <swiper-slide
+              v-for="(item, index) in bestGoods"
+              :key="`goods-slide-${index}`"
+              class="slider-component__item"
+            >
+              <Goods
+                :goods="item"
+                type="slide"
+              ></Goods>
+            </swiper-slide>
+          </template>
+        </Slider>
+      </section>
     </div>
   </component>
 </template>
 
 <script setup lang="ts">
+  import { SwiperSlide } from 'swiper/vue';
   import mainComposable from '@/composables/views/main';
   import DefaultLayout from '@/components/layouts/default-layout.vue';
-  import slider from '@/components/elements/slider.vue';
+  import Slider from '@/components/elements/slider.vue';
+  import Goods from '@/components/modules/goods.vue';
 
-  const { isLoading, visualUseYn, visualBanner } = mainComposable();
+  const { isLoading, visualUseYn, visualBanner, bestGoods } = mainComposable();
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,13 @@
 import { onMounted, ref } from 'vue';
 import MainService from '@/services/main';
+import type { Goods } from '@/types/common.types';
+import { sampleGoodsData } from '@/services/sample/goods';
 
 export default function mainComposable() {
+  // #region 베스트 상품
+  const bestGoods = ref<Goods[]>(sampleGoodsData());
+  // #endregion
+
   // #region 비주얼 배너
   const visualUseYn = ref(false);
   const visualBanner = ref([]);
@@ -29,12 +35,12 @@ export default function mainComposable() {
   // #endregion
 
   const init = async () => {
-    await getMainPageInfo();
+    // await getMainPageInfo();
   };
 
   onMounted(async () => {
     await init();
   });
 
-  return { isLoading, visualUseYn, visualBanner };
+  return { isLoading, visualUseYn, visualBanner, bestGoods };
 }

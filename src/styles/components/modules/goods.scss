@@ -142,7 +142,8 @@
       padding: rem(10px 10px);
       background: $white;
       border-radius: rem(20px);
-      box-shadow: 0px 7px 30px 0px rgba(0, 0, 0, 0.05);
+      // TODO: [고민] 슬라이더 실행 시, 그림자가 어색함
+      box-shadow: 0px 7px 5px 0px rgba(0, 0, 0, 0.02);
 
       .goods-component {
         &__thumb {

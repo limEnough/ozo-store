@@ -5,7 +5,7 @@
     :deep() {
       .slider-component {
         &__item {
-          // TODO: box-type 디자인 수정 필요
+          // TODO: [디자인]
           padding: rem(20px);
         }
 
@@ -41,11 +41,18 @@
     }
   }
 
+  // #region Swiper custom
   :deep() {
     .swiper-pagination {
+      position: relative;
+      bottom: auto;
+      padding: rem(10px);
+      font-size: 0;
+
       .swiper-pagination-bullet {
         background-color: $deep;
       }
     }
   }
+  // #endregion
 }
