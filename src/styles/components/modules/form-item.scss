@@ -36,7 +36,13 @@
     }
 
     margin-top: rem(5px);
-    @include fontCss($point, rem(12px), 400, rem(15px));
+    @include fontCss($deep, rem(12px), 400, rem(15px));
+
+    :deep() {
+      .error {
+        color: $point;
+      }
+    }
   }
 
   &__guide {
