@@ -55,9 +55,19 @@
   }
 
   .icon {
-    &--visible {
-      @include imageCss(rem(15px), rem(15px), 'member', 'icon-password--off.svg', no-repeat, center, 100% auto);
+    // #region Input buttons
+    &--clear {
+      @include imageCss(rem(35px), rem(35px), 'member', 'icon-cancel.svg', no-repeat, center, rem(22px) auto);
     }
+    
+    &--visible {
+      @include imageCss(rem(35px), rem(35px), 'member', 'icon-password--off.svg', no-repeat, center, rem(20px) auto);
+    }
+
+    &--search {
+      @include imageCss(rem(35px), rem(35px), 'common', 'icon-search.svg', no-repeat, center, rem(22px) auto);
+    }
+    // #endregion
 
     &--back {
       border-radius: rem(5px);

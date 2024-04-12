@@ -5,14 +5,28 @@
     margin-top: rem(10px);
   }
 
+  // #region Card type
   &.card-type {
     .input-component__bottom {
-      padding: rem(15px 12px);
+      padding: rem(15px 80px 15px 12px);
       border-radius: rem(8px);
       background: $white;
       border: none;
     }
   }
+  // #endregion
+
+  // #region Search
+  &.search-mode {
+    .input-component__bottom {
+      padding: rem(15px 80px 15px 20px);
+      border-radius: rem(20px);
+      background: $white;
+      border: none;
+      box-shadow: 0px 7px 5px 0px rgba(0, 0, 0, 0.02);
+    }
+  }
+  // #endregion
 
   // #region State
   &.error {
@@ -47,10 +61,11 @@
 
   // #region Bottom (인풋 박스)
   &__bottom {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: rem(6px);
+    padding: rem(80px 6px 0 0);
     border-bottom: 1px solid $grey;
 
     &__input {
@@ -70,10 +85,15 @@
     }
 
     &__button {
-      display: flex;
-      justify-content: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: rem(80px);
+      height: 100%;
+      display: inline-flex;
+      justify-content: right;
       align-items: center;
-      padding-left: rem(6px);
+      padding: rem(0 5px);
     }
   }
   // #endregion

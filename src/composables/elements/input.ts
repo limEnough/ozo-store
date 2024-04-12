@@ -171,6 +171,8 @@ export default function inputComposable(emit: CustomEmit<Emits>, props: Props) {
 
   const handleSearch = (value: string) => {
     emit('search', value);
+
+    alert('검색바 개발중입니다.');
   };
 
   const handleInputClear = () => {

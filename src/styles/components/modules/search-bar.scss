@@ -1,0 +1,13 @@
+.serach-bar-component {
+  :deep() {
+    .input-component.search-mode {
+      .input-component__bottom {
+        padding-right: rem(90px);
+
+        &__button {
+          right: rem(10px);
+        }
+      }
+    }
+  }
+}
