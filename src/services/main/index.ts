@@ -1,5 +1,6 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase';
+import type { Goods } from '@/types/common.types';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '@/firebase';
 
@@ -12,7 +13,9 @@ interface BannerInfo {
 
 interface PageInfo {
   visualUseYn: boolean;
-  visualBanner: BannerInfo[];
+  visualBanner: BannerInfo[] | null;
+  bestGoodsUseYn: boolean;
+  bestGoods: Goods[] | null;
 }
 
 export default class MainService {
@@ -28,15 +31,30 @@ export default class MainService {
       const result = data.data();
 
       // #region visual banner
-      const visualBannerLength = result.visual.length;
+      const visualBanner = result.visual;
 
-      if (visualBannerLength) {
-        for (let i = 0; i < visualBannerLength; i++) {
+      if (result.visualUseYn && visualBanner.length) {
+        for (let i = 0; i < visualBanner.length; i++) {
           const imageName = `main-visual-${i}.png`;
           const imageRef = ref(storage, imageName);
 
           await getDownloadURL(imageRef).then((url) => {
-            result.visual[i].imagePath = url;
+            visualBanner[i].imagePath = url;
+          });
+        }
+      }
+      // #endregion
+
+      // #region best goods
+      const bestGoods = result.bestGoods;
+
+      if (result.bestGoodsUseYn && bestGoods.length) {
+        for (let i = 0; i < bestGoods.length; i++) {
+          const imageName = `shop/goods/thumb/img-goods-10${i}.jpg`;
+          const imageRef = ref(storage, imageName);
+
+          await getDownloadURL(imageRef).then((url) => {
+            bestGoods[i].imagePath = url;
           });
         }
       }
@@ -44,10 +62,14 @@ export default class MainService {
 
       return {
         visualUseYn: result.visualUseYn ?? false,
-        visualBanner: result.visual ?? [],
+        visualBanner: result.visual ?? null,
+        bestGoodsUseYn: result.bestGoodsUseYn ?? false,
+        bestGoods: result.bestGoods ?? null,
       };
     } catch (error) {
       console.error(error);
     }
   }
 }
+
+export type { PageInfo as MainPageInfo };

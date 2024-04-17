@@ -1,7 +1,5 @@
 import { onMounted, reactive, ref } from 'vue';
-import MainService from '@/services/main';
-import type { Goods } from '@/types/common.types';
-import { sampleGoodsData } from '@/services/sample/goods';
+import MainService, { type MainPageInfo } from '@/services/main';
 
 export default function mainComposable() {
   // #region 타이틀
@@ -12,12 +10,13 @@ export default function mainComposable() {
   // #endregion
 
   // #region 베스트 상품
-  const bestGoods = ref<Goods[]>(sampleGoodsData());
+  const bestGoodsUseYn = ref<MainPageInfo['bestGoodsUseYn']>(false);
+  const bestGoods = ref<MainPageInfo['bestGoods']>(null);
   // #endregion
 
   // #region 비주얼 배너
-  const visualUseYn = ref(false);
-  const visualBanner = ref([]);
+  // const visualUseYn = ref<MainPageInfo['visualUseYn']>(false);
+  // const visualBanner = ref<MainPageInfo['visualBanner']>(null);
   // #endregion
 
   // #region TODO: fethces
@@ -34,20 +33,23 @@ export default function mainComposable() {
 
     if (!pageInfo) return;
 
-    visualUseYn.value = pageInfo.visualUseYn;
-    visualBanner.value = pageInfo.visualBanner;
+    bestGoodsUseYn.value = pageInfo.bestGoodsUseYn;
+    bestGoods.value = pageInfo.bestGoods;
+
+    // visualUseYn.value = pageInfo.visualUseYn;
+    // visualBanner.value = pageInfo.visualBanner;
 
     isLoading.value = false;
   };
   // #endregion
 
   const init = async () => {
-    // await getMainPageInfo();
+    await getMainPageInfo();
   };
 
   onMounted(async () => {
     await init();
   });
 
-  return { pageTitle, isLoading, visualUseYn, visualBanner, bestGoods };
+  return { pageTitle, isLoading, bestGoodsUseYn, bestGoods };
 }

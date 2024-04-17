@@ -12,11 +12,14 @@
       </section>
 
       <!-- 베스트 상품 -->
-      <section class="main__best main__section">
+      <section
+        v-if="bestGoodsUseYn"
+        class="main__best main__section"
+      >
         <h3 class="main__title blind">베스트 상품</h3>
 
         <Slider
-          v-if="bestGoods?.length >= 2"
+          v-if="bestGoods && bestGoods?.length > 1"
           :slides="bestGoods"
           :autoplay="{ delay: 4000, disableOnInteraction: false }"
           :speed="500"
@@ -49,7 +52,7 @@
   import Title from '@/components/elements/title.vue';
   import SearchBar from '@/components/modules/search-bar.vue';
 
-  const { pageTitle, isLoading, visualUseYn, visualBanner, bestGoods } = mainComposable();
+  const { pageTitle, isLoading, bestGoodsUseYn, bestGoods } = mainComposable();
 </script>
 
 <style lang="scss" scoped>
