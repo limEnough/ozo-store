@@ -7,20 +7,19 @@ import { isEmpty } from '@/utils/validator';
 import formConfig from '@/configs/form.config';
 import { ALLOWED_REGEXS } from '@/constants/regex.constants';
 import type { CheckboxModel } from '@/types/common.types';
-import { useRouter } from 'vue-router';
-import { MYPAGE_PAGE_NAMES } from '@/constants/path-constants';
 import { SAVE_EMAIL_COOKIE } from '@/constants/member-constants';
 import type { VueCookies } from 'vue-cookies';
 import { useLayoutStore } from '@/stores/layout';
+import { useRedirect } from '@/composables/use/use-redirect';
 
 interface LoginForm extends MemberLoginForm {
   useSaveEmail: CheckboxModel<boolean>;
 }
 
 export default function loginComposable() {
-  const router = useRouter();
   const messages = useI18n();
   const layoutStore = useLayoutStore();
+  const { redirectToMyMain } = useRedirect();
 
   // #region Form
   const { handleSubmit: veeHandleSubmit, resetForm: veeResetForm } = useForm<LoginForm>();
@@ -112,9 +111,7 @@ export default function loginComposable() {
 
     alert('환영합니다!');
 
-    router.push({
-      name: MYPAGE_PAGE_NAMES['mypage-main'],
-    });
+    redirectToMyMain();
   };
 
   const onValidFail = () => {

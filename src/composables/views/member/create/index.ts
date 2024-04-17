@@ -14,9 +14,8 @@ import { termsData, type TermsData } from '@/composables/modules/modals/terms-mo
 import { isEqual } from 'lodash-es';
 import MemberCreateService from '@/services/member/create';
 import type { MemberCreateAccount } from '@/services/member/create';
-import { useRouter } from 'vue-router';
-import { MEMBER_PAGE_NAMES } from '@/constants/path-constants';
 import type { CheckboxGroupOption } from '@/composables/modules/checkbox-group';
+import { useRedirect } from '@/composables/use/use-redirect';
 
 interface CreateAccountForm {
   termsAgreement: CheckboxModel<CheckboxGroupOption<MemberTermsCode>>;
@@ -32,8 +31,8 @@ interface CreateAccountForm {
 }
 
 export default function createComposable() {
-  const router = useRouter();
   const messages = useI18n();
+  const { redirectToMain } = useRedirect();
 
   // #region Form
   const { handleSubmit: veeHandleSubmit } = useForm<CreateAccountForm>();
@@ -351,9 +350,7 @@ export default function createComposable() {
     if (result) {
       alert('회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.');
 
-      router.replace({
-        name: MEMBER_PAGE_NAMES['member-login'],
-      });
+      redirectToMain();
     }
   };
 
@@ -366,11 +363,7 @@ export default function createComposable() {
   const handleClickCancel = () => {
     const answer = confirm(messages.t('confirm.cancelSave'));
 
-    if (answer) {
-      router.replace({
-        name: MEMBER_PAGE_NAMES['member-login'],
-      });
-    }
+    if (answer) redirectToMain();
   };
 
   const handleOpenTermsModal = (code: MemberTermsCode) => {
