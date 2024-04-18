@@ -1,7 +1,7 @@
 import { db } from '@/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import type { MemberCreateAccount } from '@/services/member/create';
 import type { RouteMeta, RouteRecordRaw } from 'vue-router';
+import type { UserState } from '@/stores/user';
 
 export interface LayoutMenuList {
   /** 메뉴 하위 리스트 */
@@ -20,13 +20,14 @@ export default class LayoutService {
   /**
    * 현재 유저 정보 조회
    */
-  public async getUserInfo(email: string): Promise<MemberCreateAccount> {
+  public async getUserInfo(email: string): Promise<UserState> {
     const usersCollectionRef = collection(db, this.collectionId);
 
-    const q = await query(usersCollectionRef, where('email', '==', email));
+    const q = await query(usersCollectionRef, where('userKey', '==', email));
+
     const { docs } = await getDocs(q);
 
-    const userData = docs[0].data() as MemberCreateAccount;
+    const userData = docs[0].data() as UserState;
 
     return userData;
   }

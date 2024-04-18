@@ -1,4 +1,4 @@
-import type { Goods } from '@/types/common.types';
+import type { Goods } from '@/composables/modules/goods.ts';
 
 export const sampleGoodsData = (): Goods[] => {
   return [

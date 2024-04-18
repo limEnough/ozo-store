@@ -1,6 +1,6 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase';
-import type { Goods } from '@/types/common.types';
+import type { Goods } from '@/composables/modules/goods.ts';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '@/firebase';
 

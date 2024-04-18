@@ -2,6 +2,7 @@ import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db, auth } from '@/firebase';
 import type { MemberGenderCode, MemberTermsCode } from '@/constants/member-constants';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import type { UserState } from '@/stores/user';
 
 interface Account {
   termsAgreement: MemberTermsCode[];
@@ -48,9 +49,19 @@ export default class MemberCreateService {
     }
 
     // 2. database 저장
+    const userStateValue: UserState = {
+      userKey: values.email,
+      info: values,
+      cart: {
+        total: 0,
+        goods: [],
+      },
+      wish: [],
+    };
+
     try {
       const usersCollectionRef = collection(db, this.collectionId);
-      await addDoc(usersCollectionRef, values);
+      await addDoc(usersCollectionRef, userStateValue);
     } catch (error) {
       // TODO: [고민] 에러 처리 어떻게 할 건지?
       console.error(error);

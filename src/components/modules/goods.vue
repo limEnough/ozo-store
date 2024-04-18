@@ -156,11 +156,11 @@
       v-if="!hideWish && !isTypeCart && !isTypeOrder"
       class="goods-component__wish"
     >
-      <!-- @click="handleToggleWish($event)" -->
       <Checkbox
         v-model="goods.isWish"
         name="wish"
         icon-only
+        @click="handleToggleWish($event)"
       >
         <span class="blind">관심상품 등록</span>
       </Checkbox>
@@ -178,8 +178,18 @@
   const emits = defineEmits(goodsEmits);
   const props = defineProps(goodsProps);
 
-  const { goodsClasses, hasUrl, url, isTypeOrder, isTypeCart, isTypeSlide, isDiscount, isSoldOut, isSoldStop } =
-    goodsComposable(emits, props);
+  const {
+    goodsClasses,
+    hasUrl,
+    url,
+    isTypeOrder,
+    isTypeCart,
+    isTypeSlide,
+    isDiscount,
+    isSoldOut,
+    isSoldStop,
+    handleToggleWish,
+  } = goodsComposable(emits, props);
 </script>
 
 <style lang="scss" scoped>

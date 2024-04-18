@@ -1,7 +1,7 @@
 export default () => {
   const messages = {
     //#region 페이지 관련
-    NotInitialized: '페이지가 초기화 돠지 않았습니다.',
+    NotInitialized: '페이지가 초기화 되지 않았습니다.',
     //#endregion
 
     // #region 유효성 검사
@@ -32,6 +32,7 @@ export default () => {
     confirm: {
       cancelSave: '해당 정보가 저장되지 않았습니다.\n그래도 페이지를 취소하시겠습니까?',
       delete: '삭제 하시겠습니까?',
+      loginService: '{name}은/는 로그인 시에만 이용 가능합니다.\n로그인하시겠습니까?',
     },
     // #endregion
   } as const;

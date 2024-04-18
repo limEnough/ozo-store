@@ -1,11 +1,66 @@
 import { computed, toRefs, type PropType } from 'vue';
-import { type CustomEmit, type Goods } from '@/types/common.types';
-import { GOODS_DISPLAY_SALES_STATUS_CODE } from '@/constants/shop-constants';
+import { type CustomEmit } from '@/types/common.types';
+import { GOODS_DISPLAY_SALES_STATUS_CODE, type GoodsDisplaySalesStatusCode } from '@/constants/shop-constants';
 import { mapClasses } from '@/utils/classes';
+import { useLayoutStore } from '@/stores/layout';
+import { useI18n } from 'vue-i18n';
+import type { APICode, APIMoney } from '@/types/api.types';
+import { useRedirect } from '@/composables/use/use-redirect';
+import { db } from '@/firebase';
+import { getDoc, doc } from 'firebase/firestore';
 
 type Type = 'list' | 'order' | 'cart' | 'card' | 'slide';
 
 type Emits = '';
+
+interface Badge {
+  badgeId: number;
+  text: string;
+}
+
+interface Option {
+  name: string;
+  value: string;
+}
+export interface Goods {
+  /** 상품 PK */
+  goodsId: number;
+  /** 상품명 */
+  displayGoodsName: string;
+  /** 브랜드명 */
+  brandName: string;
+  /** 상품 설명 */
+  displayGoodsDesc?: string;
+  /** 이미지 */
+  imagePath: string;
+  /** 원가 */
+  originPrice: APIMoney | null;
+  /** 판매가 */
+  salePrice: APIMoney;
+  /** 할인율 */
+  discountRate: number;
+  /** 판매상태 코드 */
+  displaySaleStatusEnum: APICode<GoodsDisplaySalesStatusCode>;
+  /** 재고 */
+  saleStock: number;
+  /** 뱃지 */
+  badgeList?: Badge[];
+  /** 관심상품 여부 */
+  isWish: boolean;
+  /** 옵션 */
+  options?: Option[];
+  /** 구매 갯수 */
+  buyCnt?: number;
+}
+interface WishModel {
+  isWish: boolean;
+  goodsId: Goods['goodsId'];
+}
+
+interface ToggleWishResult {
+  isSuccess: boolean;
+  isWish: WishModel['isWish'];
+}
 
 interface Props {
   goods: Goods;
@@ -49,8 +104,65 @@ const props = {
   },
 };
 
+// TODO: wish 기능 구현중
+const goodsExposeComposable = () => {
+  /** [API] 관심상품 toggle */
+  const patchToggleWish = async ({ goodsId, isWish }: WishModel) => {
+    const response: ToggleWishResult = {
+      isSuccess: false,
+      isWish,
+    };
+
+    const docRef = doc(db, 'users', 'test@naver.com');
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log('Document data:', docSnap.data());
+    } else {
+      console.log('No such document!');
+    }
+
+    // try {
+    //   // await updateDoc(wishDoc, { age: age + 1 });
+    // } catch (error) {
+    //   console.error('patchToggleWish', error);
+    //   return response;
+    // }
+
+    return response;
+  };
+
+  /** [EVENT] 관심상품 toggle */
+  const toggleWish = async (goods: WishModel) => {
+    alert('관심상품 등록 및 해제 api 연동 개발중입니다!\n조금만 기다려주세요!');
+    // const response: ToggleWishResult = {
+    //   isSuccess: false,
+    //   isWish: false,
+    // };
+
+    // try {
+    //   const result = await patchToggleWish(goods);
+
+    //   response.isSuccess = result.isSuccess;
+    //   response.isWish = result.isWish;
+    // } catch (error) {
+    //   console.error('toggleWish', error);
+    //   return response;
+    // }
+  };
+
+  return {
+    toggleWish,
+  };
+};
+
 export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
   const { type: typeProp, goods } = toRefs(props);
+  const { toggleWish: goodsToggleWish } = goodsExposeComposable();
+
+  const messages = useI18n();
+  const layoutStore = useLayoutStore();
+  const { redirectToMain } = useRedirect();
 
   // #region Props class
   const goodsClasses = computed(() => {
@@ -118,7 +230,7 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
   // #region Set url
   /** 상품정보 URL 생성 */
   const makeGoodsURL = (goods: Goods) => {
-    return `goodsView/${goods.goodsId}`;
+    return `shop/goodsView/${goods.goodsId}`;
   };
 
   /** 상품정보 URL */
@@ -144,7 +256,16 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
   const handleToggleWish = (e: Event) => {
     e.preventDefault();
 
-    console.log('관심상품 등록 및 해제 이벤트 개발중');
+    if (!layoutStore.isLoggedIn) {
+      const result = confirm(messages.t('confirm.loginService', { name: '관심상품 등록' }));
+
+      if (result) redirectToMain();
+    } else {
+      goodsToggleWish({
+        isWish: goods.value.isWish ?? false,
+        goodsId: goods.value.goodsId,
+      });
+    }
   };
   // #endregion
 
@@ -164,5 +285,5 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
   };
 }
 
-export { props as goodsProps, emits as goodsEmits };
+export { props as goodsProps, emits as goodsEmits, goodsExposeComposable };
 export type { Type as GoodsType };
