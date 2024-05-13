@@ -7,11 +7,12 @@ import { useI18n } from 'vue-i18n';
 import type { APICode, APIMoney } from '@/types/api.types';
 import { useRedirect } from '@/composables/use/use-redirect';
 import { db } from '@/firebase';
-import { getDoc, doc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
+import { useUserStore } from '@/stores/user';
 
 type Type = 'list' | 'order' | 'cart' | 'card' | 'slide';
 
-type Emits = '';
+type Emits = 'toggle-wish';
 
 interface Badge {
   badgeId: number;
@@ -60,6 +61,7 @@ interface WishModel {
 interface ToggleWishResult {
   isSuccess: boolean;
   isWish: WishModel['isWish'];
+  goodsId: Goods['goodsId'] | null;
 }
 
 interface Props {
@@ -71,7 +73,7 @@ interface Props {
   hideWish: boolean;
 }
 
-const emits: Emits[] = [''];
+const emits: Emits[] = ['toggle-wish'];
 
 const props = {
   goods: {
@@ -104,51 +106,66 @@ const props = {
   },
 };
 
-// TODO: wish 기능 구현중
 const goodsExposeComposable = () => {
+  const userStore = useUserStore();
+
   /** [API] 관심상품 toggle */
   const patchToggleWish = async ({ goodsId, isWish }: WishModel) => {
     const response: ToggleWishResult = {
       isSuccess: false,
       isWish,
+      goodsId,
     };
 
-    const docRef = doc(db, 'users', 'test@naver.com');
-    const docSnap = await getDoc(docRef);
+    if (userStore.userInfo) {
+      // 1. store userInfo 업데이트
+      if (!isWish) {
+        // 관싱상품 추가
+        userStore.userInfo.wish.push(goodsId);
+      } else {
+        // 관심상품 해제
+        userStore.userInfo.wish = userStore.userInfo?.wish.filter((goods) => goods !== goodsId) as number[];
+      }
 
-    if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
-    } else {
-      console.log('No such document!');
+      // 2. firebase 업데이트
+      try {
+        const userWishRef = doc(db, 'users', userStore.userInfo.userKey);
+
+        await updateDoc(userWishRef, {
+          wish: userStore.userInfo.wish,
+        });
+
+        response.isSuccess = true;
+        response.isWish = !isWish;
+        response.goodsId = goodsId;
+      } catch (error) {
+        console.error(error);
+      }
     }
-
-    // try {
-    //   // await updateDoc(wishDoc, { age: age + 1 });
-    // } catch (error) {
-    //   console.error('patchToggleWish', error);
-    //   return response;
-    // }
 
     return response;
   };
 
   /** [EVENT] 관심상품 toggle */
   const toggleWish = async (goods: WishModel) => {
-    alert('관심상품 등록 및 해제 api 연동 개발중입니다!\n조금만 기다려주세요!');
-    // const response: ToggleWishResult = {
-    //   isSuccess: false,
-    //   isWish: false,
-    // };
+    const response: ToggleWishResult = {
+      isSuccess: false,
+      isWish: false,
+      goodsId: null,
+    };
 
-    // try {
-    //   const result = await patchToggleWish(goods);
+    try {
+      const result = await patchToggleWish(goods);
 
-    //   response.isSuccess = result.isSuccess;
-    //   response.isWish = result.isWish;
-    // } catch (error) {
-    //   console.error('toggleWish', error);
-    //   return response;
-    // }
+      response.isSuccess = result.isSuccess;
+      response.isWish = result.isWish;
+      response.goodsId = result.goodsId;
+
+      return response;
+    } catch (error) {
+      console.error('toggleWish', error);
+      return response;
+    }
   };
 
   return {
@@ -162,7 +179,14 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
 
   const messages = useI18n();
   const layoutStore = useLayoutStore();
-  const { redirectToMain } = useRedirect();
+  const { redirectToLogin } = useRedirect();
+
+  // #region Props goods
+  const goodsForm = computed({
+    get: () => props.goods,
+    set: (value) => emit('update:modelValue', value),
+  });
+  // #endregion
 
   // #region Props class
   const goodsClasses = computed(() => {
@@ -253,18 +277,35 @@ export default function goodsComposable(emit: CustomEmit<Emits>, props: Props) {
 
   // #region Events
   /** 관심상품 등록 및 해제 이벤트 */
-  const handleToggleWish = (e: Event) => {
+  const handleToggleWish = async (e: Event) => {
     e.preventDefault();
 
+    // 1. 로그인 여부 확인
     if (!layoutStore.isLoggedIn) {
       const result = confirm(messages.t('confirm.loginService', { name: '관심상품 등록' }));
 
-      if (result) redirectToMain();
-    } else {
-      goodsToggleWish({
+      if (result) redirectToLogin();
+
+      return;
+    }
+
+    // 2. toggle 이벤트 실행
+    try {
+      const result = await goodsToggleWish({
         isWish: goods.value.isWish ?? false,
         goodsId: goods.value.goodsId,
       });
+
+      if (result?.isSuccess) {
+        // 컴포넌트 자체 값 업데이트
+        goodsForm.value.isWish = !goodsForm.value.isWish;
+        goodsForm.value.goodsId = result.goodsId as number;
+
+        // 컴포넌트 상위에 업데이트 값 emit
+        emit('toggle-wish', result);
+      }
+    } catch (error) {
+      console.error('has error handleToggleWish', error);
     }
   };
   // #endregion

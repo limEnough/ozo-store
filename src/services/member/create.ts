@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { doc, setDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db, auth } from '@/firebase';
 import type { MemberGenderCode, MemberTermsCode } from '@/constants/member-constants';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -60,8 +60,7 @@ export default class MemberCreateService {
     };
 
     try {
-      const usersCollectionRef = collection(db, this.collectionId);
-      await addDoc(usersCollectionRef, userStateValue);
+      await setDoc(doc(db, this.collectionId, values.email), userStateValue);
     } catch (error) {
       // TODO: [고민] 에러 처리 어떻게 할 건지?
       console.error(error);

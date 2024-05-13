@@ -10,7 +10,7 @@ const routerAccess: Record<RouterAccessKey, RouteRecordName[]> = {
   /**
    * 로그인 유저 접속 가능 ROUTE NAME
    */
-  UserAccessibleNames: [MYPAGE_PAGE_NAMES['mypage-main']],
+  UserAccessibleNames: [MYPAGE_PAGE_NAMES['mypage-main'], MYPAGE_PAGE_NAMES['mypage-wish']],
   /**
    * 로그인 유저 리다이렉트 ROUTE NAME
    */
@@ -21,7 +21,7 @@ const routerAccess: Record<RouterAccessKey, RouteRecordName[]> = {
   NonUserAccessibleNames: [
     MAIN_PAGE_NAMES['main'],
     MEMBER_PAGE_NAMES['member-login'],
-    SHOP_PAGE_NAMES['shop-goodsList'],
+    SHOP_PAGE_NAMES['shop-goods-list'],
   ],
 };
 

@@ -50,14 +50,17 @@ export default function mainComposable() {
   const setWishInfo = () => {
     if (!bestGoodsUseYn.value || !bestGoods.value?.length) return;
 
+    // store userInfo에서 관싱상품 goodsId 배열 가져옴
     const userWishList = userStore.userInfo?.wish ?? [];
 
-    if (!userWishList.length) return;
+    // 관심상품 있으면 active (checked) 처리
+    if (userWishList.length) {
+      userWishList.forEach((itemId) => {
+        const target = bestGoods.value?.find((item) => item.goodsId === itemId);
 
-    userWishList.forEach((itemId) => {
-      const target = bestGoods.value?.find((item) => item.goodsId === itemId);
-      if (target) target.isWish = true;
-    });
+        if (target) target.isWish = true;
+      });
+    }
   };
   // #endregion
 

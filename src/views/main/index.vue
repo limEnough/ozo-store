@@ -11,6 +11,14 @@
         <SearchBar></SearchBar>
       </section>
 
+      <!-- TODO: 구조 변경 및 항목 추가
+        출처: https://www.pinterest.co.kr/pin/1147151336323139842/
+        1. 프로모션
+        2. 브랜드 리스트
+        3. 베스트 상품
+        4. 추천 상품
+       -->
+
       <!-- 베스트 상품 -->
       <section
         v-if="bestGoodsUseYn"
@@ -35,6 +43,7 @@
                 :goods="item"
                 type="slide"
               ></Goods>
+              <!-- @toggle-wish="" -->
             </swiper-slide>
           </template>
         </Slider>

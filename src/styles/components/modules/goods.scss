@@ -124,7 +124,7 @@
               }
 
               &--sold-out {
-                @include fontCss($grey, rem(14px), 800, rem(14px));
+                @include fontCss($point, rem(14px), 800, rem(14px));
               }
             }
           }
@@ -258,7 +258,7 @@
 
       .price {
         &--sold-out {
-          @include fontCss($grey, rem(16px), 800, rem(16px));
+          @include fontCss($point, rem(16px), 800, rem(16px));
         }
 
         &--origin {

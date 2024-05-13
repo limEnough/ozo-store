@@ -48,7 +48,10 @@
       />
 
       <!-- 2. 우측 버튼 영역 -->
-      <div class="input-component__bottom__button">
+      <div
+        v-if="hasButtons"
+        class="input-component__bottom__button"
+      >
         <slot name="button">
           <!-- clear 버튼 -->
           <Button
@@ -117,6 +120,7 @@
   const {
     styleAttrs,
     inputBindings,
+    hasButtons,
     isFocus,
 
     inputElement,

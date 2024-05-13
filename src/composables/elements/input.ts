@@ -1,4 +1,4 @@
-import { computed, ref, toRefs, useAttrs } from 'vue';
+import { computed, ref, toRefs, useAttrs, useSlots } from 'vue';
 import type { PropType } from 'vue';
 import type { CountType } from '@/utils/string';
 import type { CustomEmit, InputModel } from '@/types/common.types';
@@ -144,6 +144,12 @@ export default function inputComposable(emit: CustomEmit<Emits>, props: Props) {
   });
   // #endregion
 
+  // #region slots
+  const slots = useSlots();
+  // #endregion
+
+  const hasButtons = computed(() => !!slots.button || props.visible || props.clearable || props.isSearch);
+
   const inputType = computed(() => (attrs.type as string) ?? 'text');
 
   const controlType = ref(inputType.value);
@@ -264,6 +270,7 @@ export default function inputComposable(emit: CustomEmit<Emits>, props: Props) {
   return {
     styleAttrs,
     inputBindings,
+    hasButtons,
     isFocus,
 
     inputElement,
